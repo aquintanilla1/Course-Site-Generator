@@ -125,6 +125,17 @@
 		<property name="STYLESHEET_TEXT"                value="Stylesheet:"></property>
 		<property name="NOTE_TEXT"               		value="NOTE: New stylesheets may be placed in work/css to be selectable"></property>
 		<property name="NO_IMAGE_SELECTED_TEXT"         value="No image selected"></property>
+
+		<property name="RECITATION_TAB"					value="Recitation"></property>
+		<property name="RECITATION_HEADER"              value="Recitations"></property>
+		<property name="ADD_EDIT_HEADER"                value="Add/Edit"></property>
+		<property name="SECTION_TEXT"               	value="Section"></property>
+		<property name="INSTRUCTOR_TEXT"               	value="Instructor"></property>
+		<property name="DAY_TIME_TEXT"               	value="Day/Time"></property>
+		<property name="LOCATION_TEXT"               	value="Location"></property>
+		<property name="TA_HEADER"               		value="TA"></property>
+		<property name="SUPERVISING_TA_TEXT"            value="Supervising TA"></property>
+		<property name="ADD_UPDATE_BUTTON_TEXT"            value="Add/Update"></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

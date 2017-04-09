@@ -38,6 +38,8 @@ public class CSGStyle extends AppStyleComponent {
         workspace.getCDTabBuilder().getTopPane().getStyleClass().add(PANE);
         workspace.getCDTabBuilder().getCenterPane().getStyleClass().add(PANE);
         workspace.getCDTabBuilder().getBottomPane().getStyleClass().add(PANE);
+        
+        workspace.getRecitationTabBuilder().getBottomPane().getStyleClass().add(PANE);
 
         
         //workspace.getTabs().getStyleClass().add(TAB_LABEL);

@@ -39,14 +39,14 @@ public class CSGWorkspace extends AppWorkspaceComponent {
         app = initApp;
         cdWorkspace = new CourseDetailsTabBuilder(app);
         taWorkspace = new TADataTabBuilder();
-        recitationWorkspace = new RecitationTabBuilder();
+        recitationWorkspace = new RecitationTabBuilder(app);
         scheduleWorkspace = new ScheduleTabBuilder();
         projectWorkspace = new ProjectTabBuilder();
         
         tabs = new TabPane();
         courseDetailsTab = cdWorkspace.getTab();
         taDataTab = taWorkspace.buildTADataTab();
-        recitationTab = recitationWorkspace.buildRecitationTab();
+        recitationTab = recitationWorkspace.getTab();
         scheduleTab = scheduleWorkspace.buildScheduleTab();
         projectTab = projectWorkspace.buildProjectTab();
         
@@ -72,6 +72,10 @@ public class CSGWorkspace extends AppWorkspaceComponent {
     }
     public CourseDetailsTabBuilder getCDTabBuilder() {
         return cdWorkspace;
+    }
+    
+    public RecitationTabBuilder getRecitationTabBuilder() {
+        return recitationWorkspace;
     }
 
     @Override

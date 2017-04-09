@@ -79,9 +79,15 @@ public enum CSGProp {
     NOTE_TEXT,
     NO_IMAGE_SELECTED_TEXT,
     
-    
-    
-    
-    
-    
+    //Recitation Tab
+    RECITATION_TAB,
+    RECITATION_HEADER,
+    ADD_EDIT_HEADER,
+    SECTION_TEXT,
+    INSTRUCTOR_TEXT,
+    DAY_TIME_TEXT,
+    LOCATION_TEXT,
+    TA_HEADER,
+    SUPERVISING_TA_TEXT,
+    ADD_UPDATE_BUTTON_TEXT, 
 }

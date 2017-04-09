@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 public class CSGData implements AppDataComponent {
     CSGApp app;
     ObservableList<SitePage> sitePages;
+    ObservableList<Recitation> recitations;
     
     public CSGData(CSGApp initApp) {
         app = initApp;
@@ -27,6 +28,10 @@ public class CSGData implements AppDataComponent {
         return sitePages;
     }
 
+    public ObservableList getRecitations() {
+        return recitations;
+    }
+    
     @Override
     public void resetData() {
         System.out.println("clear");
