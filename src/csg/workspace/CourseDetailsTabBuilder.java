@@ -104,14 +104,14 @@ public class CourseDetailsTabBuilder {
         
         //First column in grid
         topHeader = new Label(props.getProperty(CSGProp.COURSE_INFO_TEXT));
-        subject = new Label(props.getProperty(CSGProp.SUBJECT_TEXT));
-        semester = new Label(props.getProperty(CSGProp.SEMESTER_TEXT));
-        number = new Label(props.getProperty(CSGProp.NUMBER_TEXT));
-        year = new Label(props.getProperty(CSGProp.YEAR_TEXT));
-        title = new Label(props.getProperty(CSGProp.TITLE_TEXT));
-        instructorName = new Label(props.getProperty(CSGProp.INSTRUCTOR_NAME_TEXT));
-        instructorHome = new Label(props.getProperty(CSGProp.INSTRUCTOR_HOME_TEXT));
-        exportDirectory = new Label(props.getProperty(CSGProp.EXPORT_DIR_TEXT));
+        subject = new Label(props.getProperty(CSGProp.SUBJECT_TEXT) + ":");
+        semester = new Label(props.getProperty(CSGProp.SEMESTER_TEXT) + ":");
+        number = new Label(props.getProperty(CSGProp.NUMBER_TEXT) + ":");
+        year = new Label(props.getProperty(CSGProp.YEAR_TEXT) + ":");
+        title = new Label(props.getProperty(CSGProp.TITLE_TEXT) + ":");
+        instructorName = new Label(props.getProperty(CSGProp.INSTRUCTOR_NAME_TEXT) + ":");
+        instructorHome = new Label(props.getProperty(CSGProp.INSTRUCTOR_HOME_TEXT) + ":");
+        exportDirectory = new Label(props.getProperty(CSGProp.EXPORT_DIR_TEXT) + ":");
         
         grid.add(topHeader, 0, 0);
         grid.add(subject, 0, 1);
@@ -137,8 +137,8 @@ public class CourseDetailsTabBuilder {
         grid.add(defaultDirText, 1, 6);
         
         //Third column in grid
-        number = new Label(props.getProperty(CSGProp.NUMBER_TEXT));
-        year = new Label(props.getProperty(CSGProp.YEAR_TEXT));
+        number = new Label(props.getProperty(CSGProp.NUMBER_TEXT) + ":");
+        year = new Label(props.getProperty(CSGProp.YEAR_TEXT) + ":");
         
         grid.add(number, 2, 1);
         grid.add(year, 2, 2);
@@ -222,10 +222,10 @@ public class CourseDetailsTabBuilder {
         //pageStyleText, bannerText, leftFooterText, rightFooterText, stylesheetText, noteText;
         
         pageStyleText= new Label(props.getProperty(CSGProp.PAGE_STYLE_TEXT));
-        bannerText = new Label(props.getProperty(CSGProp.BANNER_TEXT));
-        leftFooterText = new Label(props.getProperty(CSGProp.LEFT_FOOTER_TEXT));
-        rightFooterText = new Label(props.getProperty(CSGProp.RIGHT_FOOTER_TEXT));
-        stylesheetText = new Label(props.getProperty(CSGProp.STYLESHEET_TEXT));
+        bannerText = new Label(props.getProperty(CSGProp.BANNER_TEXT) + ":");
+        leftFooterText = new Label(props.getProperty(CSGProp.LEFT_FOOTER_TEXT) + ":");
+        rightFooterText = new Label(props.getProperty(CSGProp.RIGHT_FOOTER_TEXT) + ":");
+        stylesheetText = new Label(props.getProperty(CSGProp.STYLESHEET_TEXT) + ":");
         noteText = new Label(props.getProperty(CSGProp.NOTE_TEXT));
         
         grid.add(pageStyleText, 0, 0);

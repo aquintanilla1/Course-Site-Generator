@@ -99,21 +99,21 @@
         
         <property name="COURSE_DETAILS_TAB"             value="Course Details"></property>
         <property name="COURSE_INFO_TEXT"               value="Course Info"></property>
-		<property name="SUBJECT_TEXT"               	value="Subject:"></property>
-		<property name="SEMESTER_TEXT"              	value="Semester:"></property>
-		<property name="NUMBER_TEXT"               		value="Number:"></property>
-		<property name="YEAR_TEXT"               		value="Year:"></property>
-		<property name="TITLE_TEXT"               		value="Title:"></property>
-		<property name="INSTRUCTOR_NAME_TEXT"           value="Instructor Name:"></property>
-		<property name="INSTRUCTOR_HOME_TEXT"           value="Instructor Home:"></property>
-		<property name="EXPORT_DIR_TEXT"                value="Export Dir:"></property>
+		<property name="SUBJECT_TEXT"               	value="Subject"></property>
+		<property name="SEMESTER_TEXT"              	value="Semester"></property>
+		<property name="NUMBER_TEXT"               		value="Number"></property>
+		<property name="YEAR_TEXT"               		value="Year"></property>
+		<property name="TITLE_TEXT"               		value="Title"></property>
+		<property name="INSTRUCTOR_NAME_TEXT"           value="Instructor Name"></property>
+		<property name="INSTRUCTOR_HOME_TEXT"           value="Instructor Home"></property>
+		<property name="EXPORT_DIR_TEXT"                value="Export Dir"></property>
 		<property name="DEFAULT_DIR_TEXT"               value="No directory selected"></property>
 		<property name="CHANGE_BUTTON_TEXT"             value="Change"></property>
 		<property name="SITE_TEMPLATE_TEXT"             value="Site Template"></property>
 		<property name="SITE_TEMPLATE_NOTE"             value="The selected directory should contain the full site template, including the HTML files."></property>
 		<property name="SITE_TEMPLATE_DIRECTORY_TEXT"   value="No template selected"></property>
 		<property name="SELECT_TEMPLATE_DIR_BUTTON_TEXT"	value="Select Template Directory"></property>
-		<property name="SITE_PAGES_TEXT"                value="Site Pages:"></property>
+		<property name="SITE_PAGES_TEXT"                value="Site Pages"></property>
 		<property name="USE_HEADER"               		value="Use"></property>
 		<property name="NAVBAR_TITLE_HEADER"            value="Navbar Title"></property>
 		<property name="FILE_NAME_HEADER"               value="File Name"></property>
@@ -122,11 +122,11 @@
 		<property name="BANNER_TEXT"               		value="Banner School Image"></property>
 		<property name="LEFT_FOOTER_TEXT"               value="Left Footer Image"></property>
 		<property name="RIGHT_FOOTER_TEXT"              value="Right Footer Image"></property>
-		<property name="STYLESHEET_TEXT"                value="Stylesheet:"></property>
+		<property name="STYLESHEET_TEXT"                value="Stylesheet"></property>
 		<property name="NOTE_TEXT"               		value="NOTE: New stylesheets may be placed in work/css to be selectable"></property>
 		<property name="NO_IMAGE_SELECTED_TEXT"         value="No image selected"></property>
 
-		<property name="RECITATION_TAB"					value="Recitation"></property>
+		<property name="RECITATION_TAB"					value="Recitation Data"></property>
 		<property name="RECITATION_HEADER"              value="Recitations"></property>
 		<property name="ADD_EDIT_HEADER"                value="Add/Edit"></property>
 		<property name="SECTION_TEXT"               	value="Section"></property>
@@ -135,7 +135,19 @@
 		<property name="LOCATION_TEXT"               	value="Location"></property>
 		<property name="TA_HEADER"               		value="TA"></property>
 		<property name="SUPERVISING_TA_TEXT"            value="Supervising TA"></property>
-		<property name="ADD_UPDATE_BUTTON_TEXT"            value="Add/Update"></property>
+		<property name="ADD_UPDATE_BUTTON_TEXT"         value="Add/Update"></property>
+		
+		<property name="SCHEDULE_TAB"               	value="Schedule Data"></property>
+		<property name="CALENDAR_BOUNDARIES_TEXT"       value="Calendar Boundaries"></property>
+		<property name="STARTING_MONDAY_TEXT"           value="Starting Monday"></property>
+		<property name="ENDING_FRIDAY_TEXT"             value="Ending Friday"></property>
+		<property name="SCHEDULE_ITEMS_TEXT"            value="Schedule Items"></property>
+		<property name="TYPE_TEXT"              		value="Type"></property>
+		<property name="DATE_TEXT"          		    value="Data"></property>
+		<property name="TIME_TEXT"               		value="Time"></property>
+		<property name="TOPIC_TEXT"               		value="Topic"></property>
+		<property name="LINK_TEXT"               		value="Link"></property>
+		<property name="CRITERIA_TEXT"             	    value="Criteria"></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

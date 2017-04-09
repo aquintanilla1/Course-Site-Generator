@@ -18,6 +18,8 @@ public class CSGData implements AppDataComponent {
     CSGApp app;
     ObservableList<SitePage> sitePages;
     ObservableList<Recitation> recitations;
+    ObservableList<ScheduleItem> scheduleItems;
+
     
     public CSGData(CSGApp initApp) {
         app = initApp;
@@ -30,6 +32,10 @@ public class CSGData implements AppDataComponent {
 
     public ObservableList getRecitations() {
         return recitations;
+    }
+    
+    public ObservableList getScheduleItems() {
+        return scheduleItems;
     }
     
     @Override

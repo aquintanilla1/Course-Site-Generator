@@ -108,6 +108,11 @@ public class RecitationTabBuilder {
         recitationTable.getColumns().add(locationColumn);
         recitationTable.getColumns().add(ta1Column);
         recitationTable.getColumns().add(ta2Column);
+        
+        recitationTable.setFixedCellSize(25);
+        recitationTable.prefHeightProperty().bind(recitationTable.fixedCellSizeProperty().multiply(10));
+        recitationTable.minHeightProperty().bind(recitationTable.prefHeightProperty());
+        recitationTable.maxHeightProperty().bind(recitationTable.prefHeightProperty());
     }
     
     private GridPane buildBottomPane() {
@@ -135,11 +140,6 @@ public class RecitationTabBuilder {
         grid.add(ta1Text, 0, 5);
         grid.add(ta2Text, 0, 6);
         grid.add(addUpdateButton, 0, 7);
-        
-        //        Label headerText, addEditHeaderText, sectionText, instructorText, dayTimeText, locationText,
-//            ta1Text, ta2Text;
-//    TextField sectionTextField, instructorTextField, dayTimeTextField, locationTextField;
-//    ComboBox ta1Box, ta2Box;
 
         sectionTextField = new TextField();
         instructorTextField = new TextField();
