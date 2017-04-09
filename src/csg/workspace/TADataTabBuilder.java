@@ -17,9 +17,7 @@ public class TADataTabBuilder {
     Tab tab;
     Button button;
     
-    public TADataTabBuilder() {}
-    
-    public Tab buildTADataTab() {
+    public TADataTabBuilder() {
         BorderPane pane = new BorderPane();
         button = new Button("ta");
         
@@ -27,6 +25,10 @@ public class TADataTabBuilder {
         
         pane.setCenter(button);
         tab.setContent(pane);
+    }
+    
+    public Tab buildTADataTab() {
+        
         
         return tab;
     }

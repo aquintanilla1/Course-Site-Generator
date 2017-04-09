@@ -1,0 +1,53 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 4, 2017, 7:26:39 PM
+    Author     : Alvaro 
+*/
+
+.root{
+    
+}
+
+.dialog_pane {
+    -fx-padding:15;
+}
+
+.dialog_heading {
+    -fx-font-size: 24pt;
+    -fx-color:red;
+}
+
+.dialog_prompt {
+    -fx-font-size: 16pt;
+    -fx-font-weight: bold;
+    -fx-padding: 10;
+}
+
+.bordered pane { 
+
+}
+
+.file_button {
+    
+}
+
+.file_tooltip {
+    
+}
+.info_pane {
+    -fx-border-width: 2px;
+    -fx-border-color: #000000;
+}
+
+.tab_label {
+    -fx-font-family: monospace;
+}
+
+.pane {
+    -fx-border-width: 2px;
+    -fx-border-color: #000000;
+}

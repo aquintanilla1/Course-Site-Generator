@@ -11,7 +11,7 @@
         <property name="APP_TITLE"	    value="Course Site Generator"></property>
 	<property name="APP_LOGO"	    value="TAManagerLogo.png"></property>
 	<property name="APP_PATH_CSS"	    value="style/"></property>
-	<property name="APP_CSS"	    value="tam_style.css"></property>
+	<property name="APP_CSS"	    value="csg_style.css"></property>
         
         <!-- PROGRAM ICON FILES -->
         <property name="NEW_ICON"	    value="New.png"></property>
@@ -94,8 +94,37 @@
         <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE"   value="You must provide a unique TA Name and Email"></property>
         <property name="INVALID_TA_EMAIL_TITLE"         value="Invalid TA Email"></property>
         <property name="INVALID_TA_EMAIL_MESSAGE"       value="You must provide a valid TA Email"></property>
-        <property name="INVALID_TIMES_TITLE"             value="Invalid Times"></property>
+        <property name="INVALID_TIMES_TITLE"            value="Invalid Times"></property>
         <property name="INVALID_TIMES_MESSAGE"          value="The Start Time must be earlier than the End Time"></property>
+        
+        <property name="COURSE_DETAILS_TAB"             value="Course Details"></property>
+        <property name="COURSE_INFO_TEXT"               value="Course Info"></property>
+		<property name="SUBJECT_TEXT"               	value="Subject:"></property>
+		<property name="SEMESTER_TEXT"              	value="Semester:"></property>
+		<property name="NUMBER_TEXT"               		value="Number:"></property>
+		<property name="YEAR_TEXT"               		value="Year:"></property>
+		<property name="TITLE_TEXT"               		value="Title:"></property>
+		<property name="INSTRUCTOR_NAME_TEXT"           value="Instructor Name:"></property>
+		<property name="INSTRUCTOR_HOME_TEXT"           value="Instructor Home:"></property>
+		<property name="EXPORT_DIR_TEXT"                value="Export Dir:"></property>
+		<property name="DEFAULT_DIR_TEXT"               value="No directory selected"></property>
+		<property name="CHANGE_BUTTON_TEXT"             value="Change"></property>
+		<property name="SITE_TEMPLATE_TEXT"             value="Site Template"></property>
+		<property name="SITE_TEMPLATE_NOTE"             value="The selected directory should contain the full site template, including the HTML files."></property>
+		<property name="SITE_TEMPLATE_DIRECTORY_TEXT"   value="No template selected"></property>
+		<property name="SELECT_TEMPLATE_DIR_BUTTON_TEXT"	value="Select Template Directory"></property>
+		<property name="SITE_PAGES_TEXT"                value="Site Pages:"></property>
+		<property name="USE_HEADER"               		value="Use"></property>
+		<property name="NAVBAR_TITLE_HEADER"            value="Navbar Title"></property>
+		<property name="FILE_NAME_HEADER"               value="File Name"></property>
+		<property name="SCRIPT_HEADER"               	value="Script"></property>
+		<property name="PAGE_STYLE_TEXT"                value="Page Style"></property>
+		<property name="BANNER_TEXT"               		value="Banner School Image"></property>
+		<property name="LEFT_FOOTER_TEXT"               value="Left Footer Image"></property>
+		<property name="RIGHT_FOOTER_TEXT"              value="Right Footer Image"></property>
+		<property name="STYLESHEET_TEXT"                value="Stylesheet:"></property>
+		<property name="NOTE_TEXT"               		value="NOTE: New stylesheets may be placed in work/css to be selectable"></property>
+		<property name="NO_IMAGE_SELECTED_TEXT"         value="No image selected"></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

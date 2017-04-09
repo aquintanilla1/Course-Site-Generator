@@ -8,6 +8,7 @@ package csg.workspace;
 import csg.CSGApp;
 import djf.components.AppDataComponent;
 import djf.components.AppWorkspaceComponent;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -36,14 +37,14 @@ public class CSGWorkspace extends AppWorkspaceComponent {
     
     public CSGWorkspace(CSGApp initApp) {
         app = initApp;
-        cdWorkspace = new CourseDetailsTabBuilder();
+        cdWorkspace = new CourseDetailsTabBuilder(app);
         taWorkspace = new TADataTabBuilder();
         recitationWorkspace = new RecitationTabBuilder();
         scheduleWorkspace = new ScheduleTabBuilder();
         projectWorkspace = new ProjectTabBuilder();
         
         tabs = new TabPane();
-        courseDetailsTab = cdWorkspace.buildCourseDetailsTab();
+        courseDetailsTab = cdWorkspace.getTab();
         taDataTab = taWorkspace.buildTADataTab();
         recitationTab = recitationWorkspace.buildRecitationTab();
         scheduleTab = scheduleWorkspace.buildScheduleTab();
@@ -62,17 +63,23 @@ public class CSGWorkspace extends AppWorkspaceComponent {
         }
 
         workspace =  new BorderPane();
-        ((BorderPane) workspace).setCenter(tabs);      
+        ((BorderPane) workspace).setCenter(tabs);
+        ((BorderPane) workspace).setPadding(new Insets(10,10,10,10));
+    }
+    
+    public TabPane getTabs() {
+        return tabs;
+    }
+    public CourseDetailsTabBuilder getCDTabBuilder() {
+        return cdWorkspace;
     }
 
     @Override
     public void resetWorkspace() {
-        System.out.print("clear");
     }
 
     @Override
     public void reloadWorkspace(AppDataComponent dataComponent) {
-        System.out.println("init");
     }
     
 }
