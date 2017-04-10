@@ -28,6 +28,8 @@ public class CSGStyle extends AppStyleComponent {
         
         super.initStylesheet(app);
         app.getGUI().initFileToolbarStyle();
+        app.getGUI().initEditToolbarStyle();
+        app.getGUI().initHeaderStyle();
         initCourseWorkspace();
     }
     

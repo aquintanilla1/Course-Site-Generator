@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -50,7 +51,7 @@ public class CourseDetailsTabBuilder {
     TextField titleTextField, instructorNameTextField, instructorHomeTextField;
     
     TableView<SitePage> sitePageTable;
-    TableColumn<SitePage, String> useColumn;
+    TableColumn<SitePage, Boolean> useColumn;
     TableColumn<SitePage, String> navBarColumn;
     TableColumn<SitePage, String> fileNameColumn;
     TableColumn<SitePage, String> scriptColumn;
@@ -182,7 +183,13 @@ public class CourseDetailsTabBuilder {
         fileNameColumn = new TableColumn(props.getProperty(CSGProp.FILE_NAME_HEADER));
         scriptColumn = new TableColumn(props.getProperty(CSGProp.SCRIPT_HEADER));
         
+        useColumn.setCellValueFactory(
+            param -> param.getValue().isUsed()
+        );
         
+        useColumn.setCellFactory(CheckBoxTableCell.forTableColumn(useColumn));
+        
+
         navBarColumn.setCellValueFactory(
                 new PropertyValueFactory<SitePage, String>("navbarTitle")
         );
@@ -206,6 +213,8 @@ public class CourseDetailsTabBuilder {
         sitePageTable.minHeightProperty().bind(sitePageTable.prefHeightProperty());
         sitePageTable.maxHeightProperty().bind(sitePageTable.prefHeightProperty());
         
+        sitePageTable.setEditable(true);
+             
         vbox.getChildren().add(sitePageTable);
 
         return vbox;
@@ -215,7 +224,7 @@ public class CourseDetailsTabBuilder {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_LEFT);
-        grid.setVgap(10);
+        grid.setVgap(5);
         grid.setHgap(10);
         grid.setPadding(new Insets(15,15,15,15));
         

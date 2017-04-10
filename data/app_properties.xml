@@ -20,7 +20,11 @@
         <property name="SAVE_AS_ICON"   value="SaveAs.png"></property>
         <property name="EXPORT_ICON"    value="Export.png"></property>
         <property name="EXIT_ICON"      value="Exit.png"></property> 
-        
+        <property name="UNDO_ICON"      value="Undo.png"></property>
+		<property name="REDO_ICON"      value="Redo.png"></property>
+		<property name="ABOUT_ICON"     value="About.png"></property>
+		<property name="REMOVE_ICON"    value="Remove.png"></property>   
+		     
         <!-- TOOLTIPS FOR BUTTONS -->
         <property name="NEW_TOOLTIP"		value="Build a new TA Grid"></property>
         <property name="LOAD_TOOLTIP"		value="Load an existing TA Grid"></property>
@@ -28,6 +32,10 @@
         <property name="SAVE_AS_TOOLTIP"    value="Save the current TA Grid as a new file"></property>
         <property name="EXPORT_TOOLTIP"     value="Export the current TA Grid to a directory"></property>
         <property name="EXIT_TOOLTIP"		value="Exit the Application"></property>
+        <property name="UNDO_TOOLTIP"       value="Undo a previous action"></property>
+		<property name="REDO_TOOLTIP"       value="Redo an undone action"></property>
+		<property name="ABOUT_TOOLTIP"      value="About Course Site Generator"></property>
+
         
         <!-- ERROR MESSAGES -->
         <property name="CLOSE_BUTTON_TEXT"              value="Close"></property>

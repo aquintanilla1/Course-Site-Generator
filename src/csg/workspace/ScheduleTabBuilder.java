@@ -150,7 +150,7 @@ public class ScheduleTabBuilder {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_LEFT);
-        grid.setVgap(10);
+        grid.setVgap(5);
         grid.setHgap(10);
         grid.setPadding(new Insets(10,10,10,10));
         

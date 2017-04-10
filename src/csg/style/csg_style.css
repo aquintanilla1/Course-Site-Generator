@@ -27,8 +27,26 @@ and open the template in the editor.
     -fx-padding: 10;
 }
 
-.bordered pane { 
+.entire_bordered_pane {
+    -fx-background-color: #aaaaff;
+    -fx-background-radius: 5.0;
+    -fx-border-width: 2px;
+    -fx-border-color: #7777dd;
+}
 
+.file_bordered_pane { 
+    -fx-background-color: #aaaaff;
+    -fx-background-radius: 5.0;
+    -fx-padding: 5;
+    -fx-spacing: 10;
+    -fx-border-right: #7777dd solid 2px;
+}
+
+.edit_bordered_pane {
+    -fx-background-color: #aaaaff;
+    -fx-background-radius: 5.0;
+    -fx-padding: 5;
+    
 }
 
 .file_button {
