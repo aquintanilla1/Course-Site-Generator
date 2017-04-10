@@ -41,14 +41,14 @@ public class CSGWorkspace extends AppWorkspaceComponent {
         taWorkspace = new TADataTabBuilder();
         recitationWorkspace = new RecitationTabBuilder(app);
         scheduleWorkspace = new ScheduleTabBuilder(app);
-        projectWorkspace = new ProjectTabBuilder();
+        projectWorkspace = new ProjectTabBuilder(app);
         
         tabs = new TabPane();
         courseDetailsTab = cdWorkspace.getTab();
         taDataTab = taWorkspace.buildTADataTab();
         recitationTab = recitationWorkspace.getTab();
         scheduleTab = scheduleWorkspace.getScheduleTab();
-        projectTab = projectWorkspace.buildProjectTab();
+        projectTab = projectWorkspace.getProjectTab();
         
         
         tabs.getTabs().add(courseDetailsTab);

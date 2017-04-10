@@ -8,9 +8,7 @@ package csg.workspace;
 import csg.CSGApp;
 import csg.CSGProp;
 import csg.data.CSGData;
-import csg.data.Recitation;
 import csg.data.ScheduleItem;
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,7 +20,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -156,10 +153,6 @@ public class ScheduleTabBuilder {
         grid.setVgap(10);
         grid.setHgap(10);
         grid.setPadding(new Insets(10,10,10,10));
-        
-        //        Button deleteButton, addUpdateButton, clearButton;
-//    Label scheduleHeader, calendarText, startMonText, endFriText, scheduleItemsText,
-//            addEditText, typeText, dateText, timeText, titleText, topicText, linkText, criteriaText;
         
         addEditText = new Label(props.getProperty(CSGProp.ADD_EDIT_HEADER));
         typeText = new Label(props.getProperty(CSGProp.TYPE_TEXT) + ":");

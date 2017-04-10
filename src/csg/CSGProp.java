@@ -104,4 +104,16 @@ public enum CSGProp {
     LINK_TEXT,
     CRITERIA_TEXT,
     
+    //Project Tab
+    PROJECT_TAB,
+    PROJECTS_HEADER,
+    TEAM_SUB_HEADER,
+    STUDENTS_SUBHEADER,
+    NAME_TEXT,
+    COLOR_TEXT,
+    TEXT_COLOR_TEXT,
+    FIRST_NAME_TEXT,
+    LAST_NAME_TEXT,
+    TEAM_TEXT,
+    ROLE_TEXT,
 }

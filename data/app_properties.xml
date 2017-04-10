@@ -148,6 +148,18 @@
 		<property name="TOPIC_TEXT"               		value="Topic"></property>
 		<property name="LINK_TEXT"               		value="Link"></property>
 		<property name="CRITERIA_TEXT"             	    value="Criteria"></property>
+		
+		<property name="PROJECT_TAB"               		value="Project Data"></property>
+		<property name="PROJECTS_HEADER"               	value="Projects"></property>
+		<property name="TEAM_SUB_HEADER"               	value="Teams"></property>
+		<property name="STUDENTS_SUBHEADER"             value="Students"></property>
+		<property name="NAME_TEXT"               		value="Name"></property>
+		<property name="COLOR_TEXT"               		value="Color"></property>
+		<property name="TEXT_COLOR_TEXT"                value="Text Color"></property>
+		<property name="FIRST_NAME_TEXT"                value="First Name"></property>
+		<property name="LAST_NAME_TEXT"                 value="Last Name"></property>
+		<property name="TEAM_TEXT"               		value="Team"></property>
+		<property name="ROLE_TEXT"               		value="Role"></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">
