@@ -30,7 +30,7 @@ public enum CSGProp {
     OFFICE_HOURS_SUBHEADER,
     OFFICE_HOURS_TABLE_HEADERS,
     DAYS_OF_WEEK,
-    
+    REMOVE_ICON,
     //Verification messages for changing office hours grid
     TAS_IN_CELLS_TITLE,
     TAS_IN_CELLS_MESSAGE,
@@ -78,6 +78,10 @@ public enum CSGProp {
     STYLESHEET_TEXT,
     NOTE_TEXT,
     NO_IMAGE_SELECTED_TEXT,
+    
+    TA_TAB,
+    UNDERGRAD_COLUMN_TEXT,
+    DELETE_TA_TOOLTIP,
     
     //Recitation Tab
     RECITATION_TAB,

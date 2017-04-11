@@ -133,6 +133,10 @@
 		<property name="STYLESHEET_TEXT"                value="Stylesheet"></property>
 		<property name="NOTE_TEXT"               		value="NOTE: New stylesheets may be placed in work/css to be selectable"></property>
 		<property name="NO_IMAGE_SELECTED_TEXT"         value="No image selected"></property>
+		
+		<property name="TA_TAB"                         value="TA Data"></property>
+		<property name="UNDERGRAD_COLUMN_TEXT"			value="Undergrad"></property>
+		<property name="DELETE_TA_TOOLTIP"				value="Deletes the selected TA and their office hours"></property>
 
 		<property name="RECITATION_TAB"					value="Recitation Data"></property>
 		<property name="RECITATION_HEADER"              value="Recitations"></property>

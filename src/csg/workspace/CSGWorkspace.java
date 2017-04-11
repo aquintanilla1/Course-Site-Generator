@@ -6,6 +6,7 @@
 package csg.workspace;
 
 import csg.CSGApp;
+import csg.data.CSGData;
 import djf.components.AppDataComponent;
 import djf.components.AppWorkspaceComponent;
 import javafx.geometry.Insets;
@@ -38,14 +39,14 @@ public class CSGWorkspace extends AppWorkspaceComponent {
     public CSGWorkspace(CSGApp initApp) {
         app = initApp;
         cdWorkspace = new CourseDetailsTabBuilder(app);
-        taWorkspace = new TADataTabBuilder();
+        taWorkspace = new TADataTabBuilder(app);
         recitationWorkspace = new RecitationTabBuilder(app);
         scheduleWorkspace = new ScheduleTabBuilder(app);
         projectWorkspace = new ProjectTabBuilder(app);
         
         tabs = new TabPane();
         courseDetailsTab = cdWorkspace.getTab();
-        taDataTab = taWorkspace.buildTADataTab();
+        taDataTab = taWorkspace.getTab();
         recitationTab = recitationWorkspace.getTab();
         scheduleTab = scheduleWorkspace.getScheduleTab();
         projectTab = projectWorkspace.getProjectTab();
@@ -74,6 +75,10 @@ public class CSGWorkspace extends AppWorkspaceComponent {
         return cdWorkspace;
     }
     
+    public TADataTabBuilder getTATabBuilder() {
+        return taWorkspace;
+    }
+    
     public RecitationTabBuilder getRecitationTabBuilder() {
         return recitationWorkspace;
     }
@@ -89,10 +94,13 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 
     @Override
     public void resetWorkspace() {
+        taWorkspace.resetWorkspace();
     }
 
     @Override
     public void reloadWorkspace(AppDataComponent dataComponent) {
+        CSGData csgData = (CSGData)dataComponent;
+        taWorkspace.reloadOfficeHoursGrid(csgData);
     }
     
 }
