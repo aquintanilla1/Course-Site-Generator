@@ -40,6 +40,8 @@ public class CourseDetailsTabBuilder {
     Tab tab;
     GridPane topPane, bottomPane;
     VBox centerPane;
+    BorderPane wholePane;
+    VBox allPane;
     
     Button changeButton1, changeButton2, changeButton3, changeButton4, selectTemplateDirButton;
     Label topHeader, centerHeader, bottomHeader;
@@ -60,8 +62,8 @@ public class CourseDetailsTabBuilder {
     public CourseDetailsTabBuilder(CSGApp initApp) {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         app = initApp;
-        BorderPane wholePane = new BorderPane();
-        VBox allPane = new VBox();
+        wholePane = new BorderPane();
+        allPane = new VBox(2);
        
         topPane = buildTopGrid();
         centerPane = buildCenterGrid();
@@ -74,13 +76,33 @@ public class CourseDetailsTabBuilder {
         wholePane.setPadding(new Insets(15,15,15,15));
         wholePane.setCenter(centerPane);
         wholePane.setBottom(bottomPane);
-       // allPane.setPadding(new Insets(25,25,25,25));
-        //allPane.getChildren().addAll(topPane, centerPane, bottomPane);
-        tab.setContent(wholePane);   
+        allPane.setPadding(new Insets(7,15,15,15));
+        allPane.getChildren().addAll(topPane, centerPane, bottomPane);
+        tab.setContent(allPane);   
     }
     
     public Tab getTab() {
         return tab;
+    }
+    
+    public BorderPane getWholePane() {
+        return wholePane;
+    }
+    
+    public VBox getAllPane() {
+        return allPane;
+    }
+    
+    public Label getTopHeaderLabel() {
+        return topHeader;
+    }
+    
+    public Label getCenterHeaderLabel() {
+        return centerHeader;
+    }
+    
+    public Label getBottomHeaderLabel() {
+        return pageStyleText;
     }
     
     public Pane getTopPane() {
@@ -93,6 +115,10 @@ public class CourseDetailsTabBuilder {
     
     public Pane getBottomPane() {
         return bottomPane;
+    }
+    
+    public TableView getSitePageTable() {
+        return sitePageTable;
     }
     
     private GridPane buildTopGrid() {

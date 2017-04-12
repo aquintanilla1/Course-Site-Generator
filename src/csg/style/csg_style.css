@@ -12,6 +12,12 @@ and open the template in the editor.
     
 }
 
+.app_pane {
+ -fx-background-color: #020864;
+ -fx-border-width: 2px;
+ -fx-border-color: #020864;
+}
+
 .dialog_pane {
     -fx-padding:15;
 }
@@ -27,26 +33,20 @@ and open the template in the editor.
     -fx-padding: 10;
 }
 
-.entire_bordered_pane {
-    -fx-background-color: #aaaaff;
+.edit_bordered_pane {
     -fx-background-radius: 5.0;
-    -fx-border-width: 2px;
-    -fx-border-color: #7777dd;
+    -fx-padding: 5;
+}
+
+.entire_header_pane {
+    -fx-background-color: #35609C;
 }
 
 .file_bordered_pane { 
-    -fx-background-color: #aaaaff;
     -fx-background-radius: 5.0;
     -fx-padding: 5;
     -fx-spacing: 10;
     -fx-border-right: #7777dd solid 2px;
-}
-
-.edit_bordered_pane {
-    -fx-background-color: #aaaaff;
-    -fx-background-radius: 5.0;
-    -fx-padding: 5;
-    
 }
 
 .file_button {
@@ -56,16 +56,94 @@ and open the template in the editor.
 .file_tooltip {
     
 }
+
+.header_label {
+    -fx-font-size: 18pt;
+    -fx-font-weight: bold;
+    -fx-font-family: monospace;
+}
+
+.ta_header_pane{
+    -fx-background-color: #B2D9FF;
+}
+
 .info_pane {
     -fx-border-width: 2px;
     -fx-border-color: #000000;
 }
 
-.tab_label {
+.office_hours_grid{
     -fx-font-family: monospace;
+}
+
+.office_hours_grid_time_column_header_pane{
+    -fx-background-color: #020864;
+}
+
+.office_hours_grid_time_column_header_label{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.office_hours_grid_day_column_header_pane{
+    -fx-background-color: #020864;
+
+}
+
+.office_hours_grid_day_column_header_label{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.office_hours_grid_time_cell_pane{
+    -fx-background-color: #041196;
+    -fx-border-style: dotted;
+    -fx-border-color: white;
+}
+
+.office_hours_grid_time_cell_label{
+    -fx-text-fill: white;
+}
+
+.office_hours_grid_ta_cell_pane{
+    -fx-background-color: #ABAA7A;
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+}
+
+.office_hours_grid_ta_cell_label{
+    -fx-text-fill: black;
+}
+
+.table{
+    -fx-font-family: monospace;
+    -fx-border-width: 1px;
+    -fx-border-color: #020864;
+}
+
+.table-view .column-header.table_column_header .label {
+    -fx-background-color: #020864;
+    -fx-font-family : monospace;
+    -fx-text-fill: white;
 }
 
 .pane {
     -fx-border-width: 2px;
     -fx-border-color: #000000;
+    -fx-background-color: #f4f4f4;
+}
+
+.subheader_label {
+    -fx-font-size: 12pt;
+    
+}
+
+.tab_label {
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-background-color: #020864;
+}
+
+.whole_pane {
+    -fx-background-color: #B2D9FF;
 }

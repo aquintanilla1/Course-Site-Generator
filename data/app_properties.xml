@@ -24,13 +24,19 @@
 		<property name="REDO_ICON"      value="Redo.png"></property>
 		<property name="ABOUT_ICON"     value="About.png"></property>
 		<property name="REMOVE_ICON"    value="Remove.png"></property>   
+		
+		<!-- Dialog Options -->			
+		<property name="YES_TEXT"       value="Yes"></property>
+		<property name="NO_TEXT"        value="No"></property>
+		<property name="CANCEL_TEXT"    value="Cancel"></property>
+		<property name="OK_TEXT"        value="OK"></property>
 		     
         <!-- TOOLTIPS FOR BUTTONS -->
-        <property name="NEW_TOOLTIP"		value="Build a new TA Grid"></property>
-        <property name="LOAD_TOOLTIP"		value="Load an existing TA Grid"></property>
-        <property name="SAVE_TOOLTIP"		value="Save the current TA Grid"></property>
-        <property name="SAVE_AS_TOOLTIP"    value="Save the current TA Grid as a new file"></property>
-        <property name="EXPORT_TOOLTIP"     value="Export the current TA Grid to a directory"></property>
+        <property name="NEW_TOOLTIP"		value="Build a new Course Site"></property>
+        <property name="LOAD_TOOLTIP"		value="Load an existing Course Site"></property>
+        <property name="SAVE_TOOLTIP"		value="Save the current Course Site"></property>
+        <property name="SAVE_AS_TOOLTIP"    value="Save the current Course Site as a new file"></property>
+        <property name="EXPORT_TOOLTIP"     value="Export the current Course Site to a directory"></property>
         <property name="EXIT_TOOLTIP"		value="Exit the Application"></property>
         <property name="UNDO_TOOLTIP"       value="Undo a previous action"></property>
 		<property name="REDO_TOOLTIP"       value="Redo an undone action"></property>
@@ -75,7 +81,7 @@
 		<property name="TAS_IN_CELLS_MESSAGE"   value="There are TAs in the cells that will be removed by your selection. Continue?"></property>
 		<property name="WORK_FILE_TITLE"        value="OfficeHoursGridData"></property>
 		<property name="WORK_FILE_EXT"			value="json"></property>
-		<property name="WORK_FILE_EXT_DESC"		value="TA Office Hours"></property>
+		<property name="WORK_FILE_EXT_DESC"		value="Course Site"></property>
 
         <!-- WORKSPACE CONTROLS STUFF -->        
         <property name="TAS_HEADER_TEXT"                value="Teaching Assistants"></property>
@@ -87,7 +93,7 @@
         <property name="UPDATE_BUTTON_TEXT"             value="Update TA"></property>
         <property name="CLEAR_BUTTON_TEXT"              value="Clear"></property>
         <property name="SUBMIT_TIMES_BUTTON_TEXT"       value="Submit Times"></property>
-        <property name="OFFICE_HOURS_SUBHEADER"         value="Office Hours Grid"></property>
+        <property name="OFFICE_HOURS_SUBHEADER"         value="Office Hours"></property>
         <property name="START_TIME_TEXT"                value="Start Time"></property>
         <property name="END_TIME_TEXT"                  value="End Time"></property>
 
@@ -126,8 +132,13 @@
 		<property name="NAVBAR_TITLE_HEADER"            value="Navbar Title"></property>
 		<property name="FILE_NAME_HEADER"               value="File Name"></property>
 		<property name="SCRIPT_HEADER"               	value="Script"></property>
+		<property name="HOME"               			value="Home"></property>
+		<property name="SYLLABUS"               		value="Syllabus"></property>
+		<property name="SCHEDULE"               		value="Schedule"></property>
+		<property name="HW"               				value="HWs"></property>
+		<property name="PROJECTS"              			value="Projects"></property>
 		<property name="PAGE_STYLE_TEXT"                value="Page Style"></property>
-		<property name="BANNER_TEXT"               		value="Banner School Image"></property>
+		<property name="BANNER_TEXT"               		value="School Banner Image"></property>
 		<property name="LEFT_FOOTER_TEXT"               value="Left Footer Image"></property>
 		<property name="RIGHT_FOOTER_TEXT"              value="Right Footer Image"></property>
 		<property name="STYLESHEET_TEXT"                value="Stylesheet"></property>
@@ -140,6 +151,7 @@
 
 		<property name="RECITATION_TAB"					value="Recitation Data"></property>
 		<property name="RECITATION_HEADER"              value="Recitations"></property>
+		<property name="DELETE_RECITATION_TOOLTIP"		value="Deletes the selected recitation"></property>	
 		<property name="ADD_EDIT_HEADER"                value="Add/Edit"></property>
 		<property name="SECTION_TEXT"               	value="Section"></property>
 		<property name="INSTRUCTOR_TEXT"               	value="Instructor"></property>
@@ -150,18 +162,22 @@
 		<property name="ADD_UPDATE_BUTTON_TEXT"         value="Add/Update"></property>
 		
 		<property name="SCHEDULE_TAB"               	value="Schedule Data"></property>
+		<property name="DELETE_SCHEDULE_ITEM_TOOLTIP"	value="Deletes the selected schedule item"></property>					
+		<property name="SCHEDULE_HEADER"				value="Schedule"></property>
 		<property name="CALENDAR_BOUNDARIES_TEXT"       value="Calendar Boundaries"></property>
 		<property name="STARTING_MONDAY_TEXT"           value="Starting Monday"></property>
 		<property name="ENDING_FRIDAY_TEXT"             value="Ending Friday"></property>
 		<property name="SCHEDULE_ITEMS_TEXT"            value="Schedule Items"></property>
 		<property name="TYPE_TEXT"              		value="Type"></property>
-		<property name="DATE_TEXT"          		    value="Data"></property>
+		<property name="DATE_TEXT"          		    value="Date"></property>
 		<property name="TIME_TEXT"               		value="Time"></property>
 		<property name="TOPIC_TEXT"               		value="Topic"></property>
 		<property name="LINK_TEXT"               		value="Link"></property>
 		<property name="CRITERIA_TEXT"             	    value="Criteria"></property>
 		
 		<property name="PROJECT_TAB"               		value="Project Data"></property>
+		<property name="DELETE_TEAM_TOOLTIP"			value="Deletes the selected team"></property>					
+		<property name="DELETE_STUDENT_TOOLTIP"			value="Deletes the selected student"></property>					
 		<property name="PROJECTS_HEADER"               	value="Projects"></property>
 		<property name="TEAM_SUB_HEADER"               	value="Teams"></property>
 		<property name="STUDENTS_SUBHEADER"             value="Students"></property>

@@ -242,13 +242,13 @@ public class TADataController {
         }
     }
     
-//    public void handleCellHighlighting(Pane p, String key) {
-//        CSGStyle taStyle = (CSGStyle)app.getStyleComponent();
-//        taStyle.highlightCells(p, key);
-//    }
-//    
-//    public void handleCellUnHighlighting(Pane p, String key) {
-//        CSGStyle taStyle = (CSGStyle)app.getStyleComponent();
-//        taStyle.unhighlightCells(p, key);
-//    }
+    public void handleCellHighlighting(Pane p, String key) {
+        CSGStyle taStyle = (CSGStyle)app.getStyleComponent();
+        taStyle.highlightCells(p, key);
+    }
+    
+    public void handleCellUnHighlighting(Pane p, String key) {
+        CSGStyle taStyle = (CSGStyle)app.getStyleComponent();
+        taStyle.unhighlightCells(p, key);
+    }
 }

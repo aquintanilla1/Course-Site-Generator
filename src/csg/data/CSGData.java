@@ -131,15 +131,20 @@ public class CSGData implements AppDataComponent {
  
     @Override
     public void resetData() {
-        System.out.println("clear");
     }
     
     public ObservableList makeSitePages(ObservableList<SitePage> pages) {
-        pages.add(new SitePage(true, "Home", "index.html", "HomeBuilder.js"));
-        pages.add(new SitePage(true, "Syllabus", "syllabus.html", "SyllabusBuilder.js"));
-        pages.add(new SitePage(true, "Schedule", "schedule.html", "ScheduleBuilder.js"));
-        pages.add(new SitePage(true, "HWs", "hws.html", "HWsBuilder.js"));
-        pages.add(new SitePage(true, "Projects", "projects.html", "ProjectBuilder.js"));  
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        String home = props.getProperty(CSGProp.HOME);
+        String syllabus = props.getProperty(CSGProp.SYLLABUS);
+        String schedule = props.getProperty(CSGProp.SCHEDULE);
+        String homework = props.getProperty(CSGProp.HW);
+        String projects = props.getProperty(CSGProp.PROJECTS);
+        pages.add(new SitePage(true, home, "index.html", "HomeBuilder.js"));
+        pages.add(new SitePage(true, syllabus, "syllabus.html", "SyllabusBuilder.js"));
+        pages.add(new SitePage(true, schedule, "schedule.html", "ScheduleBuilder.js"));
+        pages.add(new SitePage(true, homework, "hws.html", "HWsBuilder.js"));
+        pages.add(new SitePage(true, projects, "projects.html", "ProjectBuilder.js"));  
         
         return pages;
     }

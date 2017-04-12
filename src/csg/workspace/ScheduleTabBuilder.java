@@ -9,6 +9,8 @@ import csg.CSGApp;
 import csg.CSGProp;
 import csg.data.CSGData;
 import csg.data.ScheduleItem;
+import static djf.settings.AppStartupConstants.FILE_PROTOCOL;
+import static djf.settings.AppStartupConstants.PATH_IMAGES;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,6 +22,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -57,7 +62,7 @@ public class ScheduleTabBuilder {
         wholePane = new VBox(2);
         topPane = buildTopPane();
         bottomPane = buildBottomPane();
-        scheduleHeader = new Label(props.getProperty(CSGProp.SCHEDULE_TAB));
+        scheduleHeader = new Label(props.getProperty(CSGProp.SCHEDULE_HEADER));
         
         bottomPane.setPadding(new Insets(15,15,15,15));
         wholePane.setPadding(new Insets(15, 15, 15, 15));
@@ -78,6 +83,30 @@ public class ScheduleTabBuilder {
     
     public VBox getBottomPane() {
         return bottomPane;
+    }
+    
+    public VBox getWholePane() {
+        return wholePane;
+    }
+    
+    public TableView getScheduleTable() {
+        return scheduleTable;
+    }
+    
+    public Label getScheduleHeaderLabel() {
+        return scheduleHeader;
+    }
+    
+    public Label getCalendarBoundsLabel() {
+        return calendarText;
+    }
+    
+    public Label getScheduleItemsLabel() {
+        return scheduleItemsText;
+    }
+    
+    public Label getAddEditLabel() {
+        return addEditText;
     }
     
     private GridPane buildTopPane() {
@@ -115,7 +144,7 @@ public class ScheduleTabBuilder {
         VBox vbox = new VBox(5);
         bottomSubHeader1 = new HBox(5);
         scheduleItemsText = new Label(props.getProperty(CSGProp.SCHEDULE_ITEMS_TEXT));
-        deleteButton = new Button("-");
+        deleteButton = makeDeleteButton("Remove.png");
         bottomSubHeader1.getChildren().addAll(scheduleItemsText, deleteButton);
         
         vbox.getChildren().add(bottomSubHeader1);
@@ -192,11 +221,23 @@ public class ScheduleTabBuilder {
         grid.add(criteriaTextField, 1, 7, 4, 1);
         grid.add(clearButton, 1, 8);
 
-        
-        
-
-        
-        
         return grid;
+    }
+    
+    private Button makeDeleteButton(String icon) {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+	
+	// LOAD THE ICON FROM THE PROVIDED FILE
+        String imagePath = FILE_PROTOCOL + PATH_IMAGES + icon;
+        Image buttonImage = new Image(imagePath);
+	
+	// NOW MAKE THE BUTTON
+        Button button = new Button();
+        button.setGraphic(new ImageView(buttonImage));
+        Tooltip buttonTooltip = new Tooltip(props.getProperty(CSGProp.DELETE_SCHEDULE_ITEM_TOOLTIP));
+        button.setTooltip(buttonTooltip);
+		
+	// AND RETURN THE COMPLETED BUTTON
+        return button;
     }
 }

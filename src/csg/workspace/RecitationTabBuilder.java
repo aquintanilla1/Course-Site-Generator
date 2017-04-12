@@ -9,6 +9,8 @@ import csg.CSGApp;
 import csg.CSGProp;
 import csg.data.CSGData;
 import csg.data.Recitation;
+import static djf.settings.AppStartupConstants.FILE_PROTOCOL;
+import static djf.settings.AppStartupConstants.PATH_IMAGES;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,6 +21,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -78,15 +83,31 @@ public class RecitationTabBuilder {
         return tab;
     }
     
+    public VBox getWholePane() {
+        return wholePane;
+    }
+    
     public GridPane getBottomPane() {
         return bottomPane;
     }
     
+    public Label getRecitationHeaderLabel() {
+        return headerText;
+    }
+    
+    public Label getAddEditLabel() {
+        return addEditHeaderText;
+    }
+    
+    public TableView getRecitationTable() {
+        return recitationTable;
+    }
+
     private HBox makeHeader() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         HBox hbox = new HBox(4);
         headerText = new Label(props.getProperty(CSGProp.RECITATION_HEADER));
-        deleteButton = new Button("-");
+        deleteButton = makeDeleteButton("Remove.png");
         hbox.getChildren().addAll(headerText, deleteButton);
         
         return hbox;
@@ -158,5 +179,22 @@ public class RecitationTabBuilder {
         grid.add(clearButton, 1, 7);
 
         return grid;
+    }
+    
+    private Button makeDeleteButton(String icon) {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+	
+	// LOAD THE ICON FROM THE PROVIDED FILE
+        String imagePath = FILE_PROTOCOL + PATH_IMAGES + icon;
+        Image buttonImage = new Image(imagePath);
+	
+	// NOW MAKE THE BUTTON
+        Button button = new Button();
+        button.setGraphic(new ImageView(buttonImage));
+        Tooltip buttonTooltip = new Tooltip(props.getProperty(CSGProp.DELETE_RECITATION_TOOLTIP));
+        button.setTooltip(buttonTooltip);
+		
+	// AND RETURN THE COMPLETED BUTTON
+        return button;
     }
 }

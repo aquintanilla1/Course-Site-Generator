@@ -12,6 +12,8 @@ import csg.data.Recitation;
 import csg.data.ScheduleItem;
 import csg.data.Student;
 import csg.data.Team;
+import static djf.settings.AppStartupConstants.FILE_PROTOCOL;
+import static djf.settings.AppStartupConstants.PATH_IMAGES;
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -24,6 +26,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -39,7 +44,7 @@ public class ProjectTabBuilder {
     Tab tab;
     VBox wholePane, topPane, bottomPane;
     HBox teamSubHeader, studentSubHeader;
-    Button addUpdateButton1, addUpdateButton2, clearButton1, clearButton2, deleteButton1, deleteButton2;
+    Button addUpdateButton1, addUpdateButton2, clearButton1, clearButton2, teamDeleteButton, studentDeleteButton;
     Label projectHeaderText, teamSubHeaderText, studentSubHeaderText, addEditText1, addEditText2,
             nameText, colorText, textColorText, linkText, firstNameText, lastNameText, teamText,
             roleText;
@@ -54,8 +59,8 @@ public class ProjectTabBuilder {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         app = initApp;
         tab = new Tab(props.getProperty(CSGProp.PROJECT_TAB));
-        wholePane = new VBox(5);
-        wholePane.setPadding(new Insets(15, 15, 15, 15));
+        wholePane = new VBox(2);
+        wholePane.setPadding(new Insets(1, 15, 15, 15));
         topPane = buildTopPane();
         bottomPane = buildBottomPane();
         
@@ -79,14 +84,46 @@ public class ProjectTabBuilder {
         return bottomPane;
     }
     
+    public Label getProjectHeaderLabel() {
+        return projectHeaderText;
+    }
+    
+    public VBox getWholePane() {
+        return wholePane;
+    }
+    
+    public TableView getTeamTable() {
+        return teamTable;
+    }
+    
+    public TableView getStudentTable() {
+        return studentTable;
+    }
+    
+    public Label getTeamsLabel() {
+        return teamSubHeaderText;
+    }
+    
+    public Label getStudentsLabel() {
+        return studentSubHeaderText;
+    }
+    
+    public Label getAddEditLabel1() {
+        return addEditText1;
+    }
+    
+    public Label getAddEditLabel2() {
+        return addEditText2;
+    }
+    
     private VBox buildTopPane() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         VBox vbox = new VBox(5);
         vbox.setPadding(new Insets(15, 15, 15, 15));
         teamSubHeader = new HBox(10);
         teamSubHeaderText = new Label(props.getProperty(CSGProp.TEAM_SUB_HEADER));
-        deleteButton1 = new Button("-");
-        teamSubHeader.getChildren().addAll(teamSubHeaderText, deleteButton1);
+        teamDeleteButton = makeDeleteButton("Remove.png", true);
+        teamSubHeader.getChildren().addAll(teamSubHeaderText, teamDeleteButton);
         vbox.getChildren().add(teamSubHeader);
         
         teamTable = new TableView();
@@ -122,8 +159,8 @@ public class ProjectTabBuilder {
         vbox.setPadding(new Insets(15, 15, 15, 15));
         studentSubHeader = new HBox(10);
         studentSubHeaderText = new Label(props.getProperty(CSGProp.STUDENTS_SUBHEADER));
-        deleteButton2 = new Button("-");
-        studentSubHeader.getChildren().addAll(studentSubHeaderText, deleteButton2);
+        studentDeleteButton = makeDeleteButton("Remove.png", false);
+        studentSubHeader.getChildren().addAll(studentSubHeaderText, studentDeleteButton);
         vbox.getChildren().add(studentSubHeader);
         
         studentTable = new TableView();
@@ -174,9 +211,12 @@ public class ProjectTabBuilder {
         
         nameTextField = new TextField();
         colorPicker = new ColorPicker();
+        colorPicker.setMinHeight(25.0);
+        colorPicker.setPrefHeight(25.0);
+        colorPicker.setMaxHeight(25.0);
         linkTextField = new TextField();
         clearButton1 = new Button(props.getProperty(CSGProp.CLEAR_BUTTON_TEXT));
-        
+                
         grid.add(nameTextField, 1, 1);
         grid.add(colorPicker, 1, 2);
         grid.add(linkTextField, 1, 3, 3, 1);
@@ -228,6 +268,30 @@ public class ProjectTabBuilder {
         grid.add(clearButton2, 1, 5);
 
         return grid;      
+    }
+    
+    private Button makeDeleteButton(String icon, boolean isTeamDeleteButton) {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+	
+	// LOAD THE ICON FROM THE PROVIDED FILE
+        String imagePath = FILE_PROTOCOL + PATH_IMAGES + icon;
+        Image buttonImage = new Image(imagePath);
+	
+	// NOW MAKE THE BUTTON
+        Button button = new Button();
+        button.setGraphic(new ImageView(buttonImage));
+        
+        Tooltip buttonTooltip;
+        if (isTeamDeleteButton) {
+            buttonTooltip = new Tooltip(props.getProperty(CSGProp.DELETE_TEAM_TOOLTIP));
+        }
+        else {
+            buttonTooltip = new Tooltip(props.getProperty(CSGProp.DELETE_STUDENT_TOOLTIP));
+        }
+        button.setTooltip(buttonTooltip);
+		
+	// AND RETURN THE COMPLETED BUTTON
+        return button;
     }
     
 }

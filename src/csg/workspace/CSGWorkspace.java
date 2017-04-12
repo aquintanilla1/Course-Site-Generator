@@ -58,6 +58,9 @@ public class CSGWorkspace extends AppWorkspaceComponent {
         tabs.getTabs().add(scheduleTab);
         tabs.getTabs().add(projectTab);
         
+        tabs.setTabMinWidth(265);
+        tabs.setTabMaxWidth(265);
+        
         
         for (Tab t: tabs.getTabs()) {
             t.setClosable(false);
@@ -89,6 +92,10 @@ public class CSGWorkspace extends AppWorkspaceComponent {
     
     public ProjectTabBuilder getProjectTabBuilder() {
         return projectWorkspace;
+    }
+    
+    public BorderPane getWorkspace() {
+        return (BorderPane) workspace;
     }
    
 

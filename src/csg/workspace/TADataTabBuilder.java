@@ -9,7 +9,9 @@ import csg.CSGApp;
 import csg.CSGProp;
 import csg.data.CSGData;
 import csg.data.TeachingAssistant;
+import csg.style.CSGStyle;
 import csg.transactions.ModifyOfficeHours_Transaction;
+import djf.settings.AppPropertyType;
 import static djf.settings.AppStartupConstants.FILE_PROTOCOL;
 import static djf.settings.AppStartupConstants.PATH_IMAGES;
 import djf.ui.OKCancelDialogSingleton;
@@ -88,7 +90,7 @@ public class TADataTabBuilder {
     // THE HEADER ON THE RIGHT
     HBox officeHoursHeaderBox;
     Label officeHoursHeaderLabel;
-    
+        
     // THE OFFICE HOURS GRID
     GridPane officeHoursGridPane;
     HashMap<String, Pane> officeHoursGridTimeHeaderPanes;
@@ -296,6 +298,9 @@ public class TADataTabBuilder {
         return controller;
     }
     
+    public BorderPane getWholePane() {
+        return wholePane;
+    }
     public HBox getTAsHeaderBox() {
         return tasHeaderBox;
     }
@@ -331,6 +336,7 @@ public class TADataTabBuilder {
     public Button getClearButton() {
         return clearButton;
     }
+    
 
     public HBox getOfficeHoursSubheaderBox() {
         return officeHoursHeaderBox;
@@ -508,6 +514,21 @@ public class TADataTabBuilder {
                 controller.handleCellToggle((Pane) e.getSource());
             });
         }
+        
+        for (Pane p : officeHoursGridTACellPanes.values()) {
+            p.setOnMouseEntered(e -> {
+                controller.handleCellHighlighting(p, getTACellKey(p));
+            });
+        }
+        
+        for (Pane p : officeHoursGridTACellPanes.values()) {
+            p.setOnMouseExited(e -> {
+                controller.handleCellUnHighlighting(p, getTACellKey(p));
+            });
+        }
+        
+        CSGStyle csgStyle = (CSGStyle)app.getStyleComponent();
+        csgStyle.initOfficeHoursGridStyle();
     }
     
     public void addCellToGrid(CSGData dataComponent, HashMap<String, Pane> panes, HashMap<String, Label> labels, int col, int row) {       
@@ -581,7 +602,7 @@ public class TADataTabBuilder {
                         okCancelDialog.show(props.getProperty(CSGProp.TAS_IN_CELLS_TITLE.toString()), 
                                 props.getProperty(CSGProp.TAS_IN_CELLS_MESSAGE.toString()));
                         String selection = okCancelDialog.getSelection();
-                        if (selection.equals(OKCancelDialogSingleton.OK)) {
+                        if (selection.equals(props.getProperty(AppPropertyType.OK_TEXT))) {
                             return true;
                         }
                         else {
@@ -605,7 +626,7 @@ public class TADataTabBuilder {
                             okCancelDialog.show(props.getProperty(CSGProp.TAS_IN_CELLS_TITLE.toString()), 
                                     props.getProperty(CSGProp.TAS_IN_CELLS_MESSAGE.toString()));
                             String selection = okCancelDialog.getSelection();
-                            if (selection.equals(OKCancelDialogSingleton.OK)) {
+                            if (selection.equals(props.getProperty(AppPropertyType.OK_TEXT))) {
                                 return true;
                             }
                             else {
@@ -629,7 +650,7 @@ public class TADataTabBuilder {
                         okCancelDialog.show(props.getProperty(CSGProp.TAS_IN_CELLS_TITLE.toString()), 
                                 props.getProperty(CSGProp.TAS_IN_CELLS_MESSAGE.toString()));
                         String selection = okCancelDialog.getSelection();
-                        if (selection.equals(OKCancelDialogSingleton.OK)) {
+                        if (selection.equals(props.getProperty(AppPropertyType.OK_TEXT))) {
                             return true;
                         }
                         else {
