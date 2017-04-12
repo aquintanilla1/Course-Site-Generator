@@ -24,7 +24,7 @@ import properties_manager.PropertiesManager;
 
 /**
  *
- * @author Alvaro
+ * @author Alvaro Quintanilla, ID: 110289649
  */
 public class CSGData implements AppDataComponent {
     CSGApp app;

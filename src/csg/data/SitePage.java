@@ -13,7 +13,7 @@ import javafx.beans.value.ObservableBooleanValue;
 
 /**
  *
- * @author Alvaro
+ * @author Alvaro Quintanilla, ID: 110289649
  */
 public class SitePage {
     private final BooleanProperty isUsed;

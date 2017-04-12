@@ -13,7 +13,7 @@ import djf.AppTemplate;
 
 /**
  *
- * @author Alvaro
+ * @author Alvaro Quintanilla, ID: 110289649
  */
 public class CSGApp extends AppTemplate {
     /**

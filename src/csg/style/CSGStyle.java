@@ -25,7 +25,7 @@ import javafx.scene.layout.Pane;
 
 /**
  *
- * @author Alvaro
+ * @author Alvaro Quintanilla, ID: 110289649
  */
 public class CSGStyle extends AppStyleComponent {
     private AppTemplate app;
@@ -82,7 +82,6 @@ public class CSGStyle extends AppStyleComponent {
         workspace.getCDTabBuilder().getTopPane().getStyleClass().add(PANE);
         workspace.getCDTabBuilder().getCenterPane().getStyleClass().add(PANE);
         workspace.getCDTabBuilder().getBottomPane().getStyleClass().add(PANE);
-       // workspace.getCDTabBuilder().getWholePane().getStyleClass().add(WHOLE_PANE);
         workspace.getCDTabBuilder().getAllPane().getStyleClass().add(WHOLE_PANE);
         TableView<SitePage> sitePageTable = workspace.getCDTabBuilder().getSitePageTable();
         sitePageTable.getStyleClass().add(CLASS_TABLE);

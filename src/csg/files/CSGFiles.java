@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  *
- * @author Alvaro
+ * @author Alvaro Quintanilla, ID: 110289649
  */
 public class CSGFiles implements AppFileComponent {
     CSGApp app;

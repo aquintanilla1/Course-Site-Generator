@@ -15,6 +15,8 @@ import javafx.beans.value.ObservableBooleanValue;
  * This class represents a Teaching Assistant for the table of TAs.
  * 
  * @author Richard McKenna
+ * @co-author Alvaro Quintanilla, ID: 110289649
+
  */
 public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>  {
     // THE TABLE WILL STORE TA NAMES AND EMAILS

@@ -7,7 +7,7 @@ package csg;
 
 /**
  *
- * @author Alvaro
+ * @author Alvaro Quintanilla, ID: 110289649
  */
 public enum CSGProp { 
        // FOR SIMPLE OK/CANCEL DIALOG BOXES
