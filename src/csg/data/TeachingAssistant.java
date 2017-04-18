@@ -47,6 +47,10 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
         return email.get();
     }
     
+    public boolean getIsUndergrad() {
+        return isUndergrad.get();
+    }
+    
     public void setEmail(String initEmail) {
         email.set(initEmail);
     }

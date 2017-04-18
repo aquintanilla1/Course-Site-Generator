@@ -1,0 +1,173 @@
+
+{
+    "course_details":[
+        {
+            "subject":"CSE",
+            "number":"219",
+            "semester":"Fall",
+            "year":"2017",
+            "courseTitle":"Computer Science III",
+            "instructorName":"Richard McKenna",
+            "instructorHome":"http://www3.cs.stonybrook.edu/~richard/",
+            "exportDir":"Users/Alvaro/Documents/Whatever"
+        }
+    ],
+    "site_pages":[
+        {
+            "isUsed":true,
+            "navBarTitle":"Home",
+            "fileName":"index.html",
+            "script":"HomeBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Syllabus",
+            "fileName":"syllabus.html",
+            "script":"SyllabusBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Schedule",
+            "fileName":"schedule.html",
+            "script":"ScheduleBuilder.js"
+        },
+        {
+            "isUsed":false,
+            "navBarTitle":"HWs",
+            "fileName":"hws.html",
+            "script":"HWsBuilder.js"
+        },
+        {
+            "isUsed":false,
+            "navBarTitle":"Projects",
+            "fileName":"projects.html",
+            "script":"ProjectBuilder.js"
+        }
+    ],
+    "style":[
+        {
+            "imagePath":"testimage.png",
+            "leftFooterPath":"testleftfooter.png",
+            "rightFooterPath":"testrightfooter.png",
+            "stylesheet":"\\test.css"
+        }
+    ],
+    "startHour":"9",
+    "endHour":"20",
+    "undergrad_tas":[
+        {
+            "name":"Barack Obama",
+            "email":"obama@whitehouse.gov",
+            "isUndergrad":true
+        },
+        {
+            "name":"Bill Gates",
+            "email":"billGates@microsoft.com",
+            "isUndergrad":true
+        },
+        {
+            "name":"John Doe",
+            "email":"johnDoe@gmail.com",
+            "isUndergrad":false
+        }
+    ],
+    "officeHours":[
+        {
+            "day":"MONDAY",
+            "time":"10_00am",
+            "name":"Barack Obama"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"11_00am",
+            "name":"Bill Gates"
+        },
+        {
+            "day":"MONDAY",
+            "time":"12_00pm",
+            "name":"Barack Obama"
+        },
+        {
+            "day":"MONDAY",
+            "time":"2_00pm",
+            "name":"Barack Obama"
+        },
+        {
+            "day":"FRIDAY",
+            "time":"3_00pm",
+            "name":"John Doe"
+        }
+    ],
+    "recitations":[
+        {
+            "recitationSection":"RO1",
+            "recitationInstructor":"McKenna",
+            "day/Time":"Tues 5:30-6:23pm",
+            "location":"Old CS 2114",
+            "supervisingTA1":"Barack Obama",
+            "supervisingTA2":"Barack Obama"
+        },
+        {
+            "recitationSection":"R66",
+            "recitationInstructor":"Banerjee",
+            "day/Time":"Thurs 1:00-1:53pm",
+            "location":"Old CS 2114",
+            "supervisingTA1":"Barack Obama",
+            "supervisingTA2":"Barack Obama"
+        }
+    ],
+    "startingMonday":"",
+    "endingFriday":"",
+    "schedule_items":[
+        {
+            "type":"Holiday",
+            "scheduleTime":"10:00am",
+            "scheduleTitle":"Snowday",
+            "topic":"",
+            "scheduleLink":"cnn.com",
+            "criteria":"Must Snow"
+        },
+        {
+            "type":"Exam",
+            "scheduleTime":"5:00pm",
+            "scheduleTitle":"Midterm 2",
+            "topic":"Chapters 3-55",
+            "scheduleLink":"bbc.com",
+            "criteria":"Take Exam"
+        }
+    ],
+    "teams":[
+        {
+            "teamName":"The Aristocrats",
+            "color":"FFFFFF",
+            "textColor":"999999",
+            "teamLink":"aristocrats.com"
+        },
+        {
+            "teamName":"Umbrellas",
+            "color":"AA00BB",
+            "textColor":"000000",
+            "teamLink":"umbrellas.com"
+        }
+    ],
+    "students":[
+        {
+            "firstName":"Pope",
+            "lastName":"Francis",
+            "studentTeam":"The Aristocrats",
+            "role":"Lead Designer"
+        },
+        {
+            "firstName":"Mike",
+            "lastName":"Pence",
+            "studentTeam":"Umbrellas",
+            "role":"Lead Programmer"
+        },
+        {
+            "firstName":"Mel",
+            "lastName":"Gibson",
+            "studentTeam":"The Aristocrats",
+            "role":"Data Designer"
+        }
+    ]
+}

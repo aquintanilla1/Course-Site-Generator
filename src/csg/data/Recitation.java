@@ -51,4 +51,8 @@ public class Recitation {
     public String getTA1() {
         return ta1.get();
     }    
+    
+    public String getTA2() {
+        return ta1.get();
+    }
 }

@@ -32,6 +32,10 @@ public class SitePage {
         return isUsed;
     }
     
+    public boolean getIsUsed() {
+        return isUsed.get();
+    }
+    
     public String getNavbarTitle() {
         return navbarTitle.get();
     }

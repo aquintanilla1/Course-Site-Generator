@@ -7,6 +7,7 @@ package csg.data;
 
 import csg.CSGApp;
 import csg.CSGProp;
+import csg.test_bed.TestSave;
 import csg.workspace.CSGWorkspace;
 import csg.transactions.*;
 import csg.workspace.TADataTabBuilder;
@@ -29,12 +30,21 @@ import properties_manager.PropertiesManager;
 public class CSGData implements AppDataComponent {
     CSGApp app;
     AppFileController fileController;
+    ObservableList<String> courseInfo;
     ObservableList<SitePage> sitePages;
     ObservableList<TeachingAssistant> teachingAssistants;
     ObservableList<Recitation> recitations;
     ObservableList<ScheduleItem> scheduleItems;
     ObservableList<Team> teams;
     ObservableList<Student> students;
+    
+    String image;
+    String leftFooterImage;
+    String rightFooterImage;
+    String stylesheet;
+    
+    String startingMonday;
+    String endingFriday;
     
     // THIS WILL STORE ALL THE OFFICE HOURS GRID DATA, WHICH YOU
     // SHOULD NOTE ARE StringProperty OBJECTS THAT ARE CONNECTED
@@ -58,11 +68,11 @@ public class CSGData implements AppDataComponent {
     // DEFAULT VALUES FOR START AND END HOURS IN MILITARY HOURS
     public static final int MIN_START_HOUR = 9;
     public static final int MAX_END_HOUR = 20;
-
     
     public CSGData(CSGApp initApp) {
         app = initApp;
         fileController = app.getGUI().getFileController();
+        courseInfo = FXCollections.observableArrayList();
         sitePages = FXCollections.observableArrayList();
         teachingAssistants = FXCollections.observableArrayList();
         recitations = FXCollections.observableArrayList();
@@ -70,9 +80,14 @@ public class CSGData implements AppDataComponent {
         teams = FXCollections.observableArrayList();
         students = FXCollections.observableArrayList();
         
+        courseInfo.addAll("", "", "", "", "", "", "", "");
+        
         // THESE ARE THE DEFAULT OFFICE HOURS
         startHour = MIN_START_HOUR;
         endHour = MAX_END_HOUR;
+        
+        startingMonday = "";
+        endingFriday = "";
         
         //THIS WILL STORE OUR OFFICE HOURS
         officeHours = new HashMap();
@@ -105,8 +120,29 @@ public class CSGData implements AppDataComponent {
     public ArrayList<String> getGridHeaders() {
         return gridHeaders;
     }
+    
+    public ObservableList getCourseInfo() {
+        return courseInfo;
+    }
+    
     public ObservableList getSitePages() {
         return sitePages;
+    }
+    
+    public String getImagePath() {
+        return image;
+    }
+    
+    public String getRightFooterImagePath() {
+        return rightFooterImage;
+    }
+    
+    public String getLeftFooterImagePath() {
+        return leftFooterImage;
+    }
+    
+    public String getStylesheet() {
+        return stylesheet;
     }
     
     public ObservableList getTeachingAssistants() {
@@ -115,6 +151,14 @@ public class CSGData implements AppDataComponent {
 
     public ObservableList getRecitations() {
         return recitations;
+    }
+    
+    public String getStartMonday() {
+        return startingMonday;
+    }
+    
+    public String getEndFriday() {
+        return endingFriday;
     }
     
     public ObservableList getScheduleItems() {
@@ -127,6 +171,58 @@ public class CSGData implements AppDataComponent {
     
     public ObservableList getStudents() {
         return students;
+    }
+    
+    public void setCourseInfo(ObservableList courseInfo) {
+        this.courseInfo = courseInfo;
+    }
+    
+    public void setSitePages(ObservableList pageList) {
+        sitePages = pageList;
+    }
+    
+    public void setImage(String imagePath) {
+        image = imagePath;
+    }
+    
+    public void setRightFooter(String imagePath) {
+        rightFooterImage = imagePath;
+    }
+    
+    public void setLeftFooter(String imagePath) {
+        leftFooterImage = imagePath;
+    }
+    
+    public void setStylesheet(String cssPath) {
+        stylesheet = cssPath;
+    }
+    
+    public void setTeachingAssistants(ObservableList taList) {
+        teachingAssistants = taList;
+    }
+    
+    public void setRecitations(ObservableList recitationList) {
+        recitations = recitationList;
+    }
+    
+    public void setStartMonday(String startMon) {
+        startingMonday = startMon;
+    }
+    
+    public void setEndFriday(String endFri) {
+        endingFriday = endFri;
+    }
+    
+    public void setScheduleItems(ObservableList itemList) {
+        scheduleItems = itemList;
+    }
+    
+    public void setTeams(ObservableList teamList) {
+        teams = teamList;
+    }
+    
+    public void setStudents(ObservableList studentList) {
+        students = studentList;
     }
  
     @Override
@@ -256,26 +352,27 @@ public class CSGData implements AppDataComponent {
         grid.get(row).set(column, prop);
     }
     
-//    private void initOfficeHours(int initStartHour, int initEndHour) {
-//        // NOTE THAT THESE VALUES MUST BE PRE-VERIFIED
-//        startHour = initStartHour;
-//        endHour = initEndHour;
-//        
-//        // EMPTY THE CURRENT OFFICE HOURS VALUES
-//        officeHours.clear();
-//            
-//        // WE'LL BUILD THE USER INTERFACE COMPONENT FOR THE
-//        // OFFICE HOURS GRID AND FEED THEM TO OUR DATA
-//        // STRUCTURE AS WE GO
-//        TAWorkspace workspaceComponent = (TAWorkspace)app.getWorkspaceComponent();
-//        workspaceComponent.reloadOfficeHoursGrid(this);
-//    }
-//    
-//    public void initHours(String startHourText, String endHourText) {
-//        int initStartHour = Integer.parseInt(startHourText);
-//        int initEndHour = Integer.parseInt(endHourText);
-//            initOfficeHours(initStartHour, initEndHour);
-//    }
+    private void initOfficeHours(int initStartHour, int initEndHour) {
+        // NOTE THAT THESE VALUES MUST BE PRE-VERIFIED
+        startHour = initStartHour;
+        endHour = initEndHour;
+        
+        // EMPTY THE CURRENT OFFICE HOURS VALUES
+        officeHours.clear();
+            
+        // WE'LL BUILD THE USER INTERFACE COMPONENT FOR THE
+        // OFFICE HOURS GRID AND FEED THEM TO OUR DATA
+        // STRUCTURE AS WE GO
+        CSGWorkspace workspaceComponent = (CSGWorkspace)app.getWorkspaceComponent();
+        TADataTabBuilder taTab = workspaceComponent.getTATabBuilder();
+        taTab.reloadOfficeHoursGrid(this);
+    }
+    
+    public void initHours(String startHourText, String endHourText) {
+        int initStartHour = Integer.parseInt(startHourText);
+        int initEndHour = Integer.parseInt(endHourText);
+            initOfficeHours(initStartHour, initEndHour);
+    }
     
     public void markAsEdited() {
         fileController.markAsEdited(app.getGUI());

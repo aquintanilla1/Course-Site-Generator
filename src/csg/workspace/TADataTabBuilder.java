@@ -10,6 +10,7 @@ import csg.CSGProp;
 import csg.data.CSGData;
 import csg.data.TeachingAssistant;
 import csg.style.CSGStyle;
+import csg.test_bed.TestSave;
 import csg.transactions.ModifyOfficeHours_Transaction;
 import djf.settings.AppPropertyType;
 import static djf.settings.AppStartupConstants.FILE_PROTOCOL;
@@ -65,6 +66,8 @@ public class TADataTabBuilder {
     jTPS jTPS;
     final KeyCodeCombination undo = new KeyCodeCombination(KeyCode.Z, KeyCodeCombination.CONTROL_DOWN);
     final KeyCodeCombination redo = new KeyCodeCombination(KeyCode.Y, KeyCodeCombination.CONTROL_DOWN);
+    
+    TestSave testSave;
 
     // NOTE THAT EVERY CONTROL IS PUT IN A BOX TO HELP WITH ALIGNMENT
     
@@ -496,6 +499,8 @@ public class TADataTabBuilder {
             }
             row += 2;
         }
+        
+        testSave = new TestSave(dataComponent);
         
         //Setting sizes for panes in the office hours grid
         for (Pane p: officeHoursGridTimeHeaderPanes.values()) {
