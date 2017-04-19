@@ -13,7 +13,6 @@ import csg.data.SitePage;
 import csg.data.Student;
 import csg.data.TeachingAssistant;
 import csg.data.Team;
-import csg.test_bed.TestSave;
 import djf.components.AppDataComponent;
 import djf.components.AppFileComponent;
 import java.io.FileOutputStream;
@@ -50,6 +49,7 @@ public class CSGFiles implements AppFileComponent {
     static final String JSON_EXPORT_DIRECTORY = "exportDir";
     static final String JSON_COURSE_DETAILS = "course_details";
     
+    static final String JSON_TEMPLATE_DIRECTORY = "templateDir";
     static final String JSON_PAGE_USED = "isUsed";
     static final String JSON_PAGE_NAVBAR_TITLE = "navBarTitle";
     static final String JSON_PAGE_FILE_NAME = "fileName";
@@ -107,6 +107,8 @@ public class CSGFiles implements AppFileComponent {
     public CSGFiles(CSGApp initApp) {
         app = initApp;
     }
+    
+    public CSGFiles() {}
 
     @Override
     public void saveData(AppDataComponent data, String filePath) throws IOException {
@@ -237,6 +239,7 @@ public class CSGFiles implements AppFileComponent {
 	// THEN PUT IT ALL TOGETHER IN A JsonObject
 	JsonObject dataManagerJSO = Json.createObjectBuilder()
                 .add(JSON_COURSE_DETAILS, courseInfoArray)
+                .add(JSON_TEMPLATE_DIRECTORY, "" + dataManager.getTemplateDirectory())
                 .add(JSON_SITE_PAGES, sitePageArray)
                 .add(JSON_STYLE, pageStyleArray)
 		.add(JSON_START_HOUR, "" + dataManager.getStartHour())

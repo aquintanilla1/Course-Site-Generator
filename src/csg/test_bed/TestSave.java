@@ -14,33 +14,41 @@ import csg.data.SitePage;
 import csg.data.Student;
 import csg.data.TeachingAssistant;
 import csg.data.Team;
+import csg.files.CSGFiles;
+import csg.workspace.TADataTabBuilder;
+import djf.components.AppDataComponent;
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import properties_manager.PropertiesManager;
+import javafx.scene.control.Label;
 
 /**
  *
  * @author Alvaro Quintanilla, ID: 110289649
  */
 public class TestSave {
-    private CSGData data;
     
-    public TestSave(CSGData data) {
-        this.data = data;
+    public static void main(String [] args) throws IOException {
+        CSGData data = new CSGData();
+        CSGFiles files = new CSGFiles();
         
-        makeTestCourseInfo();
-        makeTestSitePages();
-        makeTestPageStyle();
-        makeTestStartAndEndHours();
-        makeTestTeachingAssistants();
-        makeTestTimeSlots();
-        makeTestRecitations();
-        makeTestScheduleItems();
-        makeTestTeamsAndStudents();        
+        makeTestCourseInfo(data);
+        makeTestSitePages(data);
+        makeTestPageStyle(data);
+        makeTestStartAndEndHours(data);
+        makeTestTeachingAssistants(data);
+        makeTestTimeSlots(data);
+        makeTestRecitations(data);
+        makeTestScheduleItems(data);
+        makeTestTeamsAndStudents(data); 
+        
+        AppDataComponent dataComponent = data;
+        files.saveData(dataComponent, "/Users/Alvaro/Documents/CourseSiteGenerator/work/SaveSiteTest.json");
     }
     
-    private void makeTestCourseInfo() {
+    private static void makeTestCourseInfo(CSGData data) {
         ObservableList<String> details = FXCollections.observableArrayList();
         details.add("CSE");
         details.add("219");
@@ -54,50 +62,53 @@ public class TestSave {
         data.setCourseInfo(details);
     }
     
-    private void makeTestSitePages() {
+    private static void makeTestSitePages(CSGData data) {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         ObservableList<SitePage> pages = FXCollections.observableArrayList();
-        String home = props.getProperty(CSGProp.HOME);
-        String syllabus = props.getProperty(CSGProp.SYLLABUS);
-        String schedule = props.getProperty(CSGProp.SCHEDULE);
-        String homework = props.getProperty(CSGProp.HW);
-        String projects = props.getProperty(CSGProp.PROJECTS);
-        pages.add(new SitePage(true, home, "index.html", "HomeBuilder.js"));
-        pages.add(new SitePage(true, syllabus, "syllabus.html", "SyllabusBuilder.js"));
-        pages.add(new SitePage(true, schedule, "schedule.html", "ScheduleBuilder.js"));
-        pages.add(new SitePage(false, homework, "hws.html", "HWsBuilder.js"));
-        pages.add(new SitePage(false, projects, "projects.html", "ProjectBuilder.js")); 
+        pages.add(new SitePage(true, "Home", "index.html", "HomeBuilder.js"));
+        pages.add(new SitePage(true, "Syllabus", "syllabus.html", "SyllabusBuilder.js"));
+        pages.add(new SitePage(true, "Schedule", "schedule.html", "ScheduleBuilder.js"));
+        pages.add(new SitePage(false, "HWs", "hws.html", "HWsBuilder.js"));
+        pages.add(new SitePage(false, "Projects", "projects.html", "ProjectBuilder.js")); 
         
+        data.setTemplateDirectory("Users/Alvaro/Documents/TestDirectory");
         data.setSitePages(pages);
     }
     
-    private void makeTestPageStyle() {
+    private static void makeTestPageStyle(CSGData data) {
         data.setImage("testimage.png");
         data.setLeftFooter("testleftfooter.png");
         data.setRightFooter("testrightfooter.png");
         data.setStylesheet("\\test.css");
     }
     
-    private void makeTestTeachingAssistants() {
-        data.getTeachingAssistants().add(new TeachingAssistant("Barack Obama", "obama@whitehouse.gov", true));
+    private static void makeTestTeachingAssistants(CSGData data) {
+        data.getTeachingAssistants().add(new TeachingAssistant("Baracky Obama", "obama@whitehouse.gov", true));
         data.getTeachingAssistants().add(new TeachingAssistant("Bill Gates", "billGates@microsoft.com", true));
         data.getTeachingAssistants().add(new TeachingAssistant("John Doe", "johnDoe@gmail.com", false));
     }
     
-    private void makeTestTimeSlots() {
-        data.addOfficeHoursReservation("MONDAY", "10_00am", "Barack Obama");
-        data.addOfficeHoursReservation("MONDAY", "12_00pm", "Barack Obama");
-        data.addOfficeHoursReservation("MONDAY", "2_00pm", "Barack Obama");
-        data.addOfficeHoursReservation("WEDNESDAY", "11_00am", "Bill Gates");
-        data.addOfficeHoursReservation("FRIDAY", "3_00pm", "John Doe");
+    private static void makeTestTimeSlots(CSGData data) {
+        data.initTestOfficeHours();
+        data.getOfficeHours().get("2_3").setValue("Baracky Obama");
+        data.getOfficeHours().get("2_6").setValue("Baracky Obama");
+        data.getOfficeHours().get("2_11").setValue("Baracky Obama");
+        data.getOfficeHours().get("4_5").setValue("Bill Gates");
+        data.getOfficeHours().get("6_13").setValue("John Doe");
+
+//        data.addOfficeHoursReservation("MONDAY", "10_00am", "Barack Obama");
+//        data.addOfficeHoursReservation("MONDAY", "12_00pm", "Barack Obama");
+//        data.addOfficeHoursReservation("MONDAY", "2_00pm", "Barack Obama");
+//        data.addOfficeHoursReservation("WEDNESDAY", "11_00am", "Bill Gates");
+//        data.addOfficeHoursReservation("FRIDAY", "3_00pm", "John Doe");
     }
     
-    private void makeTestStartAndEndHours() {
-        data.setStartHour("9:00am");
+    private static void makeTestStartAndEndHours(CSGData data) {
+        data.setStartHour("10:00am");
         data.setEndHour("8:00pm");
     }
     
-    private void makeTestRecitations() {
+    private static void makeTestRecitations(CSGData data) {
         ArrayList<String> recitation1Details = new ArrayList<>();
         recitation1Details.add("RO1");
         recitation1Details.add("McKenna");
@@ -121,7 +132,7 @@ public class TestSave {
         data.getRecitations().add(recitation2);
     }
     
-    private void makeTestScheduleItems() {
+    private static void makeTestScheduleItems(CSGData data) {
         ScheduleItem item1 = new ScheduleItem("Holiday", "03/25/2017","10:00am", "Snowday", "", "cnn.com", "Must Snow");
         ScheduleItem item2 = new ScheduleItem("Exam", "04/10/2017","5:00pm", "Midterm 2", "Chapters 3-55", "bbc.com", "Take Exam");
         
@@ -129,7 +140,7 @@ public class TestSave {
         data.getScheduleItems().add(item2);
     }
     
-    private void makeTestTeamsAndStudents() {
+    private static void makeTestTeamsAndStudents(CSGData data) {
         Team team1 = new Team("The Aristocrats", "FFFFFF", "999999", "aristocrats.com");
         Team team2 = new Team("Umbrellas", "AA00BB", "000000", "umbrellas.com");
         

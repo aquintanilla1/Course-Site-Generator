@@ -289,6 +289,18 @@ public class TADataTabBuilder {
         });     
     }
     
+    public TADataTabBuilder() {
+        officeHoursGridPane = new GridPane();
+        officeHoursGridTimeHeaderPanes = new HashMap();
+        officeHoursGridTimeHeaderLabels = new HashMap();
+        officeHoursGridDayHeaderPanes = new HashMap();
+        officeHoursGridDayHeaderLabels = new HashMap();
+        officeHoursGridTimeCellPanes = new HashMap();
+        officeHoursGridTimeCellLabels = new HashMap();
+        officeHoursGridTACellPanes = new HashMap();
+        officeHoursGridTACellLabels = new HashMap();
+    }
+    
     public Tab getTab() {        
         return tab;
     }
@@ -500,7 +512,7 @@ public class TADataTabBuilder {
             row += 2;
         }
         
-        testSave = new TestSave(dataComponent);
+        //testSave = new TestSave(dataComponent);
         
         //Setting sizes for panes in the office hours grid
         for (Pane p: officeHoursGridTimeHeaderPanes.values()) {
@@ -667,4 +679,6 @@ public class TADataTabBuilder {
         }
         return true;
     }
+    
+    
 }

@@ -7,7 +7,6 @@ package csg.data;
 
 import csg.CSGApp;
 import csg.CSGProp;
-import csg.test_bed.TestSave;
 import csg.workspace.CSGWorkspace;
 import csg.transactions.*;
 import csg.workspace.TADataTabBuilder;
@@ -17,9 +16,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import jtps.jTPS_Transaction;
 import properties_manager.PropertiesManager;
 
@@ -38,6 +39,7 @@ public class CSGData implements AppDataComponent {
     ObservableList<Team> teams;
     ObservableList<Student> students;
     
+    String templateDir;
     String image;
     String leftFooterImage;
     String rightFooterImage;
@@ -101,6 +103,44 @@ public class CSGData implements AppDataComponent {
         gridHeaders.addAll(dowHeaders);
     }
     
+    public CSGData() {
+        courseInfo = FXCollections.observableArrayList();
+        sitePages = FXCollections.observableArrayList();
+        teachingAssistants = FXCollections.observableArrayList();
+        recitations = FXCollections.observableArrayList();
+        scheduleItems = FXCollections.observableArrayList();
+        teams = FXCollections.observableArrayList();
+        students = FXCollections.observableArrayList();
+        
+        courseInfo.addAll("", "", "", "", "", "", "", "");
+        
+        // THESE ARE THE DEFAULT OFFICE HOURS
+        startHour = MIN_START_HOUR;
+        endHour = MAX_END_HOUR;
+        
+        startingMonday = "";
+        endingFriday = "";
+        
+        //THIS WILL STORE OUR OFFICE HOURS
+        officeHours = new HashMap();
+        
+        
+        
+        ArrayList<String> timeHeaders = new ArrayList<>();
+        timeHeaders.add("Start Time");
+        timeHeaders.add("End Time");
+        
+        ArrayList<String> dowHeaders = new ArrayList<>();
+        dowHeaders.add("MONDAY");
+        dowHeaders.add("TUESDAY");
+        dowHeaders.add("WEDNESDAY");
+        dowHeaders.add("THURSDAY");
+        dowHeaders.add("FRIDAY");
+        gridHeaders = new ArrayList();
+        gridHeaders.addAll(timeHeaders);
+        gridHeaders.addAll(dowHeaders);
+    }
+    
      public CSGApp getApp() {
         return app;
     }
@@ -125,6 +165,9 @@ public class CSGData implements AppDataComponent {
         return courseInfo;
     }
     
+    public String getTemplateDirectory() {
+        return templateDir;
+    }
     public ObservableList getSitePages() {
         return sitePages;
     }
@@ -177,6 +220,10 @@ public class CSGData implements AppDataComponent {
         this.courseInfo = courseInfo;
     }
     
+    public void setTemplateDirectory(String dirPath) {
+        templateDir = dirPath;
+    }
+    
     public void setSitePages(ObservableList pageList) {
         sitePages = pageList;
     }
@@ -227,6 +274,29 @@ public class CSGData implements AppDataComponent {
  
     @Override
     public void resetData() {
+    }
+    
+    public void initTestOfficeHours() {
+        ObservableList<String> times = getTimes();
+        
+        int i = startHour;
+        for (int row = 1; row < getNumRows(); row++) {
+            if ((row % 2) != 0) {
+                setCellProperty(0, row, new SimpleStringProperty(times.get(i)));
+            }
+            else {
+                setCellProperty(0, row, new SimpleStringProperty(times.get(i).replace(":00", ":30")));
+                i++;
+            }
+        }
+               
+        
+        for (int row = 1; row < getNumRows(); row++) {
+            for (int col = 2; col < 7; col++) {
+                setCellProperty(col, row, new SimpleStringProperty(""));
+            }
+        }
+        
     }
     
     public ObservableList makeSitePages(ObservableList<SitePage> pages) {

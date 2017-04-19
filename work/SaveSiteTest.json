@@ -12,6 +12,7 @@
             "exportDir":"Users/Alvaro/Documents/Whatever"
         }
     ],
+    "templateDir":"Users/Alvaro/Documents/TestDirectory",
     "site_pages":[
         {
             "isUsed":true,
@@ -52,11 +53,11 @@
             "stylesheet":"\\test.css"
         }
     ],
-    "startHour":"9",
+    "startHour":"10",
     "endHour":"20",
     "undergrad_tas":[
         {
-            "name":"Barack Obama",
+            "name":"Baracky Obama",
             "email":"obama@whitehouse.gov",
             "isUndergrad":true
         },
@@ -74,27 +75,27 @@
     "officeHours":[
         {
             "day":"MONDAY",
-            "time":"10_00am",
-            "name":"Barack Obama"
+            "time":"11_00am",
+            "name":"Baracky Obama"
         },
         {
             "day":"WEDNESDAY",
-            "time":"11_00am",
+            "time":"12_00pm",
             "name":"Bill Gates"
         },
         {
             "day":"MONDAY",
-            "time":"12_00pm",
-            "name":"Barack Obama"
+            "time":"12_30pm",
+            "name":"Baracky Obama"
         },
         {
             "day":"MONDAY",
-            "time":"2_00pm",
-            "name":"Barack Obama"
+            "time":"3_00pm",
+            "name":"Baracky Obama"
         },
         {
             "day":"FRIDAY",
-            "time":"3_00pm",
+            "time":"4_00pm",
             "name":"John Doe"
         }
     ],
