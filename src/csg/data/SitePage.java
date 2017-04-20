@@ -51,4 +51,8 @@ public class SitePage {
     public void setUsed(Boolean value) {
         isUsed.set(value);
     }
+    
+    public String toString() {
+        return isUsed.get() + " " + navbarTitle.get() + " " + fileName.get() + " " + script.get();
+    }
 }

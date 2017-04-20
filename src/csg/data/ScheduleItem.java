@@ -21,7 +21,7 @@ public class ScheduleItem {
     private String link;
     private String criteria;
     
-    public ScheduleItem(String type, String date, String time, String title, String topic,  String link, String criteria) {
+    public ScheduleItem(String type, String date, String time, String title, String topic, String link, String criteria) {
         this.type = new SimpleStringProperty(type);
         this.date = new SimpleStringProperty(date);
         this.time = time;

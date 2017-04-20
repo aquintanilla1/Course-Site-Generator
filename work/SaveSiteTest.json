@@ -1,6 +1,6 @@
 
 {
-    "course_details":[
+    "course_info":[
         {
             "subject":"CSE",
             "number":"219",
@@ -57,18 +57,13 @@
     "endHour":"20",
     "undergrad_tas":[
         {
-            "name":"Baracky Obama",
+            "name":"Barack Obama",
             "email":"obama@whitehouse.gov",
             "isUndergrad":true
         },
         {
             "name":"Bill Gates",
             "email":"billGates@microsoft.com",
-            "isUndergrad":true
-        },
-        {
-            "name":"John Doe",
-            "email":"johnDoe@gmail.com",
             "isUndergrad":false
         }
     ],
@@ -76,7 +71,7 @@
         {
             "day":"MONDAY",
             "time":"11_00am",
-            "name":"Baracky Obama"
+            "name":"Barack Obama"
         },
         {
             "day":"WEDNESDAY",
@@ -84,41 +79,28 @@
             "name":"Bill Gates"
         },
         {
-            "day":"MONDAY",
-            "time":"12_30pm",
-            "name":"Baracky Obama"
+            "day":"TUESDAY",
+            "time":"1_30pm",
+            "name":"Barack Obama"
         },
         {
-            "day":"MONDAY",
-            "time":"3_00pm",
-            "name":"Baracky Obama"
-        },
-        {
-            "day":"FRIDAY",
-            "time":"4_00pm",
-            "name":"John Doe"
+            "day":"TUESDAY",
+            "time":"1_30pm",
+            "name":"Bill Gates"
         }
     ],
     "recitations":[
         {
-            "recitationSection":"RO1",
+            "recitationSection":"R01",
             "recitationInstructor":"McKenna",
             "day/Time":"Tues 5:30-6:23pm",
             "location":"Old CS 2114",
             "supervisingTA1":"Barack Obama",
-            "supervisingTA2":"Barack Obama"
-        },
-        {
-            "recitationSection":"R66",
-            "recitationInstructor":"Banerjee",
-            "day/Time":"Thurs 1:00-1:53pm",
-            "location":"Old CS 2114",
-            "supervisingTA1":"Barack Obama",
-            "supervisingTA2":"Barack Obama"
+            "supervisingTA2":"Bill Gates"
         }
     ],
-    "startingMonday":"",
-    "endingFriday":"",
+    "startingMonday":"02-25-2017",
+    "endingFriday":"05-16-2017",
     "schedule_items":[
         {
             "type":"Holiday",
@@ -127,14 +109,6 @@
             "topic":"",
             "scheduleLink":"cnn.com",
             "criteria":"Must Snow"
-        },
-        {
-            "type":"Exam",
-            "scheduleTime":"5:00pm",
-            "scheduleTitle":"Midterm 2",
-            "topic":"Chapters 3-55",
-            "scheduleLink":"bbc.com",
-            "criteria":"Take Exam"
         }
     ],
     "teams":[
@@ -143,12 +117,6 @@
             "color":"FFFFFF",
             "textColor":"999999",
             "teamLink":"aristocrats.com"
-        },
-        {
-            "teamName":"Umbrellas",
-            "color":"AA00BB",
-            "textColor":"000000",
-            "teamLink":"umbrellas.com"
         }
     ],
     "students":[
@@ -157,18 +125,6 @@
             "lastName":"Francis",
             "studentTeam":"The Aristocrats",
             "role":"Lead Designer"
-        },
-        {
-            "firstName":"Mike",
-            "lastName":"Pence",
-            "studentTeam":"Umbrellas",
-            "role":"Lead Programmer"
-        },
-        {
-            "firstName":"Mel",
-            "lastName":"Gibson",
-            "studentTeam":"The Aristocrats",
-            "role":"Data Designer"
         }
     ]
 }

@@ -41,11 +41,13 @@ public class TestSave {
         makeTestTeachingAssistants(data);
         makeTestTimeSlots(data);
         makeTestRecitations(data);
+        makeTestCalendarBounds(data);
         makeTestScheduleItems(data);
         makeTestTeamsAndStudents(data); 
         
         AppDataComponent dataComponent = data;
         files.saveData(dataComponent, "/Users/Alvaro/Documents/CourseSiteGenerator/work/SaveSiteTest.json");
+        System.out.println("Test");
     }
     
     private static void makeTestCourseInfo(CSGData data) {
@@ -83,24 +85,15 @@ public class TestSave {
     }
     
     private static void makeTestTeachingAssistants(CSGData data) {
-        data.getTeachingAssistants().add(new TeachingAssistant("Baracky Obama", "obama@whitehouse.gov", true));
-        data.getTeachingAssistants().add(new TeachingAssistant("Bill Gates", "billGates@microsoft.com", true));
-        data.getTeachingAssistants().add(new TeachingAssistant("John Doe", "johnDoe@gmail.com", false));
+        data.getTeachingAssistants().add(new TeachingAssistant("Barack Obama", "obama@whitehouse.gov", true));
+        data.getTeachingAssistants().add(new TeachingAssistant("Bill Gates", "billGates@microsoft.com", false));
     }
     
     private static void makeTestTimeSlots(CSGData data) {
         data.initTestOfficeHours();
-        data.getOfficeHours().get("2_3").setValue("Baracky Obama");
-        data.getOfficeHours().get("2_6").setValue("Baracky Obama");
-        data.getOfficeHours().get("2_11").setValue("Baracky Obama");
+        data.getOfficeHours().get("2_3").setValue("Barack Obama");
+        data.getOfficeHours().get("3_8").setValue("Barack Obama\nBill Gates");
         data.getOfficeHours().get("4_5").setValue("Bill Gates");
-        data.getOfficeHours().get("6_13").setValue("John Doe");
-
-//        data.addOfficeHoursReservation("MONDAY", "10_00am", "Barack Obama");
-//        data.addOfficeHoursReservation("MONDAY", "12_00pm", "Barack Obama");
-//        data.addOfficeHoursReservation("MONDAY", "2_00pm", "Barack Obama");
-//        data.addOfficeHoursReservation("WEDNESDAY", "11_00am", "Bill Gates");
-//        data.addOfficeHoursReservation("FRIDAY", "3_00pm", "John Doe");
     }
     
     private static void makeTestStartAndEndHours(CSGData data) {
@@ -110,52 +103,34 @@ public class TestSave {
     
     private static void makeTestRecitations(CSGData data) {
         ArrayList<String> recitation1Details = new ArrayList<>();
-        recitation1Details.add("RO1");
+        recitation1Details.add("R01");
         recitation1Details.add("McKenna");
         recitation1Details.add("Tues 5:30-6:23pm");
         recitation1Details.add("Old CS 2114");
         recitation1Details.add("Barack Obama");
         recitation1Details.add("Bill Gates");
-        
-        ArrayList<String> recitation2Details = new ArrayList<>();
-        recitation2Details.add("R66");
-        recitation2Details.add("Banerjee");
-        recitation2Details.add("Thurs 1:00-1:53pm");
-        recitation2Details.add("Old CS 2114");
-        recitation2Details.add("Barack Obama");
-        recitation2Details.add("John Doe");
-        
+
         Recitation recitation1 = new Recitation(recitation1Details);
-        Recitation recitation2 = new Recitation(recitation2Details);
         
         data.getRecitations().add(recitation1);
-        data.getRecitations().add(recitation2);
+    }
+    private static void makeTestCalendarBounds(CSGData data) {
+        data.setStartMonday("02-25-2017");
+        data.setEndFriday("05-16-2017");
     }
     
     private static void makeTestScheduleItems(CSGData data) {
         ScheduleItem item1 = new ScheduleItem("Holiday", "03/25/2017","10:00am", "Snowday", "", "cnn.com", "Must Snow");
-        ScheduleItem item2 = new ScheduleItem("Exam", "04/10/2017","5:00pm", "Midterm 2", "Chapters 3-55", "bbc.com", "Take Exam");
         
         data.getScheduleItems().add(item1);
-        data.getScheduleItems().add(item2);
     }
     
     private static void makeTestTeamsAndStudents(CSGData data) {
         Team team1 = new Team("The Aristocrats", "FFFFFF", "999999", "aristocrats.com");
-        Team team2 = new Team("Umbrellas", "AA00BB", "000000", "umbrellas.com");
         
         data.getTeams().add(team1);
-        data.getTeams().add(team2);
         
         Student student1 = new Student("Pope", "Francis", "The Aristocrats", "Lead Designer");
-        Student student2 = new Student("Mike", "Pence", "Umbrellas", "Lead Programmer");
-        Student student3 = new Student("Mel", "Gibson", "The Aristocrats", "Data Designer");
-        
         data.getStudents().add(student1);
-        data.getStudents().add(student2);
-        data.getStudents().add(student3);
     }
-    
-    
-    
 }

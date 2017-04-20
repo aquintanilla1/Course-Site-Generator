@@ -129,6 +129,7 @@ public class CourseDetailsTabBuilder {
         grid.setHgap(10);
         grid.setPadding(new Insets(15,15,15,15));
         
+        
         //First column in grid
         topHeader = new Label(props.getProperty(CSGProp.COURSE_INFO_TEXT));
         subject = new Label(props.getProperty(CSGProp.SUBJECT_TEXT) + ":");
@@ -186,10 +187,11 @@ public class CourseDetailsTabBuilder {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         VBox vbox = new VBox(4);
         vbox.setPadding(new Insets(15,15,15,15));
+        CSGData data = (CSGData) app.getDataComponent();
         
         centerHeader = new Label(props.getProperty(CSGProp.SITE_TEMPLATE_TEXT));
         siteTemplateNote = new Label(props.getProperty(CSGProp.SITE_TEMPLATE_NOTE));
-        defaultTemplateText = new Label(props.getProperty(CSGProp.SITE_TEMPLATE_DIRECTORY_TEXT));
+        defaultTemplateText = new Label(data.getTemplateDirectory());
         selectTemplateDirButton = new Button(props.getProperty(CSGProp.SELECT_TEMPLATE_DIR_BUTTON_TEXT));
         sitePagesText = new Label(props.getProperty(CSGProp.SITE_PAGES_TEXT));
         
@@ -200,7 +202,6 @@ public class CourseDetailsTabBuilder {
         vbox.getChildren().add(sitePagesText);
         
         sitePageTable = new TableView();
-        CSGData data = (CSGData) app.getDataComponent();
         ObservableList<SitePage> sitePages = data.getSitePages();
         sitePageTable.setItems(sitePages);
         

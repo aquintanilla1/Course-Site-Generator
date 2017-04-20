@@ -81,8 +81,11 @@ public class CSGData implements AppDataComponent {
         scheduleItems = FXCollections.observableArrayList();
         teams = FXCollections.observableArrayList();
         students = FXCollections.observableArrayList();
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+
         
         courseInfo.addAll("", "", "", "", "", "", "", "");
+        templateDir = props.getProperty(CSGProp.SITE_TEMPLATE_DIRECTORY_TEXT);
         
         // THESE ARE THE DEFAULT OFFICE HOURS
         startHour = MIN_START_HOUR;
@@ -95,7 +98,6 @@ public class CSGData implements AppDataComponent {
         officeHours = new HashMap();
         
         // THESE ARE THE LANGUAGE-DEPENDENT OFFICE HOURS GRID HEADERS
-        PropertiesManager props = PropertiesManager.getPropertiesManager();
         ArrayList<String> timeHeaders = props.getPropertyOptionsList(CSGProp.OFFICE_HOURS_TABLE_HEADERS);
         ArrayList<String> dowHeaders = props.getPropertyOptionsList(CSGProp.DAYS_OF_WEEK);
         gridHeaders = new ArrayList();
@@ -112,14 +114,14 @@ public class CSGData implements AppDataComponent {
         teams = FXCollections.observableArrayList();
         students = FXCollections.observableArrayList();
         
-        courseInfo.addAll("", "", "", "", "", "", "", "");
-        
+        makeTestSitePages(sitePages);
         // THESE ARE THE DEFAULT OFFICE HOURS
         startHour = MIN_START_HOUR;
         endHour = MAX_END_HOUR;
         
         startingMonday = "";
         endingFriday = "";
+        
         
         //THIS WILL STORE OUR OFFICE HOURS
         officeHours = new HashMap();
@@ -161,14 +163,15 @@ public class CSGData implements AppDataComponent {
         return gridHeaders;
     }
     
-    public ObservableList getCourseInfo() {
+    public ObservableList<String> getCourseInfo() {
         return courseInfo;
     }
     
     public String getTemplateDirectory() {
         return templateDir;
     }
-    public ObservableList getSitePages() {
+    
+    public ObservableList<SitePage> getSitePages() {
         return sitePages;
     }
     
@@ -188,11 +191,11 @@ public class CSGData implements AppDataComponent {
         return stylesheet;
     }
     
-    public ObservableList getTeachingAssistants() {
+    public ObservableList<TeachingAssistant> getTeachingAssistants() {
         return teachingAssistants;
     }
 
-    public ObservableList getRecitations() {
+    public ObservableList<Recitation> getRecitations() {
         return recitations;
     }
     
@@ -204,15 +207,15 @@ public class CSGData implements AppDataComponent {
         return endingFriday;
     }
     
-    public ObservableList getScheduleItems() {
+    public ObservableList<ScheduleItem> getScheduleItems() {
         return scheduleItems;
     }
     
-    public ObservableList getTeams() {
+    public ObservableList<Team> getTeams() {
         return teams;
     }
     
-    public ObservableList getStudents() {
+    public ObservableList<Student> getStudents() {
         return students;
     }
     
@@ -274,30 +277,25 @@ public class CSGData implements AppDataComponent {
  
     @Override
     public void resetData() {
+        startHour = MIN_START_HOUR;
+        endHour = MAX_END_HOUR;
+        courseInfo.clear();
+        teachingAssistants.clear();
+        officeHours.clear();
+        recitations.clear();
+        scheduleItems.clear();
+        teams.clear();
+        students.clear();
+        
+        templateDir = "";
+        image = "";
+        leftFooterImage = "";
+        rightFooterImage = "";
+        stylesheet = "";
+        
     }
     
-    public void initTestOfficeHours() {
-        ObservableList<String> times = getTimes();
-        
-        int i = startHour;
-        for (int row = 1; row < getNumRows(); row++) {
-            if ((row % 2) != 0) {
-                setCellProperty(0, row, new SimpleStringProperty(times.get(i)));
-            }
-            else {
-                setCellProperty(0, row, new SimpleStringProperty(times.get(i).replace(":00", ":30")));
-                i++;
-            }
-        }
-               
-        
-        for (int row = 1; row < getNumRows(); row++) {
-            for (int col = 2; col < 7; col++) {
-                setCellProperty(col, row, new SimpleStringProperty(""));
-            }
-        }
-        
-    }
+    
     
     public ObservableList makeSitePages(ObservableList<SitePage> pages) {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
@@ -311,6 +309,16 @@ public class CSGData implements AppDataComponent {
         pages.add(new SitePage(true, schedule, "schedule.html", "ScheduleBuilder.js"));
         pages.add(new SitePage(true, homework, "hws.html", "HWsBuilder.js"));
         pages.add(new SitePage(true, projects, "projects.html", "ProjectBuilder.js"));  
+        
+        return pages;
+    }
+    
+    public ObservableList makeTestSitePages(ObservableList<SitePage> pages) {
+        pages.add(new SitePage(true, "Home", "index.html", "HomeBuilder.js"));
+        pages.add(new SitePage(true, "Syllabus", "syllabus.html", "SyllabusBuilder.js"));
+        pages.add(new SitePage(true, "Schedule", "schedule.html", "ScheduleBuilder.js"));
+        pages.add(new SitePage(true, "HWs", "hws.html", "HWsBuilder.js"));
+        pages.add(new SitePage(true, "Projects", "projects.html", "ProjectBuilder.js"));  
         
         return pages;
     }
@@ -430,12 +438,35 @@ public class CSGData implements AppDataComponent {
         // EMPTY THE CURRENT OFFICE HOURS VALUES
         officeHours.clear();
             
-        // WE'LL BUILD THE USER INTERFACE COMPONENT FOR THE
-        // OFFICE HOURS GRID AND FEED THEM TO OUR DATA
-        // STRUCTURE AS WE GO
-        CSGWorkspace workspaceComponent = (CSGWorkspace)app.getWorkspaceComponent();
-        TADataTabBuilder taTab = workspaceComponent.getTATabBuilder();
-        taTab.reloadOfficeHoursGrid(this);
+        if (app != null) {
+            CSGWorkspace workspaceComponent = (CSGWorkspace)app.getWorkspaceComponent();
+            TADataTabBuilder taTab = workspaceComponent.getTATabBuilder();
+            taTab.reloadOfficeHoursGrid(this);
+        }
+        else {
+            initTestOfficeHours();
+        }
+    }
+    
+    public void initTestOfficeHours() {
+        ObservableList<String> times = getTimes();
+        
+        int i = startHour;
+        for (int row = 1; row < getNumRows(); row++) {
+            if ((row % 2) != 0) {
+                setCellProperty(0, row, new SimpleStringProperty(times.get(i)));
+            }
+            else {
+                setCellProperty(0, row, new SimpleStringProperty(times.get(i).replace(":00", ":30")));
+                i++;
+            }
+        }
+
+        for (int row = 1; row < getNumRows(); row++) {
+            for (int col = 2; col < 7; col++) {
+                setCellProperty(col, row, new SimpleStringProperty(""));
+            }
+        }
     }
     
     public void initHours(String startHourText, String endHourText) {
@@ -533,13 +564,13 @@ public class CSGData implements AppDataComponent {
         }
         //If not, then add the TA into the cell
         else {
-            CSGWorkspace csgWorkspace = (CSGWorkspace)app.getWorkspaceComponent();
-            TADataTabBuilder taWorkspace = csgWorkspace.getTATabBuilder();
             if (cellText.isEmpty()) {
                 if (wasLoaded) {
                     cellProp.setValue(cellText + taName);
                 }
                 else {
+                    CSGWorkspace csgWorkspace = (CSGWorkspace)app.getWorkspaceComponent();
+                    TADataTabBuilder taWorkspace = csgWorkspace.getTATabBuilder();
                     jTPS_Transaction transaction = new ToggleAddTAInCell_Transaction(taName, this, cellKey, true);
                     taWorkspace.getJTPS().addTransaction(transaction);
                 }
@@ -549,6 +580,8 @@ public class CSGData implements AppDataComponent {
                     cellProp.setValue(cellText + "\n" + taName);
                 }
                 else {
+                    CSGWorkspace csgWorkspace = (CSGWorkspace)app.getWorkspaceComponent();
+                    TADataTabBuilder taWorkspace = csgWorkspace.getTATabBuilder();
                     jTPS_Transaction transaction = new ToggleAddTAInCell_Transaction(taName, this, cellKey, false);
                     taWorkspace.getJTPS().addTransaction(transaction);     
                 }
@@ -582,6 +615,26 @@ public class CSGData implements AppDataComponent {
                     false, false, cellTextNameList.indexOf(taName));
             taWorkspace.getJTPS().addTransaction(transaction);
         }
+    }
+    
+    public void addRecitation(ArrayList<String> details) {
+        Recitation recitation = new Recitation(details);
+        recitations.add(recitation);
+    }
+    
+    public void addScheduleItem(String type, String date, String time, String title, String topic, String link, String criteria) {
+        ScheduleItem item = new ScheduleItem(type, date, time, title, topic, link, criteria);
+        scheduleItems.add(item);
+    }
+    
+    public void addTeam(String name, String color, String textColor, String link) {
+        Team team = new Team(name, color, textColor, link);
+        teams.add(team);
+    }
+    
+    public void addStudent(String firstName, String lastName, String team, String role) {
+        Student student = new Student(firstName, lastName, team, role);
+        students.add(student);
     }
 }
     

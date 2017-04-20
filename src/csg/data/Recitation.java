@@ -53,6 +53,6 @@ public class Recitation {
     }    
     
     public String getTA2() {
-        return ta1.get();
+        return ta2.get();
     }
 }
