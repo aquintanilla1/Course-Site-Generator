@@ -107,7 +107,10 @@ public class CSGWorkspace extends AppWorkspaceComponent {
     @Override
     public void reloadWorkspace(AppDataComponent dataComponent) {
         CSGData csgData = (CSGData)dataComponent;
+        cdWorkspace.reloadCourseInfo(csgData);
+        cdWorkspace.reloadPageStyle(csgData);
         taWorkspace.reloadOfficeHoursGrid(csgData);
+        scheduleWorkspace.reloadCalendarBounds(csgData);
     }
     
 }

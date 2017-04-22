@@ -10,6 +10,8 @@ import csg.CSGProp;
 import csg.data.CSGData;
 import csg.data.SitePage;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -24,8 +26,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -43,13 +48,15 @@ public class CourseDetailsTabBuilder {
     BorderPane wholePane;
     VBox allPane;
     
+    HBox imageBox, leftFooterBox, rightFooterBox;
+    
     Button changeButton1, changeButton2, changeButton3, changeButton4, selectTemplateDirButton;
     Label topHeader, centerHeader, bottomHeader;
     Label subject, semester, number, year, title, instructorName, instructorHome, exportDirectory,
             defaultDirText, defaultTemplateText, siteTemplateNote, sitePagesText, 
             pageStyleText, bannerText, leftFooterText, rightFooterText, stylesheetText, noImageText1, 
             noImageText2, noImageText3, noteText;
-    ComboBox subjectBox, semesterBox, numberBox, yearBox, styleSheetBox;
+    ComboBox<String> subjectBox, semesterBox, numberBox, yearBox, stylesheetBox;
     TextField titleTextField, instructorNameTextField, instructorHomeTextField;
     
     TableView<SitePage> sitePageTable;
@@ -123,6 +130,7 @@ public class CourseDetailsTabBuilder {
     
     private GridPane buildTopGrid() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
+        CSGData data = (CSGData) app.getDataComponent();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setVgap(5);
@@ -156,7 +164,7 @@ public class CourseDetailsTabBuilder {
         instructorNameTextField = new TextField();
         instructorHomeTextField = new TextField();
         defaultDirText = new Label(props.getProperty(CSGProp.DEFAULT_DIR_TEXT));
-       
+               
         grid.add(subjectBox, 1, 1);
         grid.add(semesterBox, 1, 2);
         grid.add(titleTextField, 1, 3, 3, 1);
@@ -271,15 +279,19 @@ public class CourseDetailsTabBuilder {
         grid.add(stylesheetText, 0, 4);
         grid.add(noteText, 0, 5, 4, 1);
         
-        noImageText1 = new Label(props.getProperty((CSGProp.NO_IMAGE_SELECTED_TEXT)));
-        noImageText2 = new Label(props.getProperty((CSGProp.NO_IMAGE_SELECTED_TEXT)));
-        noImageText3 = new Label(props.getProperty((CSGProp.NO_IMAGE_SELECTED_TEXT)));
-        styleSheetBox = new ComboBox();
+        noImageText1 = new Label();
+        noImageText2 = new Label();
+        noImageText3 = new Label();
+        stylesheetBox = new ComboBox();
         
-        grid.add(noImageText1, 1, 1);
-        grid.add(noImageText2, 1, 2);
-        grid.add(noImageText3, 1, 3);
-        grid.add(styleSheetBox, 1, 4, 2, 1);
+        imageBox = new HBox();
+        leftFooterBox = new HBox();
+        rightFooterBox = new HBox();
+        
+        grid.add(imageBox, 1, 1);
+        grid.add(leftFooterBox, 1, 2);
+        grid.add(rightFooterBox, 1, 3);
+        grid.add(stylesheetBox, 1, 4, 2, 1);
         
         changeButton2 = new Button(props.getProperty(CSGProp.CHANGE_BUTTON_TEXT));
         changeButton3 = new Button(props.getProperty(CSGProp.CHANGE_BUTTON_TEXT));
@@ -290,6 +302,72 @@ public class CourseDetailsTabBuilder {
         grid.add(changeButton4, 2, 3);
         
         return grid;
+    }
+    
+    public void reloadCourseInfo(CSGData data) {
+        subjectBox.getSelectionModel().select(data.getCourseInfo().get(0));
+        semesterBox.getSelectionModel().select(data.getCourseInfo().get(1));
+        numberBox.getSelectionModel().select(data.getCourseInfo().get(2));
+        yearBox.getSelectionModel().select(data.getCourseInfo().get(3));
+        titleTextField.setText(data.getCourseInfo().get(4));
+        instructorNameTextField.setText(data.getCourseInfo().get(5));
+        instructorHomeTextField.setText(data.getCourseInfo().get(6));
+        defaultDirText.setText(data.getCourseInfo().get(7));
+        
+        //Reloads Site Template Directory
+        defaultTemplateText.setText(data.getTemplateDirectory());
+    }
+    
+    
+    
+    public void reloadPageStyle(CSGData data) {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+
+        String imagePath = data.getImagePath();
+        String leftFooterPath = data.getLeftFooterImagePath();
+        String rightFooterPath = data.getRightFooterImagePath();
+        
+        //Main banner
+        if (imagePath.equals(props.getProperty(CSGProp.NO_IMAGE_SELECTED_TEXT))) {
+            noImageText1.setText(imagePath);
+            imageBox.getChildren().clear();
+            imageBox.getChildren().add(noImageText1);
+        }
+        else {
+            Image banner = new Image("file:" + imagePath, 150, 25, false, false);
+            ImageView bannerView = new ImageView(banner);
+            imageBox.getChildren().clear();
+            imageBox.getChildren().add(bannerView);
+        }
+        
+        //Left Footer
+        if (leftFooterPath.equals(props.getProperty(CSGProp.NO_IMAGE_SELECTED_TEXT))) {
+            noImageText2.setText(leftFooterPath);
+            leftFooterBox.getChildren().clear();
+            leftFooterBox.getChildren().add(noImageText2);
+        }
+        else {
+            Image leftFooter = new Image("file:" + leftFooterPath, 150, 25, false, false);
+            ImageView leftFooterView = new ImageView(leftFooter);
+            leftFooterBox.getChildren().clear();
+            leftFooterBox.getChildren().add(leftFooterView);
+        }
+        
+        //Right Footer
+        if (rightFooterPath.equals(props.getProperty(CSGProp.NO_IMAGE_SELECTED_TEXT))) {
+            noImageText3.setText(rightFooterPath);
+            rightFooterBox.getChildren().clear();
+            rightFooterBox.getChildren().add(noImageText3);
+        }
+        else {
+            Image rightFooter = new Image("file:" + rightFooterPath, 150, 25, false, false);
+            ImageView rightFooterView = new ImageView(rightFooter);
+            rightFooterBox.getChildren().clear();
+            rightFooterBox.getChildren().add(rightFooterView);
+        }
+        
+        //Finally, the style combo box
+        stylesheetBox.getSelectionModel().select(data.getStylesheet());
     }
     
 }

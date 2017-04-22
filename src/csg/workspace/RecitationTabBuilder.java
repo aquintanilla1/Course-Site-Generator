@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -122,14 +123,23 @@ public class RecitationTabBuilder {
         locationColumn = new TableColumn(props.getProperty(CSGProp.LOCATION_TEXT));
         ta1Column = new TableColumn(props.getProperty(CSGProp.TA_HEADER));
         ta2Column = new TableColumn(props.getProperty(CSGProp.TA_HEADER));
+//        TableColumn location2 = new TableColumn("Location2");
         
+        sectionColumn.setCellValueFactory(new PropertyValueFactory<Recitation, String> ("section"));
+        instructorColumn.setCellValueFactory(new PropertyValueFactory<Recitation, String> ("instructor"));
+        dayTimeColumn.setCellValueFactory(new PropertyValueFactory<Recitation, String> ("dayTime"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<Recitation, String> ("location"));
+        ta1Column.setCellValueFactory(new PropertyValueFactory<Recitation, String> ("ta1"));
+        ta2Column.setCellValueFactory(new PropertyValueFactory<Recitation, String> ("ta2"));
+    
         recitationTable.getColumns().add(sectionColumn);
         recitationTable.getColumns().add(instructorColumn);
         recitationTable.getColumns().add(dayTimeColumn);
         recitationTable.getColumns().add(locationColumn);
         recitationTable.getColumns().add(ta1Column);
         recitationTable.getColumns().add(ta2Column);
-        
+//        recitationTable.getColumns().add(location2);
+    
         recitationTable.setFixedCellSize(25);
         recitationTable.prefHeightProperty().bind(recitationTable.fixedCellSizeProperty().multiply(10));
         recitationTable.minHeightProperty().bind(recitationTable.prefHeightProperty());

@@ -78,10 +78,10 @@ public class TestSave {
     }
     
     private static void makeTestPageStyle(CSGData data) {
-        data.setImage("testimage.png");
-        data.setLeftFooter("testleftfooter.png");
-        data.setRightFooter("testrightfooter.png");
-        data.setStylesheet("\\test.css");
+        data.setImage("image.png");
+        data.setLeftFooter("leftFooter.jpg");
+        data.setRightFooter("rightFooter.png");
+        data.setStylesheet("test.css");
     }
     
     private static void makeTestTeachingAssistants(CSGData data) {

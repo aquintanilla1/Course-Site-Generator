@@ -84,8 +84,12 @@ public class CSGData implements AppDataComponent {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
 
         
-        courseInfo.addAll("", "", "", "", "", "", "", "");
+        courseInfo.addAll("", "", "", "", "", "", "", props.getProperty(CSGProp.DEFAULT_DIR_TEXT));
         templateDir = props.getProperty(CSGProp.SITE_TEMPLATE_DIRECTORY_TEXT);
+        
+        image = props.getProperty(CSGProp.NO_IMAGE_SELECTED_TEXT);
+        leftFooterImage = props.getProperty(CSGProp.NO_IMAGE_SELECTED_TEXT);
+        rightFooterImage = props.getProperty(CSGProp.NO_IMAGE_SELECTED_TEXT);
         
         // THESE ARE THE DEFAULT OFFICE HOURS
         startHour = MIN_START_HOUR;
@@ -113,6 +117,8 @@ public class CSGData implements AppDataComponent {
         scheduleItems = FXCollections.observableArrayList();
         teams = FXCollections.observableArrayList();
         students = FXCollections.observableArrayList();
+        courseInfo.addAll("", "", "", "", "", "", "", "No directory selected");
+
         
         makeTestSitePages(sitePages);
         // THESE ARE THE DEFAULT OFFICE HOURS
@@ -277,9 +283,13 @@ public class CSGData implements AppDataComponent {
  
     @Override
     public void resetData() {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
         startHour = MIN_START_HOUR;
         endHour = MAX_END_HOUR;
         courseInfo.clear();
+        courseInfo.addAll("", "", "", "", "", "", "", props.getProperty(CSGProp.DEFAULT_DIR_TEXT));
+        sitePages.clear();
+        makeSitePages(sitePages);
         teachingAssistants.clear();
         officeHours.clear();
         recitations.clear();
@@ -287,11 +297,14 @@ public class CSGData implements AppDataComponent {
         teams.clear();
         students.clear();
         
-        templateDir = "";
-        image = "";
-        leftFooterImage = "";
-        rightFooterImage = "";
+        templateDir = props.getProperty(CSGProp.SITE_TEMPLATE_DIRECTORY_TEXT);
+        image = props.getProperty(CSGProp.NO_IMAGE_SELECTED_TEXT);
+        leftFooterImage = props.getProperty(CSGProp.NO_IMAGE_SELECTED_TEXT);
+        rightFooterImage = props.getProperty(CSGProp.NO_IMAGE_SELECTED_TEXT);
         stylesheet = "";
+        
+        startingMonday = "";
+        endingFriday = "";
         
     }
     

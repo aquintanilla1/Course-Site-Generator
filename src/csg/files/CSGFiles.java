@@ -188,8 +188,8 @@ public class CSGFiles implements AppFileComponent {
                     .add(JSON_RECITATION_INSTRUCTOR, recitation.getInstructor())
                     .add(JSON_DAY_TIME, recitation.getDayTime())
                     .add(JSON_LOCATION, recitation.getLocation())
-                    .add(JSON_SUPERVISING_TA_ONE, recitation.getTA1())
-                    .add(JSON_SUPERVISING_TA_TWO, recitation.getTA2())
+                    .add(JSON_SUPERVISING_TA_ONE, recitation.getTa1())
+                    .add(JSON_SUPERVISING_TA_TWO, recitation.getTa2())
                     .build();
 	    recitationArrayBuilder.add(recitationJson);
 	}
@@ -201,6 +201,7 @@ public class CSGFiles implements AppFileComponent {
 	    JsonObject scheduleItemJson = Json.createObjectBuilder()
 		    .add(JSON_TYPE, item.getType())
                     .add(JSON_SCHEDULE_TIME, item.getTime())
+                    .add(JSON_DATE, item.getDate())
                     .add(JSON_SCHEDULE_TITLE, item.getTitle())
                     .add(JSON_TOPIC, item.getTopic())
                     .add(JSON_SCHEDULE_LINK, item.getLink())
@@ -286,14 +287,14 @@ public class CSGFiles implements AppFileComponent {
         JsonArray courseInfoArray = json.getJsonArray(JSON_COURSE_INFO);
         for (int i = 0; i < courseInfoArray.size(); i++) {
             JsonObject jsonCourseInfo = courseInfoArray.getJsonObject(i);
-            dataManager.getCourseInfo().add(jsonCourseInfo.getString(JSON_SUBJECT));
-            dataManager.getCourseInfo().add(jsonCourseInfo.getString(JSON_NUMBER));
-            dataManager.getCourseInfo().add(jsonCourseInfo.getString(JSON_SEMESTER));
-            dataManager.getCourseInfo().add(jsonCourseInfo.getString(JSON_YEAR));
-            dataManager.getCourseInfo().add(jsonCourseInfo.getString(JSON_COURSE_TITLE));
-            dataManager.getCourseInfo().add(jsonCourseInfo.getString(JSON_INSTRUCTOR_NAME));
-            dataManager.getCourseInfo().add(jsonCourseInfo.getString(JSON_INSTRUCTOR_HOME));
-            dataManager.getCourseInfo().add(jsonCourseInfo.getString(JSON_EXPORT_DIRECTORY));
+            dataManager.getCourseInfo().set(0, jsonCourseInfo.getString(JSON_SUBJECT));
+            dataManager.getCourseInfo().set(1, jsonCourseInfo.getString(JSON_NUMBER));
+            dataManager.getCourseInfo().set(2, jsonCourseInfo.getString(JSON_SEMESTER));
+            dataManager.getCourseInfo().set(3, jsonCourseInfo.getString(JSON_YEAR));
+            dataManager.getCourseInfo().set(4, jsonCourseInfo.getString(JSON_COURSE_TITLE));
+            dataManager.getCourseInfo().set(5, jsonCourseInfo.getString(JSON_INSTRUCTOR_NAME));
+            dataManager.getCourseInfo().set(6, jsonCourseInfo.getString(JSON_INSTRUCTOR_HOME));
+            dataManager.getCourseInfo().set(7, jsonCourseInfo.getString(JSON_EXPORT_DIRECTORY));
         }
         
         dataManager.setTemplateDirectory(json.getString(JSON_TEMPLATE_DIRECTORY));
@@ -319,10 +320,6 @@ public class CSGFiles implements AppFileComponent {
         String endHour = json.getString(JSON_END_HOUR);
         dataManager.initHours(startHour, endHour);
 
-        if (app != null) {
-            app.getWorkspaceComponent().reloadWorkspace(app.getDataComponent());
-        }
-
         // NOW LOAD ALL THE UNDERGRAD TAs
         JsonArray jsonTAArray = json.getJsonArray(JSON_UNDERGRAD_TAS);
         for (int i = 0; i < jsonTAArray.size(); i++) {
@@ -343,6 +340,7 @@ public class CSGFiles implements AppFileComponent {
             dataManager.addOfficeHoursReservation(day, time, name);
         }
         
+        //Loading Recitations
         JsonArray jsonRecitationArray = json.getJsonArray(JSON_RECITATIONS);
         ArrayList<String> recitationDetails = new ArrayList<>();
         for (int i = 0; i < jsonRecitationArray.size(); i++) {
@@ -363,12 +361,13 @@ public class CSGFiles implements AppFileComponent {
         for (int i = 0; i < jsonScheduleItemArray.size(); i++) {
             JsonObject jsonScheduleItem = jsonScheduleItemArray.getJsonObject(i);
             String type = jsonScheduleItem.getString(JSON_TYPE);
+            String date = jsonScheduleItem.getString(JSON_DATE);
             String time = jsonScheduleItem.getString(JSON_SCHEDULE_TIME);
             String title = jsonScheduleItem.getString(JSON_SCHEDULE_TITLE);
             String topic = jsonScheduleItem.getString(JSON_TOPIC);
             String scheduleLink = jsonScheduleItem.getString(JSON_SCHEDULE_LINK);
             String criteria = jsonScheduleItem.getString(JSON_CRITERIA);
-            dataManager.addScheduleItem(type, title, time, title, topic, scheduleLink, criteria);
+            dataManager.addScheduleItem(type, date, time, title, topic, scheduleLink, criteria);
         }
 
         JsonArray jsonTeamArray = json.getJsonArray(JSON_TEAMS);
@@ -389,6 +388,10 @@ public class CSGFiles implements AppFileComponent {
             String teamName = jsonStudent.getString(JSON_STUDENT_TEAM);
             String role = jsonStudent.getString(JSON_ROLE);
             dataManager.addStudent(firstName, lastName,teamName, role);
+        }
+        
+        if (app != null) {
+            app.getWorkspaceComponent().reloadWorkspace(app.getDataComponent());
         }
         
     }

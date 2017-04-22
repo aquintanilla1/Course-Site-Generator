@@ -22,11 +22,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -69,7 +71,10 @@ public class ProjectTabBuilder {
         wholePane.getChildren().add(projectHeaderText);
         wholePane.getChildren().add(topPane);
         wholePane.getChildren().add(bottomPane);
-        tab.setContent(wholePane);
+        ScrollPane scrollPane = new ScrollPane(wholePane);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setFitToWidth(true);
+        tab.setContent(scrollPane);
     }
     
     public Tab getProjectTab() {
@@ -135,6 +140,11 @@ public class ProjectTabBuilder {
         textColorColumn = new TableColumn(props.getProperty(CSGProp.TEXT_COLOR_TEXT));
         linkColumn = new TableColumn(props.getProperty(CSGProp.LINK_TEXT));
         
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Team, String> ("name"));
+        colorColumn.setCellValueFactory(new PropertyValueFactory<Team, String> ("color"));
+        textColorColumn.setCellValueFactory(new PropertyValueFactory<Team, String> ("textColor"));
+        linkColumn.setCellValueFactory(new PropertyValueFactory<Team, String> ("link"));
+
         teamTable.getColumns().add(nameColumn);
         teamTable.getColumns().add(colorColumn);
         teamTable.getColumns().add(textColorColumn);
@@ -172,12 +182,18 @@ public class ProjectTabBuilder {
         teamColumn = new TableColumn(props.getProperty(CSGProp.TEAM_TEXT));
         roleColumn = new TableColumn(props.getProperty(CSGProp.ROLE_TEXT));
         
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Student, String> ("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<Student, String> ("lastName"));
+        teamColumn.setCellValueFactory(new PropertyValueFactory<Student, String> ("team"));
+        roleColumn.setCellValueFactory(new PropertyValueFactory<Student, String> ("role"));
+
+        
         studentTable.getColumns().add(firstNameColumn);
         studentTable.getColumns().add(lastNameColumn);
         studentTable.getColumns().add(teamColumn);
         studentTable.getColumns().add(roleColumn);
         
-        studentTable.setFixedCellSize(15);
+        studentTable.setFixedCellSize(25);
         studentTable.prefHeightProperty().bind(studentTable.fixedCellSizeProperty().multiply(5));
         studentTable.minHeightProperty().bind(studentTable.prefHeightProperty());
         studentTable.maxHeightProperty().bind(studentTable.prefHeightProperty());

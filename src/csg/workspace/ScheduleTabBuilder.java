@@ -11,6 +11,8 @@ import csg.data.CSGData;
 import csg.data.ScheduleItem;
 import static djf.settings.AppStartupConstants.FILE_PROTOCOL;
 import static djf.settings.AppStartupConstants.PATH_IMAGES;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -23,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -158,6 +161,12 @@ public class ScheduleTabBuilder {
         titleColumn = new TableColumn(props.getProperty(CSGProp.TITLE_TEXT));
         topicColumn = new TableColumn(props.getProperty(CSGProp.TOPIC_TEXT));
         
+        typeColumn.setCellValueFactory(new PropertyValueFactory<ScheduleItem, String> ("type"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<ScheduleItem, String> ("date"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<ScheduleItem, String> ("title"));
+        topicColumn.setCellValueFactory(new PropertyValueFactory<ScheduleItem, String> ("topic"));
+
+        
         scheduleTable.getColumns().add(typeColumn);
         scheduleTable.getColumns().add(dateColumn);
         scheduleTable.getColumns().add(titleColumn);
@@ -239,5 +248,22 @@ public class ScheduleTabBuilder {
 		
 	// AND RETURN THE COMPLETED BUTTON
         return button;
+    }
+    
+    public void reloadCalendarBounds(CSGData data) {
+        String startMon = data.getStartMonday();
+        String endFri = data.getEndFriday();
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
+        
+        if (!startMon.isEmpty()) {
+            LocalDate startDate = LocalDate.parse(startMon, formatter);
+            startPicker.setValue(startDate);
+        }
+        
+        if (!endFri.isEmpty()) {
+            LocalDate endDate = LocalDate.parse(endFri, formatter);
+            endPicker.setValue(endDate);
+        }
     }
 }

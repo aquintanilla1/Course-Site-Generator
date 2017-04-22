@@ -48,11 +48,11 @@ public class Recitation {
         return location.get();
     }
     
-    public String getTA1() {
+    public String getTa1() {
         return ta1.get();
     }    
     
-    public String getTA2() {
+    public String getTa2() {
         return ta2.get();
     }
 }

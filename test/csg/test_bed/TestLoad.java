@@ -90,10 +90,10 @@ public class TestLoad {
         assertEquals("Script5", "ProjectBuilder.js", data.getSitePages().get(4).getScript());
         
         //Testing Page Style
-        assertEquals("Image", "testimage.png", data.getImagePath());
-        assertEquals("Left Footer Image", "testleftfooter.png", data.getLeftFooterImagePath());
-        assertEquals("Right Footer Image", "testrightfooter.png", data.getRightFooterImagePath());
-        assertEquals("Stylesheet", "\\test.css", data.getStylesheet());
+        assertEquals("Image", "image.png", data.getImagePath());
+        assertEquals("Left Footer Image", "leftFooter.jpg", data.getLeftFooterImagePath());
+        assertEquals("Right Footer Image", "rightFooter.png", data.getRightFooterImagePath());
+        assertEquals("Stylesheet", "test.css", data.getStylesheet());
         
         assertEquals("Start Hour", 10, data.getStartHour());
         assertEquals("End Hour", 20, data.getEndHour());
@@ -131,8 +131,8 @@ public class TestLoad {
         assertEquals("Recitation Instructor", "McKenna", data.getRecitations().get(0).getInstructor());
         assertEquals("Day and Time", "Tues 5:30-6:23pm", data.getRecitations().get(0).getDayTime());
         assertEquals("Location", "Old CS 2114", data.getRecitations().get(0).getLocation());
-        assertEquals("SupervisingTA1", "Barack Obama", data.getRecitations().get(0).getTA1());
-        assertEquals("SupervisingTA2", "Bill Gates", data.getRecitations().get(0).getTA2());
+        assertEquals("SupervisingTA1", "Barack Obama", data.getRecitations().get(0).getTa1());
+        assertEquals("SupervisingTA2", "Bill Gates", data.getRecitations().get(0).getTa2());
         
         //Testing Calendar Bounds
         assertEquals("Start Monday", "02-25-2017", data.getStartMonday());
@@ -140,6 +140,7 @@ public class TestLoad {
         
         //Testing ScheduleItems
         assertEquals("Schedule Type", "Holiday", data.getScheduleItems().get(0).getType());
+        //Add Schedule Date here
         assertEquals("Schedule Time", "10:00am", data.getScheduleItems().get(0).getTime());
         assertEquals("Schedule Title", "Snowday", data.getScheduleItems().get(0).getTitle());
         assertEquals("Schedule Topic", "", data.getScheduleItems().get(0).getTopic());
