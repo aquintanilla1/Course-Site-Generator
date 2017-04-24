@@ -59,7 +59,7 @@ public class TestSave {
         details.add("Computer Science III");
         details.add("Richard McKenna");
         details.add("http://www3.cs.stonybrook.edu/~richard/");
-        details.add("Users/Alvaro/Documents/Whatever");
+        details.add("/Users/Alvaro/Documents/Bullshit5");
         
         data.setCourseInfo(details);
     }
@@ -115,14 +115,22 @@ public class TestSave {
         data.getRecitations().add(recitation1);
     }
     private static void makeTestCalendarBounds(CSGData data) {
-        data.setStartMonday("02-25-2017");
-        data.setEndFriday("05-16-2017");
+        data.setStartMonday("01-23-2017");
+        data.setEndFriday("05-19-2017");
     }
     
     private static void makeTestScheduleItems(CSGData data) {
-        ScheduleItem item1 = new ScheduleItem("Holiday", "03/25/2017","10:00am", "Snowday", "", "cnn.com", "Must Snow");
-        
+        ScheduleItem item1 = new ScheduleItem("Holiday", "03/25/2017", "", "Snowday", "", "weather.com", "");
+        ScheduleItem item2 = new ScheduleItem("Lecture", "04/5/2017","10:00am", "Lecture 1337", "LEET SPEAK", "https://en.wikipedia.org/wiki/Leet", "");
+        ScheduleItem item3 = new ScheduleItem("HW", "04/12/2017", "11:59pm", "HW4", "UI Stuff", "./hw/HW4.html", "http://wlt.typography.netdna-cdn.com/data/images/2014/02/dribbble-dont-suck-1x.png");
+        ScheduleItem item4 = new ScheduleItem("Recitation", "04/11/2017", "", "Recitation 7", "The Number 7", "", "");
+        ScheduleItem item5 = new ScheduleItem("Reference", "05/4/2017", "", "Reference", "The Tragedy of Darth Plagueis the Wise", "https://www.youtube.com/watch?v=05dT34hGRdg", "");
+
         data.getScheduleItems().add(item1);
+        data.getScheduleItems().add(item2);
+        data.getScheduleItems().add(item3);
+        data.getScheduleItems().add(item4);
+        data.getScheduleItems().add(item5);
     }
     
     private static void makeTestTeamsAndStudents(CSGData data) {

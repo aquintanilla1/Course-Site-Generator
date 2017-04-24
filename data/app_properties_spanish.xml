@@ -176,6 +176,11 @@
 		<property name="TOPIC_TEXT"               		value="Tema"></property>
 		<property name="LINK_TEXT"               		value="Enlance"></property>
 		<property name="CRITERIA_TEXT"             	    value="Criterios"></property>
+		<property name="HOLIDAY_TEXT"               	value="Feriado"></property>
+		<property name="LECTURE_TEXT"               	value="Class"></property>
+		<property name="HWS_TEXT"               		value="Tarea"></property>
+		<property name="RECITATION_TEXT"                value="Recitación"></property>
+		<property name="REFERENCE_TEXT"               	value="Referencia"></property>
 		
 		<property name="PROJECT_TAB"               		value="Datos del Proyecto"></property>
 		<property name="DELETE_TEAM_TOOLTIP"			value="Elimina el equip seleccionado"></property>					

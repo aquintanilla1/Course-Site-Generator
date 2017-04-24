@@ -5,6 +5,7 @@
  */
 package csg.data;
 
+import java.util.ArrayList;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -17,12 +18,14 @@ public class Team {
     private final StringProperty color;
     private final StringProperty textColor;
     private final StringProperty link;
+    private final ArrayList<Student> students;
     
     public Team(String name, String color, String textColor, String link) {
         this.name = new SimpleStringProperty(name);
         this.color = new SimpleStringProperty(color);
         this.textColor = new SimpleStringProperty(textColor);
         this.link = new SimpleStringProperty(link);
+        this.students = new ArrayList<>();
     }
     
     public String getName() {
@@ -39,5 +42,26 @@ public class Team {
     
     public String getLink() {
         return link.get();
+    }
+    
+    public String getRed() {
+        String hex = color.get().substring(0, 2);
+        int decimal = Integer.parseInt(hex, 16);
+        
+        return String.valueOf(decimal);
+    }
+    
+    public String getGreen() {
+        String hex = color.get().substring(2, 4);
+        int decimal = Integer.parseInt(hex, 16);
+        
+        return String.valueOf(decimal);
+    }
+    
+    public String getBlue() {
+        String hex = color.get().substring(4);
+        int decimal = Integer.parseInt(hex, 16);
+        
+        return String.valueOf(decimal);
     }
 }

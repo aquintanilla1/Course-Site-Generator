@@ -62,7 +62,7 @@ public class TestLoad {
         assertEquals("Year", "2017", data.getCourseInfo().get(3));
         assertEquals("Course Title", "Computer Science III", data.getCourseInfo().get(4));         assertEquals("Instructor Name", "Richard McKenna", data.getCourseInfo().get(5));
         assertEquals("Instructor Home", "http://www3.cs.stonybrook.edu/~richard/", data.getCourseInfo().get(6));
-        assertEquals("Export Directory", "Users/Alvaro/Documents/Whatever", data.getCourseInfo().get(7));
+        assertEquals("Export Directory", "/Users/Alvaro/Documents/Bullshit5", data.getCourseInfo().get(7));
          
         //Testing Site Pages
         assertTrue(data.getSitePages().get(0).getIsUsed());
@@ -135,17 +135,49 @@ public class TestLoad {
         assertEquals("SupervisingTA2", "Bill Gates", data.getRecitations().get(0).getTa2());
         
         //Testing Calendar Bounds
-        assertEquals("Start Monday", "02-25-2017", data.getStartMonday());
-        assertEquals("End Friday", "05-16-2017", data.getEndFriday());
+        assertEquals("Start Monday", "01-23-2017", data.getStartMonday());
+        assertEquals("End Friday", "05-19-2017", data.getEndFriday());
         
         //Testing ScheduleItems
         assertEquals("Schedule Type", "Holiday", data.getScheduleItems().get(0).getType());
-        //Add Schedule Date here
-        assertEquals("Schedule Time", "10:00am", data.getScheduleItems().get(0).getTime());
+        assertEquals("Schedule Date", "03/25/2017", data.getScheduleItems().get(0).getDate());
+        assertEquals("Schedule Time", "", data.getScheduleItems().get(0).getTime());
         assertEquals("Schedule Title", "Snowday", data.getScheduleItems().get(0).getTitle());
         assertEquals("Schedule Topic", "", data.getScheduleItems().get(0).getTopic());
-        assertEquals("Schedule Link", "cnn.com", data.getScheduleItems().get(0).getLink());
-        assertEquals("Schedule Criteria", "Must Snow", data.getScheduleItems().get(0).getCriteria());
+        assertEquals("Schedule Link", "weather.com", data.getScheduleItems().get(0).getLink());
+        assertEquals("Schedule Criteria", "", data.getScheduleItems().get(0).getCriteria());
+        
+        assertEquals("Schedule Type", "Lecture", data.getScheduleItems().get(1).getType());
+        assertEquals("Schedule Date", "04/5/2017", data.getScheduleItems().get(1).getDate());
+        assertEquals("Schedule Time", "10:00am", data.getScheduleItems().get(1).getTime());
+        assertEquals("Schedule Title", "Lecture 1337", data.getScheduleItems().get(1).getTitle());
+        assertEquals("Schedule Topic", "LEET SPEAK", data.getScheduleItems().get(1).getTopic());
+        assertEquals("Schedule Link", "https://en.wikipedia.org/wiki/Leet", data.getScheduleItems().get(1).getLink());
+        assertEquals("Schedule Criteria", "", data.getScheduleItems().get(1).getCriteria());
+        
+        assertEquals("Schedule Type", "HW", data.getScheduleItems().get(2).getType());
+        assertEquals("Schedule Date", "04/12/2017", data.getScheduleItems().get(2).getDate());
+        assertEquals("Schedule Time", "11:59pm", data.getScheduleItems().get(2).getTime());
+        assertEquals("Schedule Title", "HW4", data.getScheduleItems().get(2).getTitle());
+        assertEquals("Schedule Topic", "UI Stuff", data.getScheduleItems().get(2).getTopic());
+        assertEquals("Schedule Link", "./hw/HW4.html", data.getScheduleItems().get(2).getLink());
+        assertEquals("Schedule Criteria", "http://wlt.typography.netdna-cdn.com/data/images/2014/02/dribbble-dont-suck-1x.png", data.getScheduleItems().get(2).getCriteria());
+        
+        assertEquals("Schedule Type", "Recitation", data.getScheduleItems().get(3).getType());
+        assertEquals("Schedule Date", "04/11/2017", data.getScheduleItems().get(3).getDate());
+        assertEquals("Schedule Time", "", data.getScheduleItems().get(3).getTime());
+        assertEquals("Schedule Title", "Recitation 7", data.getScheduleItems().get(3).getTitle());
+        assertEquals("Schedule Topic", "The Number 7", data.getScheduleItems().get(3).getTopic());
+        assertEquals("Schedule Link", "", data.getScheduleItems().get(3).getLink());
+        assertEquals("Schedule Criteria", "", data.getScheduleItems().get(3).getCriteria());
+        
+        assertEquals("Schedule Type", "Reference", data.getScheduleItems().get(4).getType());
+        assertEquals("Schedule Date", "05/4/2017", data.getScheduleItems().get(4).getDate());
+        assertEquals("Schedule Time", "", data.getScheduleItems().get(4).getTime());
+        assertEquals("Schedule Title", "Reference", data.getScheduleItems().get(4).getTitle());
+        assertEquals("Schedule Topic", "The Tragedy of Darth Plagueis the Wise", data.getScheduleItems().get(4).getTopic());
+        assertEquals("Schedule Link", "https://www.youtube.com/watch?v=05dT34hGRdg", data.getScheduleItems().get(4).getLink());
+        assertEquals("Schedule Criteria", "", data.getScheduleItems().get(4).getCriteria());
         
         //Testing Teams
         assertEquals("Team Name", "The Aristocrats", data.getTeams().get(0).getName());

@@ -9,7 +9,7 @@
             "courseTitle":"Computer Science III",
             "instructorName":"Richard McKenna",
             "instructorHome":"http://www3.cs.stonybrook.edu/~richard/",
-            "exportDir":"Users/Alvaro/Documents/Whatever"
+            "exportDir":"/Users/Alvaro/Documents/Bullshit5"
         }
     ],
     "templateDir":"Users/Alvaro/Documents/TestDirectory",
@@ -91,33 +91,69 @@
     ],
     "recitations":[
         {
-            "recitationSection":"R01",
+            "section":"R01",
             "recitationInstructor":"McKenna",
-            "day/Time":"Tues 5:30-6:23pm",
+            "day_time":"Tues 5:30-6:23pm",
             "location":"Old CS 2114",
-            "supervisingTA1":"Barack Obama",
-            "supervisingTA2":"Bill Gates"
+            "ta_1":"Barack Obama",
+            "ta_2":"Bill Gates"
         }
     ],
-    "startingMonday":"02-25-2017",
-    "endingFriday":"05-16-2017",
+    "startingMonday":"01-23-2017",
+    "endingFriday":"05-19-2017",
     "schedule_items":[
         {
             "type":"Holiday",
-            "scheduleTime":"10:00am",
+            "scheduleTime":"",
             "date":"03/25/2017",
             "scheduleTitle":"Snowday",
             "topic":"",
-            "scheduleLink":"cnn.com",
-            "criteria":"Must Snow"
+            "scheduleLink":"weather.com",
+            "criteria":""
+        },
+        {
+            "type":"Lecture",
+            "scheduleTime":"10:00am",
+            "date":"04/5/2017",
+            "scheduleTitle":"Lecture 1337",
+            "topic":"LEET SPEAK",
+            "scheduleLink":"https://en.wikipedia.org/wiki/Leet",
+            "criteria":""
+        },
+        {
+            "type":"HW",
+            "scheduleTime":"11:59pm",
+            "date":"04/12/2017",
+            "scheduleTitle":"HW4",
+            "topic":"UI Stuff",
+            "scheduleLink":"./hw/HW4.html",
+            "criteria":"http://wlt.typography.netdna-cdn.com/data/images/2014/02/dribbble-dont-suck-1x.png"
+        },
+        {
+            "type":"Recitation",
+            "scheduleTime":"",
+            "date":"04/11/2017",
+            "scheduleTitle":"Recitation 7",
+            "topic":"The Number 7",
+            "scheduleLink":"",
+            "criteria":""
+        },
+        {
+            "type":"Reference",
+            "scheduleTime":"",
+            "date":"05/4/2017",
+            "scheduleTitle":"Reference",
+            "topic":"The Tragedy of Darth Plagueis the Wise",
+            "scheduleLink":"https://www.youtube.com/watch?v=05dT34hGRdg",
+            "criteria":""
         }
     ],
     "teams":[
         {
-            "teamName":"The Aristocrats",
+            "name":"The Aristocrats",
             "color":"FFFFFF",
-            "textColor":"999999",
-            "teamLink":"aristocrats.com"
+            "text_color":"999999",
+            "link":"aristocrats.com"
         }
     ],
     "students":[

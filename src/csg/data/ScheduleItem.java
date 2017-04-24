@@ -5,6 +5,8 @@
  */
 package csg.data;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -57,5 +59,19 @@ public class ScheduleItem {
     
     public String getCriteria() {
         return criteria;
+    }
+    
+    public String getMonth() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+        LocalDate localDate = LocalDate.parse(date.get(), formatter);
+        
+        return String.valueOf(localDate.getMonthValue());
+    }
+    
+    public String getDay() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+        LocalDate localDate = LocalDate.parse(date.get(), formatter);
+        
+        return String.valueOf(localDate.getDayOfMonth());
     }
 }

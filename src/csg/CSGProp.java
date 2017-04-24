@@ -116,6 +116,11 @@ public enum CSGProp {
     TOPIC_TEXT,
     LINK_TEXT,
     CRITERIA_TEXT,
+    HOLIDAY_TEXT,
+    LECTURE_TEXT,
+    HWS_TEXT,
+    RECITATION_TEXT,
+    REFERENCE_TEXT,
     
     //Project Tab
     PROJECT_TAB,

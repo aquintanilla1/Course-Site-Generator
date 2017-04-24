@@ -12,6 +12,8 @@ import csg.transactions.*;
 import csg.workspace.TADataTabBuilder;
 import djf.components.AppDataComponent;
 import djf.controller.AppFileController;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -205,12 +207,50 @@ public class CSGData implements AppDataComponent {
         return recitations;
     }
     
+    //The two following methods are for loading and saving data into the application
     public String getStartMonday() {
         return startingMonday;
     }
     
     public String getEndFriday() {
         return endingFriday;
+    }
+    
+    //The four follwing methods are to load values into the JSON files to be exported by the application
+    public String getStartMonth() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
+        if (!startingMonday.isEmpty()) {
+            LocalDate startDate = LocalDate.parse(startingMonday, formatter);
+            return String.valueOf(startDate.getMonthValue());
+        }
+        return "";
+    }
+    
+    public String getStartDay() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
+        if (!startingMonday.isEmpty()) {
+            LocalDate startDate = LocalDate.parse(startingMonday, formatter);
+            return String.valueOf(startDate.getDayOfMonth());
+        }
+        return "";
+    }
+    
+    public String getEndMonth() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
+        if (!endingFriday.isEmpty()) {
+            LocalDate endDate = LocalDate.parse(endingFriday, formatter);
+            return String.valueOf(endDate.getMonthValue());
+        }
+        return "";
+    }
+    
+    public String getEndDay() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
+        if (!endingFriday.isEmpty()) {
+            LocalDate endDate = LocalDate.parse(endingFriday, formatter);
+            return String.valueOf(endDate.getDayOfMonth());
+        }
+        return "";
     }
     
     public ObservableList<ScheduleItem> getScheduleItems() {
@@ -648,6 +688,18 @@ public class CSGData implements AppDataComponent {
     public void addStudent(String firstName, String lastName, String team, String role) {
         Student student = new Student(firstName, lastName, team, role);
         students.add(student);
+    }
+    
+    public ArrayList<Student> getStudentsInTeam(String teamName) {
+        ArrayList<Student> studentsInTeam = new ArrayList<>();
+        
+        for (Student s: students) {
+            if (s.getTeam().equals(teamName)) {
+                studentsInTeam.add(s);
+            }
+        }
+        
+        return studentsInTeam;
     }
 }
     
