@@ -3,10 +3,10 @@
     "course_info":[
         {
             "subject":"CSE",
-            "number":"219",
-            "semester":"Fall",
-            "year":"2017",
-            "courseTitle":"Computer Science III",
+            "number":"333",
+            "semester":"Spring",
+            "year":"2019",
+            "courseTitle":"Fake Classing",
             "instructorName":"Richard McKenna",
             "instructorHome":"http://www3.cs.stonybrook.edu/~richard/",
             "exportDir":"/Users/Alvaro/Documents/Bullshit5"
@@ -50,7 +50,7 @@
             "imagePath":"image.png",
             "leftFooterPath":"leftFooter.jpg",
             "rightFooterPath":"rightFooter.png",
-            "stylesheet":"test.css"
+            "stylesheet":"sea_wolf.css"
         }
     ],
     "startHour":"10",
@@ -105,10 +105,10 @@
         {
             "type":"Holiday",
             "scheduleTime":"",
-            "date":"03/25/2017",
+            "date":"03/23/2017",
             "scheduleTitle":"Snowday",
             "topic":"",
-            "scheduleLink":"weather.com",
+            "scheduleLink":"https://weather.com",
             "criteria":""
         },
         {
@@ -126,7 +126,7 @@
             "date":"04/12/2017",
             "scheduleTitle":"HW4",
             "topic":"UI Stuff",
-            "scheduleLink":"./hw/HW4.html",
+            "scheduleLink":"http://www3.cs.stonybrook.edu/~cse219/Section02/hw/HW4.html",
             "criteria":"http://wlt.typography.netdna-cdn.com/data/images/2014/02/dribbble-dont-suck-1x.png"
         },
         {
@@ -150,18 +150,36 @@
     ],
     "teams":[
         {
-            "name":"The Aristocrats",
-            "color":"FFFFFF",
+            "name":"Firebrick",
+            "color":"B22222",
             "text_color":"999999",
-            "link":"aristocrats.com"
+            "link":"https://en.wikipedia.org/wiki/Fire_brick"
         }
     ],
     "students":[
         {
             "firstName":"Pope",
             "lastName":"Francis",
-            "studentTeam":"The Aristocrats",
+            "studentTeam":"Firebrick",
+            "role":"Lead Programmer"
+        },
+        {
+            "firstName":"John",
+            "lastName":"Brigs",
+            "studentTeam":"Firebrick",
+            "role":"Project Manager"
+        },
+        {
+            "firstName":"Arnold",
+            "lastName":"Man",
+            "studentTeam":"Firebrick",
             "role":"Lead Designer"
+        },
+        {
+            "firstName":"Chris",
+            "lastName":"Evan",
+            "studentTeam":"Firebrick",
+            "role":"Data Designer"
         }
     ]
 }

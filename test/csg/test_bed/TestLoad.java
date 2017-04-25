@@ -57,10 +57,11 @@ public class TestLoad {
         
         //Testing Course Info
         assertEquals("Subject", "CSE", data.getCourseInfo().get(0));
-        assertEquals("Number", "219", data.getCourseInfo().get(1));
-        assertEquals("Semester", "Fall", data.getCourseInfo().get(2));
-        assertEquals("Year", "2017", data.getCourseInfo().get(3));
-        assertEquals("Course Title", "Computer Science III", data.getCourseInfo().get(4));         assertEquals("Instructor Name", "Richard McKenna", data.getCourseInfo().get(5));
+        assertEquals("Number", "333", data.getCourseInfo().get(1));
+        assertEquals("Semester", "Spring", data.getCourseInfo().get(2));
+        assertEquals("Year", "2019", data.getCourseInfo().get(3));
+        assertEquals("Course Title", "Fake Classing", data.getCourseInfo().get(4));         
+        assertEquals("Instructor Name", "Richard McKenna", data.getCourseInfo().get(5));
         assertEquals("Instructor Home", "http://www3.cs.stonybrook.edu/~richard/", data.getCourseInfo().get(6));
         assertEquals("Export Directory", "/Users/Alvaro/Documents/Bullshit5", data.getCourseInfo().get(7));
          
@@ -93,7 +94,7 @@ public class TestLoad {
         assertEquals("Image", "image.png", data.getImagePath());
         assertEquals("Left Footer Image", "leftFooter.jpg", data.getLeftFooterImagePath());
         assertEquals("Right Footer Image", "rightFooter.png", data.getRightFooterImagePath());
-        assertEquals("Stylesheet", "test.css", data.getStylesheet());
+        assertEquals("Stylesheet", "sea_wolf.css", data.getStylesheet());
         
         assertEquals("Start Hour", 10, data.getStartHour());
         assertEquals("End Hour", 20, data.getEndHour());
@@ -140,11 +141,11 @@ public class TestLoad {
         
         //Testing ScheduleItems
         assertEquals("Schedule Type", "Holiday", data.getScheduleItems().get(0).getType());
-        assertEquals("Schedule Date", "03/25/2017", data.getScheduleItems().get(0).getDate());
+        assertEquals("Schedule Date", "03/23/2017", data.getScheduleItems().get(0).getDate());
         assertEquals("Schedule Time", "", data.getScheduleItems().get(0).getTime());
         assertEquals("Schedule Title", "Snowday", data.getScheduleItems().get(0).getTitle());
         assertEquals("Schedule Topic", "", data.getScheduleItems().get(0).getTopic());
-        assertEquals("Schedule Link", "weather.com", data.getScheduleItems().get(0).getLink());
+        assertEquals("Schedule Link", "https://weather.com", data.getScheduleItems().get(0).getLink());
         assertEquals("Schedule Criteria", "", data.getScheduleItems().get(0).getCriteria());
         
         assertEquals("Schedule Type", "Lecture", data.getScheduleItems().get(1).getType());
@@ -160,7 +161,7 @@ public class TestLoad {
         assertEquals("Schedule Time", "11:59pm", data.getScheduleItems().get(2).getTime());
         assertEquals("Schedule Title", "HW4", data.getScheduleItems().get(2).getTitle());
         assertEquals("Schedule Topic", "UI Stuff", data.getScheduleItems().get(2).getTopic());
-        assertEquals("Schedule Link", "./hw/HW4.html", data.getScheduleItems().get(2).getLink());
+        assertEquals("Schedule Link", "http://www3.cs.stonybrook.edu/~cse219/Section02/hw/HW4.html", data.getScheduleItems().get(2).getLink());
         assertEquals("Schedule Criteria", "http://wlt.typography.netdna-cdn.com/data/images/2014/02/dribbble-dont-suck-1x.png", data.getScheduleItems().get(2).getCriteria());
         
         assertEquals("Schedule Type", "Recitation", data.getScheduleItems().get(3).getType());
@@ -180,15 +181,31 @@ public class TestLoad {
         assertEquals("Schedule Criteria", "", data.getScheduleItems().get(4).getCriteria());
         
         //Testing Teams
-        assertEquals("Team Name", "The Aristocrats", data.getTeams().get(0).getName());
-        assertEquals("Team Color", "FFFFFF", data.getTeams().get(0).getColor());
+        assertEquals("Team Name", "Firebrick", data.getTeams().get(0).getName());
+        assertEquals("Team Color", "B22222", data.getTeams().get(0).getColor());
         assertEquals("Team Text Color", "999999", data.getTeams().get(0).getTextColor());
-        assertEquals("Team Link", "aristocrats.com", data.getTeams().get(0).getLink());
+        assertEquals("Team Link", "https://en.wikipedia.org/wiki/Fire_brick", data.getTeams().get(0).getLink());
         
         //Testing Students
         assertEquals("First Name", "Pope", data.getStudents().get(0).getFirstName());
         assertEquals("Last Name", "Francis", data.getStudents().get(0).getLastName());
-        assertEquals("Team", "The Aristocrats", data.getStudents().get(0).getTeam());
-        assertEquals("Role", "Lead Designer", data.getStudents().get(0).getRole());
+        assertEquals("Team", "Firebrick", data.getStudents().get(0).getTeam());
+        assertEquals("Role", "Lead Programmer", data.getStudents().get(0).getRole());
+        
+        assertEquals("First Name", "John", data.getStudents().get(1).getFirstName());
+        assertEquals("Last Name", "Brigs", data.getStudents().get(1).getLastName());
+        assertEquals("Team", "Firebrick", data.getStudents().get(1).getTeam());
+        assertEquals("Role", "Project Manager", data.getStudents().get(1).getRole());
+        
+        assertEquals("First Name", "Arnold", data.getStudents().get(2).getFirstName());
+        assertEquals("Last Name", "Man", data.getStudents().get(2).getLastName());
+        assertEquals("Team", "Firebrick", data.getStudents().get(2).getTeam());
+        assertEquals("Role", "Lead Designer", data.getStudents().get(2).getRole());
+        
+        assertEquals("First Name", "Chris", data.getStudents().get(3).getFirstName());
+        assertEquals("Last Name", "Evan", data.getStudents().get(3).getLastName());
+        assertEquals("Team", "Firebrick", data.getStudents().get(3).getTeam());
+        assertEquals("Role", "Data Designer", data.getStudents().get(3).getRole());
+        
     }
 }

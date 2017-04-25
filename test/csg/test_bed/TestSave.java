@@ -53,10 +53,10 @@ public class TestSave {
     private static void makeTestCourseInfo(CSGData data) {
         ObservableList<String> details = FXCollections.observableArrayList();
         details.add("CSE");
-        details.add("219");
-        details.add("Fall");
-        details.add("2017");
-        details.add("Computer Science III");
+        details.add("333");
+        details.add("Spring");
+        details.add("2019");
+        details.add("Fake Classing");
         details.add("Richard McKenna");
         details.add("http://www3.cs.stonybrook.edu/~richard/");
         details.add("/Users/Alvaro/Documents/Bullshit5");
@@ -81,7 +81,7 @@ public class TestSave {
         data.setImage("image.png");
         data.setLeftFooter("leftFooter.jpg");
         data.setRightFooter("rightFooter.png");
-        data.setStylesheet("test.css");
+        data.setStylesheet("sea_wolf.css");
     }
     
     private static void makeTestTeachingAssistants(CSGData data) {
@@ -120,9 +120,9 @@ public class TestSave {
     }
     
     private static void makeTestScheduleItems(CSGData data) {
-        ScheduleItem item1 = new ScheduleItem("Holiday", "03/25/2017", "", "Snowday", "", "weather.com", "");
+        ScheduleItem item1 = new ScheduleItem("Holiday", "03/23/2017", "", "Snowday", "", "https://weather.com", "");
         ScheduleItem item2 = new ScheduleItem("Lecture", "04/5/2017","10:00am", "Lecture 1337", "LEET SPEAK", "https://en.wikipedia.org/wiki/Leet", "");
-        ScheduleItem item3 = new ScheduleItem("HW", "04/12/2017", "11:59pm", "HW4", "UI Stuff", "./hw/HW4.html", "http://wlt.typography.netdna-cdn.com/data/images/2014/02/dribbble-dont-suck-1x.png");
+        ScheduleItem item3 = new ScheduleItem("HW", "04/12/2017", "11:59pm", "HW4", "UI Stuff", "http://www3.cs.stonybrook.edu/~cse219/Section02/hw/HW4.html", "http://wlt.typography.netdna-cdn.com/data/images/2014/02/dribbble-dont-suck-1x.png");
         ScheduleItem item4 = new ScheduleItem("Recitation", "04/11/2017", "", "Recitation 7", "The Number 7", "", "");
         ScheduleItem item5 = new ScheduleItem("Reference", "05/4/2017", "", "Reference", "The Tragedy of Darth Plagueis the Wise", "https://www.youtube.com/watch?v=05dT34hGRdg", "");
 
@@ -134,11 +134,19 @@ public class TestSave {
     }
     
     private static void makeTestTeamsAndStudents(CSGData data) {
-        Team team1 = new Team("The Aristocrats", "FFFFFF", "999999", "aristocrats.com");
+        Team team1 = new Team("Firebrick", "B22222", "999999", "https://en.wikipedia.org/wiki/Fire_brick");
         
         data.getTeams().add(team1);
         
-        Student student1 = new Student("Pope", "Francis", "The Aristocrats", "Lead Designer");
+        Student student1 = new Student("Pope", "Francis", "Firebrick", "Lead Programmer");
+        Student student2 = new Student("John", "Brigs", "Firebrick", "Project Manager");
+        Student student3 = new Student("Arnold", "Man", "Firebrick", "Lead Designer");
+        Student student4 = new Student("Chris", "Evan", "Firebrick", "Data Designer");
+
         data.getStudents().add(student1);
+        data.getStudents().add(student2);
+        data.getStudents().add(student3);
+        data.getStudents().add(student4);
+
     }
 }

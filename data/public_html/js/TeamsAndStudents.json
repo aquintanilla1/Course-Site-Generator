@@ -1,0 +1,43 @@
+
+{
+    "subject":"CSE",
+    "number":"333",
+    "semester":"Spring",
+    "year":"2019",
+    "courseTitle":"Fake Classing",
+    "teams":[
+        {
+            "name":"Firebrick",
+            "red":"178",
+            "green":"34",
+            "blue":"34",
+            "text_color":"999999"
+        }
+    ],
+    "students":[
+        {
+            "lastName":"Francis",
+            "firstName":"Pope",
+            "team":"Firebrick",
+            "role":"Lead Programmer"
+        },
+        {
+            "lastName":"Brigs",
+            "firstName":"John",
+            "team":"Firebrick",
+            "role":"Project Manager"
+        },
+        {
+            "lastName":"Man",
+            "firstName":"Arnold",
+            "team":"Firebrick",
+            "role":"Lead Designer"
+        },
+        {
+            "lastName":"Evan",
+            "firstName":"Chris",
+            "team":"Firebrick",
+            "role":"Data Designer"
+        }
+    ]
+}

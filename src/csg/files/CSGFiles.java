@@ -16,6 +16,7 @@ import csg.data.TeachingAssistant;
 import csg.data.Team;
 import djf.components.AppDataComponent;
 import djf.components.AppFileComponent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,6 +36,7 @@ import javax.json.JsonReader;
 import javax.json.JsonWriter;
 import javax.json.JsonWriterFactory;
 import javax.json.stream.JsonGenerator;
+import org.apache.commons.io.FileUtils;
 import properties_manager.PropertiesManager;
 
 /**
@@ -76,6 +78,7 @@ public class CSGFiles implements AppFileComponent {
     static final String JSON_EMAIL = "email";
     static final String JSON_IS_UNDERGRAD = "isUndergrad";
     static final String JSON_UNDERGRAD_TAS = "undergrad_tas";
+    static final String JSON_GRAD_TAS = "grad_tas";
     
     static final String JSON_RECITATION_SECTION = "section";
     static final String JSON_RECITATION_INSTRUCTOR = "recitationInstructor";
@@ -87,6 +90,10 @@ public class CSGFiles implements AppFileComponent {
     
     static final String JSON_STARTING_MONDAY = "startingMonday";
     static final String JSON_ENDING_FRIDAY = "endingFriday";
+    static final String JSON_STARTING_MONDAY_MONTH = "startingMondayMonth";
+    static final String JSON_STARTING_MONDAY_DAY = "startingMondayDay";
+    static final String JSON_ENDING_FRIDAY_MONTH = "endingFridayMonth";
+    static final String JSON_ENDING_FRIDAY_DAY = "endingFridayDay";
     
     static final String JSON_TYPE = "type";
     static final String JSON_DATE = "date";
@@ -118,6 +125,7 @@ public class CSGFiles implements AppFileComponent {
     static final String JSON_STUDENT_TEAM = "studentTeam";
     static final String JSON_ROLE = "role";
     static final String JSON_STUDENTS = "students";
+    static final String JSON_TEAM = "team";
     
     static final String JSON_WORK = "work";
     static final String JSON_PROJECTS = "projects";
@@ -432,6 +440,7 @@ public class CSGFiles implements AppFileComponent {
         CSGData dataManager = (CSGData) data;
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         filePath = dataManager.getCourseInfo().get(7);
+        String sourcePath = System.getProperty("user.dir") + "/data/public_html";
         String directoryPath;
         
         if (filePath.equals(props.getProperty(CSGProp.DEFAULT_DIR_TEXT))) {
@@ -442,17 +451,30 @@ public class CSGFiles implements AppFileComponent {
         }        
         
         //TAs.Json
-        JsonArrayBuilder taArrayBuilder = Json.createArrayBuilder();
+        JsonArrayBuilder undergradTaArrayBuilder = Json.createArrayBuilder();
 	ObservableList<TeachingAssistant> tas = dataManager.getTeachingAssistants();
-	for (TeachingAssistant ta : tas) {	    
-	    JsonObject taJson = Json.createObjectBuilder()
-		    .add(JSON_NAME, ta.getName())
-                    .add(JSON_EMAIL, ta.getEmail())
-                    .add(JSON_IS_UNDERGRAD, ta.getIsUndergrad())
-                    .build();
-	    taArrayBuilder.add(taJson);
+	for (TeachingAssistant ta : tas) {	   
+            if (ta.getIsUndergrad()) {
+                JsonObject taJson = Json.createObjectBuilder()
+                        .add(JSON_NAME, ta.getName())
+                        .add(JSON_EMAIL, ta.getEmail())
+                        .build();
+                undergradTaArrayBuilder.add(taJson);
+            }
 	}
-	JsonArray undergradTAsArray = taArrayBuilder.build();
+	JsonArray undergradTAsArray = undergradTaArrayBuilder.build();
+        
+        JsonArrayBuilder gradTaArrayBuilder = Json.createArrayBuilder();
+	for (TeachingAssistant ta : tas) {	   
+            if (!ta.getIsUndergrad()) {
+                JsonObject taJson = Json.createObjectBuilder()
+                        .add(JSON_NAME, ta.getName())
+                        .add(JSON_EMAIL, ta.getEmail())
+                        .build();
+                gradTaArrayBuilder.add(taJson);
+            }
+	}
+	JsonArray gradTAsArray = gradTaArrayBuilder.build();
 
 	// NOW BUILD THE TIME SLOT JSON OBJCTS TO SAVE
 	JsonArrayBuilder timeSlotArrayBuilder = Json.createArrayBuilder();
@@ -467,12 +489,18 @@ public class CSGFiles implements AppFileComponent {
 	JsonArray timeSlotsArray = timeSlotArrayBuilder.build();
         
         JsonObject tasJSO = Json.createObjectBuilder()
+                .add(JSON_SUBJECT, dataManager.getCourseInfo().get(0))
+                .add(JSON_NUMBER, dataManager.getCourseInfo().get(1))
+                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(2))
+                .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
+                .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
 		.add(JSON_START_HOUR, "" + dataManager.getStartHour())
 		.add(JSON_END_HOUR, "" + dataManager.getEndHour())
                 .add(JSON_UNDERGRAD_TAS, undergradTAsArray)
+                .add(JSON_GRAD_TAS, gradTAsArray)
                 .add(JSON_OFFICE_HOURS, timeSlotsArray)
 		.build();
-        String taFilePath = directoryPath + "/js/TAsData.json";
+        String taFilePath = sourcePath + "/js/TAsData.json";
         
         //RecitationData.json
         JsonArrayBuilder recitationArrayBuilder = Json.createArrayBuilder();
@@ -492,7 +520,7 @@ public class CSGFiles implements AppFileComponent {
         JsonObject recitationsJSO = Json.createObjectBuilder()
                 .add(JSON_RECITATIONS, recitationsArray)
                 .build();
-        String recitationFilePath = directoryPath + "/js/RecitationsData.json";
+        String recitationFilePath = sourcePath + "/js/RecitationsData.json";
         
         //Schedule.json
         ObservableList<ScheduleItem> scheduleItems = dataManager.getScheduleItems();
@@ -572,13 +600,22 @@ public class CSGFiles implements AppFileComponent {
         JsonArray hwsArray = hwsArrayBuilder.build();
         
         JsonObject scheduleJSO = Json.createObjectBuilder()
+                .add(JSON_SUBJECT, dataManager.getCourseInfo().get(0))
+                .add(JSON_NUMBER, dataManager.getCourseInfo().get(1))
+                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(2))
+                .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
+                .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
+                .add(JSON_STARTING_MONDAY_MONTH, dataManager.getStartMonth())
+                .add(JSON_STARTING_MONDAY_DAY, dataManager.getStartDay())
+                .add(JSON_ENDING_FRIDAY_MONTH, dataManager.getEndMonth())
+                .add(JSON_ENDING_FRIDAY_DAY, dataManager.getEndDay())
                 .add(JSON_HOLIDAYS, holidayArray)
                 .add(JSON_LECTURES, lectureArray)
                 .add(JSON_REFERENCES, referenceArray)
                 .add(JSON_RECITATIONS, scheduleRecitationArray)
                 .add(JSON_HWS, hwsArray)
                 .build();
-        String scheduleFilePath = directoryPath + "/js/ScheduleData.json";
+        String scheduleFilePath = sourcePath + "/js/ScheduleData.json";
         
         //TeamsAndStudents.json
         JsonArrayBuilder teamArrayBuilder = Json.createArrayBuilder();
@@ -602,7 +639,7 @@ public class CSGFiles implements AppFileComponent {
 	    JsonObject studentJson = Json.createObjectBuilder()
                     .add(JSON_STUDENT_LAST_NAME, student.getLastName())
 		    .add(JSON_STUDENT_FIRST_NAME, student.getFirstName())
-                    .add(JSON_STUDENT_TEAM, student.getTeam())
+                    .add(JSON_TEAM, student.getTeam())
                     .add(JSON_ROLE, student.getRole())
                     .build();
 	    studentArrayBuilder.add(studentJson);
@@ -611,10 +648,15 @@ public class CSGFiles implements AppFileComponent {
         JsonArray studentArray = studentArrayBuilder.build();
         
         JsonObject teamsAndStudentsJSO = Json.createObjectBuilder()
+                .add(JSON_SUBJECT, dataManager.getCourseInfo().get(0))
+                .add(JSON_NUMBER, dataManager.getCourseInfo().get(1))
+                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(2))
+                .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
+                .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
                 .add(JSON_TEAMS, teamArray)
                 .add(JSON_STUDENTS, studentArray)
 		.build();
-        String teamsAndStudentsFilePath = directoryPath + "/js/TeamsAndStudents.json";
+        String teamsAndStudentsFilePath = sourcePath + "/js/TeamsAndStudents.json";
         
         //Projects.json
         JsonArrayBuilder workArrayBuilder = Json.createArrayBuilder();
@@ -644,9 +686,14 @@ public class CSGFiles implements AppFileComponent {
         JsonArray workArray = workArrayBuilder.build();
         
         JsonObject workJSO = Json.createObjectBuilder()
+                .add(JSON_SUBJECT, dataManager.getCourseInfo().get(0))
+                .add(JSON_NUMBER, dataManager.getCourseInfo().get(1))
+                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(2))
+                .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
+                .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
                 .add(JSON_WORK, workArray)
                 .build();
-        String projectsFilePath = directoryPath + "/js/ProjectData.json";
+        String projectsFilePath = sourcePath + "/js/ProjectsData.json";
         
         // AND NOW OUTPUT IT TO A JSON FILE WITH PRETTY PRINTING
 	Map<String, Object> properties = new HashMap<>(1);
@@ -722,19 +769,9 @@ public class CSGFiles implements AppFileComponent {
 	pw5.write(prettyPrinted5);
 	pw5.close();
 
-//	StringWriter sw = new StringWriter();
-//	JsonWriter jsonWriter = writerFactory.createWriter(sw);
-//	jsonWriter.writeObject(dataManagerJSO);
-//	jsonWriter.close();
-//
-//	// INIT THE WRITER
-//	OutputStream os = new FileOutputStream(filePath);
-//	JsonWriter jsonFileWriter = Json.createWriter(os);
-//	jsonFileWriter.writeObject(dataManagerJSO);
-//	String prettyPrinted = sw.toString();
-//	PrintWriter pw = new PrintWriter(filePath);
-//	pw.write(prettyPrinted);
-//	pw.close();
+        File sourceDirectory = new File(sourcePath);
+        File selectedDirectory = new File(directoryPath);
+        FileUtils.copyDirectory(sourceDirectory, selectedDirectory, true);
     }
 
     @Override

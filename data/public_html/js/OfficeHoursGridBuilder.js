@@ -5,8 +5,8 @@ var daysOfWeek;
 var officeHours;
 var undergradTAs;
 
-function buildOfficeHoursGrid() {
-    var dataFile = "./js/OfficeHoursGridData.json";
+function initGrid() {
+    var dataFile = "./js/TAsData.json";
     loadData(dataFile, loadOfficeHours);
 }
 
@@ -17,7 +17,9 @@ function loadData(jsonFile, callback) {
 }
 
 function loadOfficeHours(json) {
+    initTitle(json);
     initDays(json);
+    addGradTAs(json);
     addUndergradTAs(json);
     addOfficeHours(json);
 }
@@ -43,14 +45,31 @@ function addUndergradTAs(data) {
     for (var i = 0; i < data.undergrad_tas.length; ) {
         var text = "";
         text = "<tr>";
-        for (var j = 0; j < tasPerRow; j++) {
-            text += buildTACell(i, numTAs, data.undergrad_tas[i]);
-            i++;
-        }
+            for (var j = 0; j < tasPerRow; j++) {
+                    text += buildTACell(i, numTAs, data.undergrad_tas[i]);
+                i++;
+            }
         text += "</tr>";
         tas.append(text);
     }
 }
+
+function addGradTAs(data) {
+    var tas = $("#grad_tas");
+    var tasPerRow = 4;
+    var numTAs = data.grad_tas.length;
+    for (var i = 0; i < data.grad_tas.length; ) {
+            var text = "";
+            text = "<tr>";
+            for (var j = 0; j < tasPerRow; j++) {
+                text += buildTACell(i, numTAs, data.grad_tas[i]);
+                i++;
+            }        
+        text += "</tr>";
+        tas.append(text);
+    }
+}
+
 function buildTACell(counter, numTAs, ta) {
     if (counter >= numTAs)
         return "<td></td>";
@@ -133,4 +152,14 @@ function getAMorPM(testTime) {
         return "pm";
     else
         return "am";
+}
+
+function initTitle(data) {
+    var banner = $("#banner");
+    var subject = data.subject;
+    var number = data.number;
+    var semester = data.semester;
+    var year = data.year;
+    var title = data.courseTitle;
+    banner.append(subject + " " + number + " - " + semester + " " + year + "<br>" + title);
 }

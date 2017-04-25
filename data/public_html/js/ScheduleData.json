@@ -1,0 +1,57 @@
+
+{
+    "subject":"CSE",
+    "number":"333",
+    "semester":"Spring",
+    "year":"2019",
+    "courseTitle":"Fake Classing",
+    "startingMondayMonth":"1",
+    "startingMondayDay":"23",
+    "endingFridayMonth":"5",
+    "endingFridayDay":"19",
+    "holidays":[
+        {
+            "month":"3",
+            "day":"23",
+            "title":"Snowday",
+            "link":"https://weather.com"
+        }
+    ],
+    "lectures":[
+        {
+            "month":"4",
+            "day":"5",
+            "title":"Lecture 1337",
+            "topic":"LEET SPEAK",
+            "link":"https://en.wikipedia.org/wiki/Leet"
+        }
+    ],
+    "references":[
+        {
+            "month":"5",
+            "day":"4",
+            "title":"Reference",
+            "topic":"The Tragedy of Darth Plagueis the Wise",
+            "link":"https://www.youtube.com/watch?v=05dT34hGRdg"
+        }
+    ],
+    "recitations":[
+        {
+            "month":"4",
+            "day":"11",
+            "title":"Recitation 7",
+            "topic":"The Number 7"
+        }
+    ],
+    "hws":[
+        {
+            "month":"4",
+            "day":"12",
+            "title":"HW4",
+            "topic":"UI Stuff",
+            "link":"http://www3.cs.stonybrook.edu/~cse219/Section02/hw/HW4.html",
+            "time":"11:59pm",
+            "criteria":"http://wlt.typography.netdna-cdn.com/data/images/2014/02/dribbble-dont-suck-1x.png"
+        }
+    ]
+}
