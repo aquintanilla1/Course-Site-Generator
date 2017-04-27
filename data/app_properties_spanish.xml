@@ -161,6 +161,8 @@
 		<property name="LOCATION_TEXT"               	value="Ubicación"></property>
 		<property name="TA_HEADER"               		value="AE"></property>
 		<property name="SUPERVISING_TA_TEXT"            value="AE de Supervisión"></property>
+		<property name="ADD_RECITATION_BUTTON_TEXT"		value="Añadir Recitación"></property>
+		<property name="EDIT_RECITATION_BUTTON_TEXT"  	value="Editar Recitación"></property>
 		<property name="ADD_UPDATE_BUTTON_TEXT"         value="Añadir/Actualizar"></property>
 		
 		<property name="SCHEDULE_TAB"               	value="Datos del Programa"></property>

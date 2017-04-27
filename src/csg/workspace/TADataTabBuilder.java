@@ -256,7 +256,6 @@ public class TADataTabBuilder {
         
         taTable.setOnMouseClicked(e -> {
             controller.handleUpdateTA();
-            
         });
         
         // Controls for removing TAs

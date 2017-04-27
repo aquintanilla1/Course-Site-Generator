@@ -159,6 +159,8 @@
 		<property name="LOCATION_TEXT"               	value="Location"></property>
 		<property name="TA_HEADER"               		value="TA"></property>
 		<property name="SUPERVISING_TA_TEXT"            value="Supervising TA"></property>
+		<property name="ADD_RECITATION_BUTTON_TEXT"		value="Add Recitation"></property>
+		<property name="EDIT_RECITATION_BUTTON_TEXT"  value="Edit Recitation"></property>
 		<property name="ADD_UPDATE_BUTTON_TEXT"         value="Add/Update"></property>
 		
 		<property name="SCHEDULE_TAB"               	value="Schedule Data"></property>

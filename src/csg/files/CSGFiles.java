@@ -384,6 +384,7 @@ public class CSGFiles implements AppFileComponent {
             recitationDetails.add(jsonRecitation.getString(JSON_SUPERVISING_TA_ONE));
             recitationDetails.add(jsonRecitation.getString(JSON_SUPERVISING_TA_TWO));
             dataManager.addRecitation(recitationDetails);
+            recitationDetails.clear();
         }
         
         

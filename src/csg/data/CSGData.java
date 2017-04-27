@@ -9,6 +9,7 @@ import csg.CSGApp;
 import csg.CSGProp;
 import csg.workspace.CSGWorkspace;
 import csg.transactions.*;
+import csg.workspace.RecitationTabBuilder;
 import csg.workspace.TADataTabBuilder;
 import djf.components.AppDataComponent;
 import djf.controller.AppFileController;
@@ -151,10 +152,10 @@ public class CSGData implements AppDataComponent {
         gridHeaders.addAll(dowHeaders);
     }
     
-     public CSGApp getApp() {
+    public CSGApp getApp() {
         return app;
     }
-    
+     
     public AppFileController getFileController() {
         return fileController;
     }
@@ -673,6 +674,38 @@ public class CSGData implements AppDataComponent {
     public void addRecitation(ArrayList<String> details) {
         Recitation recitation = new Recitation(details);
         recitations.add(recitation);
+        markAsEdited();
+    }
+    
+    public boolean containsRecitation(String section, String dayTime, String location) {
+        for (Recitation r: recitations) {
+            if (r.getSection().equals(section) || r.getDayTime().equals(dayTime) || r.getLocation().equals(location)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void editRecitation(int position, Recitation newRecitation) {
+        recitations.get(position).setSection(newRecitation.getSection());
+        recitations.get(position).setInstructor(newRecitation.getInstructor());
+        recitations.get(position).setDayTime(newRecitation.getDayTime());
+        recitations.get(position).setLocation(newRecitation.getLocation());
+        recitations.get(position).setTa1(newRecitation.getTa1());
+        recitations.get(position).setTa2(newRecitation.getTa2());
+        
+        CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
+        RecitationTabBuilder recitationWorkspace = workspace.getRecitationTabBuilder();
+        recitationWorkspace.getRecitationTable().refresh();
+    }
+    
+    public void removeRecitation(String section, String dayTime, String location) {
+       for (Recitation r: recitations) {
+            if (r.getSection().equals(section) || r.getDayTime().equals(dayTime) || r.getLocation().equals(location)) {
+                recitations.remove(r);
+                break;
+            }
+        }
     }
     
     public void addScheduleItem(String type, String date, String time, String title, String topic, String link, String criteria) {

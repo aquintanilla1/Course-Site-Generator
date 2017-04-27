@@ -55,4 +55,28 @@ public class Recitation {
     public String getTa2() {
         return ta2.get();
     }
+    
+    public void setSection(String newSection) {
+        section.set(newSection);
+    }
+    
+    public void setInstructor(String newInstructor) {
+        instructor.set(newInstructor);
+    }
+    
+    public void setDayTime(String newDayTime) {
+        dayTime.set(newDayTime);
+    }
+    
+    public void setLocation(String newLocation) {
+        location.set(newLocation);
+    }
+    
+    public void setTa1(String newTa1) {
+        ta1.set(newTa1);
+    }
+    
+    public void setTa2(String newTa2) {
+        ta2.set(newTa2);
+    }
 }

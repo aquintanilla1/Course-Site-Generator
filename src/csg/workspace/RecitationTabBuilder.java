@@ -9,6 +9,7 @@ import csg.CSGApp;
 import csg.CSGProp;
 import csg.data.CSGData;
 import csg.data.Recitation;
+import csg.data.TeachingAssistant;
 import static djf.settings.AppStartupConstants.FILE_PROTOCOL;
 import static djf.settings.AppStartupConstants.PATH_IMAGES;
 import javafx.collections.ObservableList;
@@ -25,6 +26,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -37,6 +39,7 @@ import properties_manager.PropertiesManager;
  */
 public class RecitationTabBuilder {
     CSGApp app;
+    RecitationDataController controller;
     Tab tab;
     VBox wholePane;
     HBox header;
@@ -54,7 +57,7 @@ public class RecitationTabBuilder {
     Label headerText, addEditHeaderText, sectionText, instructorText, dayTimeText, locationText,
             ta1Text, ta2Text;
     TextField sectionTextField, instructorTextField, dayTimeTextField, locationTextField;
-    ComboBox ta1Box, ta2Box;
+    ComboBox<TeachingAssistant> ta1Box, ta2Box;
     
     
     public RecitationTabBuilder(CSGApp initApp) {
@@ -78,6 +81,31 @@ public class RecitationTabBuilder {
         wholePane.getChildren().add(recitationTable);
         wholePane.getChildren().add(bottomPane);
         tab.setContent(wholePane);
+        
+        controller = new RecitationDataController(app);
+        
+        addUpdateButton.setOnAction(e -> {
+            controller.handleAddRecitation();
+        });
+        
+        deleteButton.setOnAction(e -> {
+            controller.handleRemoveRecitation();
+        });
+        
+        recitationTable.setOnMouseClicked(e -> {
+            controller.handleEditRecitation();
+            
+        });
+        
+        recitationTable.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.DELETE) {
+            controller.handleRemoveRecitation();
+            }
+        });
+        
+        clearButton.setOnAction(e -> {
+            controller.handleClear();
+        });
     }
     
     public Tab getTab() {
@@ -103,7 +131,35 @@ public class RecitationTabBuilder {
     public TableView getRecitationTable() {
         return recitationTable;
     }
+    
+       public TextField getSectionTextField() {
+        return sectionTextField;
+    }
 
+    public TextField getInstructorTextField() {
+        return instructorTextField;
+    }
+
+    public TextField getDayTimeTextField() {
+        return dayTimeTextField;
+    }
+
+    public TextField getLocationTextField() {
+        return locationTextField;
+    }
+
+    public ComboBox getTa1Box() {
+        return ta1Box;
+    }
+
+    public ComboBox getTa2Box() {
+        return ta2Box;
+    }
+
+    public Button getAddUpdateButton() {
+        return addUpdateButton;
+    }
+    
     private HBox makeHeader() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         HBox hbox = new HBox(4);
@@ -148,6 +204,7 @@ public class RecitationTabBuilder {
     
     private GridPane buildBottomPane() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
+        CSGData data = (CSGData) app.getDataComponent();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setVgap(10);
@@ -161,7 +218,7 @@ public class RecitationTabBuilder {
         locationText = new Label(props.getProperty(CSGProp.LOCATION_TEXT));
         ta1Text = new Label(props.getProperty(CSGProp.SUPERVISING_TA_TEXT));
         ta2Text = new Label(props.getProperty(CSGProp.SUPERVISING_TA_TEXT));
-        addUpdateButton = new Button(props.getProperty(CSGProp.ADD_UPDATE_BUTTON_TEXT));
+        addUpdateButton = new Button(props.getProperty(CSGProp.ADD_RECITATION_BUTTON_TEXT));
         
         grid.add(addEditHeaderText, 0, 0);
         grid.add(sectionText, 0, 1);
@@ -176,8 +233,8 @@ public class RecitationTabBuilder {
         instructorTextField = new TextField();
         dayTimeTextField = new TextField();
         locationTextField = new TextField();
-        ta1Box = new ComboBox();
-        ta2Box = new ComboBox();
+        ta1Box = new ComboBox(data.getTeachingAssistants());
+        ta2Box = new ComboBox(data.getTeachingAssistants());
         clearButton = new Button(props.getProperty(CSGProp.CLEAR_BUTTON_TEXT));
         
         grid.add(sectionTextField, 1, 1, 2, 1);
