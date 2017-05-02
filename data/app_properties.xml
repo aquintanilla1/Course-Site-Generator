@@ -160,7 +160,7 @@
 		<property name="TA_HEADER"               		value="TA"></property>
 		<property name="SUPERVISING_TA_TEXT"            value="Supervising TA"></property>
 		<property name="ADD_RECITATION_BUTTON_TEXT"		value="Add Recitation"></property>
-		<property name="EDIT_RECITATION_BUTTON_TEXT"  value="Edit Recitation"></property>
+		<property name="EDIT_RECITATION_BUTTON_TEXT"    value="Edit Recitation"></property>
 		<property name="ADD_UPDATE_BUTTON_TEXT"         value="Add/Update"></property>
 		
 		<property name="SCHEDULE_TAB"               	value="Schedule Data"></property>
@@ -181,6 +181,9 @@
 		<property name="HWS_TEXT"               		value="HW"></property>
 		<property name="RECITATION_TEXT"                value="Recitation"></property>
 		<property name="REFERENCE_TEXT"               	value="Reference"></property>
+		<property name="ADD_SCHEDULE_ITEM_BUTTON_TEXT"  value="Add Schedule Item"></property>
+		<property name="EDIT_SCHEDULE_ITEM_BUTTON_TEXT" value="Edit Schedule Item"></property>
+		
 		
 		<property name="PROJECT_TAB"               		value="Project Data"></property>
 		<property name="DELETE_TEAM_TOOLTIP"			value="Deletes the selected team"></property>					
@@ -195,6 +198,11 @@
 		<property name="LAST_NAME_TEXT"                 value="Last Name"></property>
 		<property name="TEAM_TEXT"               		value="Team"></property>
 		<property name="ROLE_TEXT"               		value="Role"></property>
+		<property name="ADD_TEAM_BUTTON_TEXT"			value="Add Team"></property>
+		<property name="EDIT_TEAM_BUTTON_TEXT"			value="Edit Team"></property>
+		<property name="ADD_STUDENT_BUTTON_TEXT"		value="Add Student"></property>
+		<property name="EDIT_STUDENT_BUTTON_TEXT"		value="Edit Student"></property>
+		
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

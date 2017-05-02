@@ -61,6 +61,12 @@ public class ScheduleItem {
         return criteria;
     }
     
+    public LocalDate getLocalDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+        
+        return LocalDate.parse(getDate(), formatter);
+    }
+    
     public String getMonth() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
         LocalDate localDate = LocalDate.parse(date.get(), formatter);
@@ -73,5 +79,33 @@ public class ScheduleItem {
         LocalDate localDate = LocalDate.parse(date.get(), formatter);
         
         return String.valueOf(localDate.getDayOfMonth());
+    }
+    
+    public void setType(String newType) {
+        type.set(newType);
+    }
+    
+    public void setDate(String newDate) {
+        date.set(newDate);
+    }
+    
+    public void setTime(String newTime) {
+        time = newTime;
+    }
+    
+    public void setTitle(String newTitle) {
+        title.set(newTitle);
+    }
+    
+    public void setTopic(String newTopic) {
+        topic.set(newTopic);
+    }
+    
+    public void setLink(String newLink) {
+        link = newLink;
+    }
+    
+    public void setCriteria(String newCriteria) {
+        criteria = newCriteria;
     }
 }

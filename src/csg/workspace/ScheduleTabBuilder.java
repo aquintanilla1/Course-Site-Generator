@@ -28,6 +28,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -56,8 +57,8 @@ public class ScheduleTabBuilder {
     ComboBox typeBox;
     TextField timeTextField, titleTextField, topicTextField, linkTextField, criteriaTextField;
     
-            
-    
+    ScheduleDataController controller;
+        
     public ScheduleTabBuilder(CSGApp initApp) {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         app = initApp;
@@ -74,6 +75,72 @@ public class ScheduleTabBuilder {
         wholePane.getChildren().add(bottomPane);
         
         tab.setContent(wholePane);
+        
+        controller = new ScheduleDataController(app);
+        
+        typeBox.setOnAction(e -> {
+            
+            if (typeBox.getValue() == null) {
+                timeTextField.setDisable(false);
+                topicTextField.setDisable(false);
+                linkTextField.setDisable(false);
+                criteriaTextField.setDisable(false);
+            }
+            
+            else if (typeBox.getValue().equals(props.getProperty(CSGProp.HOLIDAY_TEXT))) {
+                timeTextField.setDisable(true);
+                topicTextField.setDisable(true);
+                linkTextField.setDisable(false);
+                criteriaTextField.setDisable(true);
+            }
+            else if (typeBox.getValue().equals(props.getProperty(CSGProp.LECTURE_TEXT))) {
+                timeTextField.setDisable(false);
+                topicTextField.setDisable(false);
+                linkTextField.setDisable(false);
+                criteriaTextField.setDisable(true);
+            }
+            else if (typeBox.getValue().equals(props.getProperty(CSGProp.HWS_TEXT))) {
+                timeTextField.setDisable(false);
+                topicTextField.setDisable(false);
+                linkTextField.setDisable(false);
+                criteriaTextField.setDisable(false);
+            }
+            else if (typeBox.getValue().equals(props.getProperty(CSGProp.RECITATION_TEXT))) {
+                timeTextField.setDisable(true);
+                topicTextField.setDisable(false);
+                linkTextField.setDisable(true);
+                criteriaTextField.setDisable(true);
+            }
+            else if (typeBox.getValue().equals(props.getProperty(CSGProp.REFERENCE_TEXT))) {
+                timeTextField.setDisable(true);
+                topicTextField.setDisable(false);
+                linkTextField.setDisable(false);
+                criteriaTextField.setDisable(true);
+            }
+        });
+        
+        addUpdateButton.setOnAction(e -> {
+            controller.handleAddItem();
+        });
+        
+        clearButton.setOnAction(e -> {
+            controller.handleClear();
+        });
+        
+        scheduleTable.setOnMouseClicked(e -> { 
+            controller.handleEditItem();
+        });
+        
+        deleteButton.setOnAction(e -> {
+            controller.handleRemoveItem();
+        });
+        
+        
+        scheduleTable.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.DELETE) {
+            controller.handleRemoveItem();
+            }
+        });
     }
     
     public Tab getScheduleTab() {
@@ -119,10 +186,7 @@ public class ScheduleTabBuilder {
         grid.setVgap(10);
         grid.setHgap(10);
         grid.setPadding(new Insets(15,15,15,15));
-        
-//        Button deleteButton, addUpdateButton, clearButton;
-//    Label scheduleHeader, calendarText, startMonText, endFriText, scheduleItemsText,
-//            addEditText, typeText, dateText, timeText, titleText, topicText, linkText, criteriaText;
+
         topSubHeader = new HBox();
         calendarText = new Label(props.getProperty(CSGProp.CALENDAR_BOUNDARIES_TEXT));
         startMonText = new Label(props.getProperty(CSGProp.STARTING_MONDAY_TEXT));
@@ -186,6 +250,7 @@ public class ScheduleTabBuilder {
     
     private GridPane buildInnerGrid() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
+        CSGData data = (CSGData) app.getDataComponent();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setVgap(5);
@@ -212,7 +277,7 @@ public class ScheduleTabBuilder {
         grid.add(criteriaText, 0, 7);
         grid.add(addUpdateButton, 0, 8);
         
-        typeBox = new ComboBox();
+        typeBox = new ComboBox(data.getScheduleItemTypes());
         datePicker = new DatePicker();
         timeTextField = new TextField();
         titleTextField = new TextField();
@@ -265,5 +330,63 @@ public class ScheduleTabBuilder {
             LocalDate endDate = LocalDate.parse(endFri, formatter);
             endPicker.setValue(endDate);
         }
+    }
+
+    public DatePicker getStartPicker() {
+        return startPicker;
+    }
+
+    public DatePicker getEndPicker() {
+        return endPicker;
+    }
+
+    public DatePicker getDatePicker() {
+        return datePicker;
+    }
+
+    public Button getAddUpdateButton() {
+        return addUpdateButton;
+    }
+
+    public Button getClearButton() {
+        return clearButton;
+    }
+
+    public ComboBox getTypeBox() {
+        return typeBox;
+    }
+
+    public TextField getTimeTextField() {
+        return timeTextField;
+    }
+
+    public TextField getTitleTextField() {
+        return titleTextField;
+    }
+
+    public TextField getTopicTextField() {
+        return topicTextField;
+    }
+
+    public TextField getLinkTextField() {
+        return linkTextField;
+    }
+
+    public TextField getCriteriaTextField() {
+        return criteriaTextField;
+    }
+
+    public ScheduleDataController getController() {
+        return controller;
+    }
+    
+    public void clearDataFields() {
+        typeBox.getSelectionModel().clearSelection();
+        timeTextField.clear();
+        datePicker.setValue(null);
+        titleTextField.clear();
+        topicTextField.clear();
+        linkTextField.clear();
+        criteriaTextField.clear();
     }
 }

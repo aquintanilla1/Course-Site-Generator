@@ -130,12 +130,12 @@
         },
         {
             "type":"HW",
-            "scheduleTime":"11:59pm",
-            "date":"04/12/2017",
-            "scheduleTitle":"HW4",
-            "topic":"UI Stuff",
-            "scheduleLink":"http://www3.cs.stonybrook.edu/~cse219/Section02/hw/HW4.html",
-            "criteria":"http://wlt.typography.netdna-cdn.com/data/images/2014/02/dribbble-dont-suck-1x.png"
+            "scheduleTime":"12:01am",
+            "date":"05/1/2017",
+            "scheduleTitle":"HW19",
+            "topic":"Files Buillshsit",
+            "scheduleLink":"http://www3.cs.stonybrook.edu/~cse219/Section02/hw/HW19.html",
+            "criteria":"Please do well"
         },
         {
             "type":"Recitation",

@@ -119,22 +119,15 @@ public class RecitationDataController {
             details.add(newTa2);
 
             Recitation newRecitation = new Recitation(details);
-            data.editRecitation(data.getRecitations().indexOf(recitation), newRecitation);
+            data.editRecitation(newRecitation, data.getRecitations().indexOf(recitation));
+            recitationTable.refresh();
         });        
     }
     
     public void handleClear() {
         CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
         RecitationTabBuilder recitationWorkspace = workspace.getRecitationTabBuilder();
-        TableView recitationTable = recitationWorkspace.getRecitationTable();
-        TextField sectionTextField = recitationWorkspace.getSectionTextField();
-        TextField instructorTextField = recitationWorkspace.getInstructorTextField();
-        TextField dayTimeTextField = recitationWorkspace.getDayTimeTextField();
-        TextField locationTextField = recitationWorkspace.getLocationTextField();
-        ComboBox<TeachingAssistant> ta1Box = recitationWorkspace.getTa1Box();
-        ComboBox<TeachingAssistant> ta2Box = recitationWorkspace.getTa2Box();
-        
-        clearFields(sectionTextField, instructorTextField, dayTimeTextField, locationTextField, ta1Box, ta2Box);
+        recitationWorkspace.clearDataFields();
         
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         updateButton =  recitationWorkspace.getAddUpdateButton();
@@ -150,6 +143,12 @@ public class RecitationDataController {
         RecitationTabBuilder recitationWorkspace = csgWorkspace.getRecitationTabBuilder();
         TableView recitationTable = recitationWorkspace.getRecitationTable();
         CSGData data = (CSGData)app.getDataComponent();
+        TextField sectionTextField = recitationWorkspace.getSectionTextField();
+        TextField instructorTextField = recitationWorkspace.getInstructorTextField();
+        TextField dayTimeTextField = recitationWorkspace.getDayTimeTextField();
+        TextField locationTextField = recitationWorkspace.getLocationTextField();
+        ComboBox<TeachingAssistant> ta1Box = recitationWorkspace.getTa1Box();
+        ComboBox<TeachingAssistant> ta2Box = recitationWorkspace.getTa2Box();
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         
         Object selectedObject = recitationTable.getSelectionModel().getSelectedItem();
@@ -164,17 +163,6 @@ public class RecitationDataController {
         String location = recitation.getLocation();
         
         data.removeRecitation(section, dayTime, location);
-    }
-    
-    private void clearFields(TextField section, TextField instructor, TextField dayTime, TextField location, 
-            ComboBox ta1, ComboBox ta2) {
-        section.clear();
-        instructor.clear();
-        dayTime.clear();
-        location.clear();
-        ta1.getSelectionModel().clearSelection();
-        ta2.getSelectionModel().clearSelection();
-        section.requestFocus();
-    }
-            
+        recitationWorkspace.clearDataFields();
+    }       
 }

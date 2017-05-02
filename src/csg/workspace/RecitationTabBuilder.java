@@ -264,4 +264,13 @@ public class RecitationTabBuilder {
 	// AND RETURN THE COMPLETED BUTTON
         return button;
     }
+    
+    public void clearDataFields() {
+        sectionTextField.clear();
+        instructorTextField.clear();
+        dayTimeTextField.clear();
+        locationTextField.clear();
+        ta1Box.getSelectionModel().clearSelection();
+        ta2Box.getSelectionModel().clearSelection();
+    }
 }

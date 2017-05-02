@@ -74,6 +74,8 @@ public class CSGData implements AppDataComponent {
     public static final int MIN_START_HOUR = 9;
     public static final int MAX_END_HOUR = 20;
     
+    ObservableList<String> scheduleItemTypes;
+    
     public CSGData(CSGApp initApp) {
         app = initApp;
         fileController = app.getGUI().getFileController();
@@ -110,6 +112,9 @@ public class CSGData implements AppDataComponent {
         gridHeaders = new ArrayList();
         gridHeaders.addAll(timeHeaders);
         gridHeaders.addAll(dowHeaders);
+        
+        scheduleItemTypes = FXCollections.observableArrayList();
+        initScheduleItemTypes();
     }
     
     public CSGData() {
@@ -254,6 +259,10 @@ public class CSGData implements AppDataComponent {
         return "";
     }
     
+    public ObservableList<String> getScheduleItemTypes() {
+        return scheduleItemTypes;
+    }
+    
     public ObservableList<ScheduleItem> getScheduleItems() {
         return scheduleItems;
     }
@@ -313,7 +322,7 @@ public class CSGData implements AppDataComponent {
     public void setScheduleItems(ObservableList itemList) {
         scheduleItems = itemList;
     }
-    
+        
     public void setTeams(ObservableList teamList) {
         teams = teamList;
     }
@@ -529,6 +538,15 @@ public class CSGData implements AppDataComponent {
             initOfficeHours(initStartHour, initEndHour);
     }
     
+    private void initScheduleItemTypes() {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        scheduleItemTypes.add(props.getProperty(CSGProp.HOLIDAY_TEXT));
+        scheduleItemTypes.add(props.getProperty(CSGProp.LECTURE_TEXT));
+        scheduleItemTypes.add(props.getProperty(CSGProp.HWS_TEXT));
+        scheduleItemTypes.add(props.getProperty(CSGProp.RECITATION_TEXT));
+        scheduleItemTypes.add(props.getProperty(CSGProp.REFERENCE_TEXT));
+    }
+    
     public void markAsEdited() {
         fileController.markAsEdited(app.getGUI());
     }
@@ -686,17 +704,15 @@ public class CSGData implements AppDataComponent {
         return false;
     }
     
-    public void editRecitation(int position, Recitation newRecitation) {
+    public void editRecitation(Recitation newRecitation, int position) {
         recitations.get(position).setSection(newRecitation.getSection());
         recitations.get(position).setInstructor(newRecitation.getInstructor());
         recitations.get(position).setDayTime(newRecitation.getDayTime());
         recitations.get(position).setLocation(newRecitation.getLocation());
         recitations.get(position).setTa1(newRecitation.getTa1());
         recitations.get(position).setTa2(newRecitation.getTa2());
-        
-        CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
-        RecitationTabBuilder recitationWorkspace = workspace.getRecitationTabBuilder();
-        recitationWorkspace.getRecitationTable().refresh();
+
+        markAsEdited();
     }
     
     public void removeRecitation(String section, String dayTime, String location) {
@@ -706,11 +722,35 @@ public class CSGData implements AppDataComponent {
                 break;
             }
         }
+        markAsEdited();
     }
     
     public void addScheduleItem(String type, String date, String time, String title, String topic, String link, String criteria) {
         ScheduleItem item = new ScheduleItem(type, date, time, title, topic, link, criteria);
         scheduleItems.add(item);
+        markAsEdited();
+    }
+    
+    public void editScheduleItem(ScheduleItem item, int position) {
+        scheduleItems.get(position).setType(item.getType());
+        scheduleItems.get(position).setDate(item.getDate());
+        scheduleItems.get(position).setTime(item.getTime());
+        scheduleItems.get(position).setTitle(item.getTitle());
+        scheduleItems.get(position).setTopic(item.getTopic());
+        scheduleItems.get(position).setLink(item.getLink());
+        scheduleItems.get(position).setCriteria(item.getCriteria());
+        
+        markAsEdited();
+    }
+    
+    public void removeScheduleItem(String type, String date, String title) {
+        for (ScheduleItem i: scheduleItems) {
+            if (i.getType().equals(type) && i.getDate().equals(date) && i.getTitle().equals(title)) {
+                scheduleItems.remove(i);
+                break;
+            }
+        }
+        markAsEdited();
     }
     
     public void addTeam(String name, String color, String textColor, String link) {

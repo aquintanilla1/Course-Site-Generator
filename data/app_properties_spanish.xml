@@ -183,6 +183,8 @@
 		<property name="HWS_TEXT"               		value="Tarea"></property>
 		<property name="RECITATION_TEXT"                value="Recitación"></property>
 		<property name="REFERENCE_TEXT"               	value="Referencia"></property>
+		<property name="ADD_SCHEDULE_ITEM_BUTTON_TEXT"  value="Añadir Itinerario"></property>
+		<property name="EDIT_SCHEDULE_ITEM_BUTTON_TEXT" value="Editar Itinerario"></property>
 		
 		<property name="PROJECT_TAB"               		value="Datos del Proyecto"></property>
 		<property name="DELETE_TEAM_TOOLTIP"			value="Elimina el equip seleccionado"></property>					
@@ -197,6 +199,10 @@
 		<property name="LAST_NAME_TEXT"                 value="Apellido"></property>
 		<property name="TEAM_TEXT"               		value="Equipo"></property>
 		<property name="ROLE_TEXT"               		value="Oficio"></property>
+		<property name="ADD_TEAM_BUTTON_TEXT"			value="Añadir Equipo"></property>
+		<property name="EDIT_TEAM_BUTTON_TEXT"			value="Editar Equipo"></property>
+		<property name="ADD_STUDENT_BUTTON_TEXT"		value="Añadir Estudiante"></property>
+		<property name="EDIT_STUDENT_BUTTON_TEXT"		value="Editar Estudiante"></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">
