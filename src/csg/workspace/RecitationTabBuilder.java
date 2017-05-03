@@ -99,7 +99,7 @@ public class RecitationTabBuilder {
         
         recitationTable.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.DELETE) {
-            controller.handleRemoveRecitation();
+                controller.handleRemoveRecitation();
             }
         });
         
@@ -265,12 +265,13 @@ public class RecitationTabBuilder {
         return button;
     }
     
-    public void clearDataFields() {
+    public void resetDataFields() {
         sectionTextField.clear();
         instructorTextField.clear();
         dayTimeTextField.clear();
         locationTextField.clear();
         ta1Box.getSelectionModel().clearSelection();
         ta2Box.getSelectionModel().clearSelection();
+        sectionTextField.requestFocus();
     }
 }

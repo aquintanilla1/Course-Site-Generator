@@ -40,5 +40,21 @@ public class Student {
     public String getRole() {
         return role.get();
     }
+    
+    public void setFirstName(String newFirstName) {
+        firstName.set(newFirstName);
+    }
+    
+    public void setLastName(String newLastName) {
+        lastName.set(newLastName);
+    }
+    
+    public void setTeam(String newTeam) {
+        team.set(newTeam);
+    }
+    
+    public void setRole(String newRole) {
+        role.set(newRole);
+    }
 }
 

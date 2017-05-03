@@ -289,8 +289,6 @@ public class CSGFiles implements AppFileComponent {
 	jsonWriter.writeObject(dataManagerJSO);
 	jsonWriter.close();
         
-        System.out.println(filePath);
-
 	// INIT THE WRITER
 	OutputStream os = new FileOutputStream(filePath);
 	JsonWriter jsonFileWriter = Json.createWriter(os);

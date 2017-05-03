@@ -63,17 +63,11 @@ public class RecitationDataController {
         details.add(ta2);
         
         data.addRecitation(details);
-        
-        sectionTextField.clear();
-        instructorTextField.clear();
-        dayTimeTextField.clear();
-        locationTextField.clear();
-        ta1Box.getSelectionModel().clearSelection();
-        ta2Box.getSelectionModel().clearSelection();
-        sectionTextField.requestFocus();
+        recitationWorkspace.resetDataFields();
     }
     
     public void handleEditRecitation() {
+        isInUpdateState = true;
         CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
         RecitationTabBuilder recitationWorkspace = workspace.getRecitationTabBuilder();
         TableView recitationTable = recitationWorkspace.getRecitationTable();
@@ -127,7 +121,7 @@ public class RecitationDataController {
     public void handleClear() {
         CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
         RecitationTabBuilder recitationWorkspace = workspace.getRecitationTabBuilder();
-        recitationWorkspace.clearDataFields();
+        recitationWorkspace.resetDataFields();
         
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         updateButton =  recitationWorkspace.getAddUpdateButton();
@@ -136,6 +130,7 @@ public class RecitationDataController {
         updateButton.setOnAction(e -> {
             handleAddRecitation();
         });
+        isInUpdateState = false;
     }
     
     public void handleRemoveRecitation() {
@@ -143,13 +138,6 @@ public class RecitationDataController {
         RecitationTabBuilder recitationWorkspace = csgWorkspace.getRecitationTabBuilder();
         TableView recitationTable = recitationWorkspace.getRecitationTable();
         CSGData data = (CSGData)app.getDataComponent();
-        TextField sectionTextField = recitationWorkspace.getSectionTextField();
-        TextField instructorTextField = recitationWorkspace.getInstructorTextField();
-        TextField dayTimeTextField = recitationWorkspace.getDayTimeTextField();
-        TextField locationTextField = recitationWorkspace.getLocationTextField();
-        ComboBox<TeachingAssistant> ta1Box = recitationWorkspace.getTa1Box();
-        ComboBox<TeachingAssistant> ta2Box = recitationWorkspace.getTa2Box();
-        PropertiesManager props = PropertiesManager.getPropertiesManager();
         
         Object selectedObject = recitationTable.getSelectionModel().getSelectedItem();
         Recitation recitation = (Recitation) selectedObject;
@@ -163,6 +151,28 @@ public class RecitationDataController {
         String location = recitation.getLocation();
         
         data.removeRecitation(section, dayTime, location);
-        recitationWorkspace.clearDataFields();
+        if (isInUpdateState) {
+            TextField sectionTextField = recitationWorkspace.getSectionTextField();
+            TextField instructorTextField = recitationWorkspace.getInstructorTextField();
+            TextField dayTimeTextField = recitationWorkspace.getDayTimeTextField();
+            TextField locationTextField = recitationWorkspace.getLocationTextField();
+            ComboBox<TeachingAssistant> ta1Box = recitationWorkspace.getTa1Box();
+            ComboBox<TeachingAssistant> ta2Box = recitationWorkspace.getTa2Box();
+            
+            selectedObject = recitationTable.getSelectionModel().getSelectedItem();
+            recitation = (Recitation) selectedObject;
+            
+            if (recitation != null) {
+                sectionTextField.setText(recitation.getSection());
+                instructorTextField.setText(recitation.getInstructor());
+                dayTimeTextField.setText(recitation.getDayTime());
+                locationTextField.setText(recitation.getLocation());
+                ta1Box.setValue(data.getTA(recitation.getTa1()));
+                ta2Box.setValue(data.getTA(recitation.getTa2()));
+            }
+            else {
+                handleClear();
+            }
+        }
     }       
 }

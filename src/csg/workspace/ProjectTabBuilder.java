@@ -31,10 +31,12 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import properties_manager.PropertiesManager;
 
 /**
@@ -44,14 +46,16 @@ import properties_manager.PropertiesManager;
 public class ProjectTabBuilder {
     CSGApp app;
     Tab tab;
+    ProjectDataController controller;
+
     VBox wholePane, topPane, bottomPane;
     HBox teamSubHeader, studentSubHeader;
     Button addUpdateButton1, addUpdateButton2, clearButton1, clearButton2, teamDeleteButton, studentDeleteButton;
     Label projectHeaderText, teamSubHeaderText, studentSubHeaderText, addEditText1, addEditText2,
             nameText, colorText, textColorText, linkText, firstNameText, lastNameText, teamText,
             roleText;
-    TextField nameTextField, linkTextField, firstNameTextField, lastNameTextField, teamTextField, roleTextField;
-    ComboBox teamBox;
+    TextField nameTextField, linkTextField, firstNameTextField, lastNameTextField, roleTextField;
+    ComboBox<Team> teamBox;
     ColorPicker colorPicker, textColorPicker;
     TableView teamTable, studentTable;
     TableColumn<Team, String> nameColumn, colorColumn, textColorColumn, linkColumn;
@@ -75,6 +79,52 @@ public class ProjectTabBuilder {
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
         tab.setContent(scrollPane);
+        
+        controller = new ProjectDataController(app);
+        
+        addUpdateButton1.setOnAction(e -> { 
+            controller.handleAddTeam();
+        });
+        
+        teamTable.setOnMouseClicked(e -> {
+            controller.handleEditTeam();
+        });
+        
+        clearButton1.setOnAction(e -> {
+            controller.handleClearTeam();
+        });
+        
+        teamTable.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.DELETE) {
+                controller.handleRemoveTeam();
+            }
+        });
+        
+        teamDeleteButton.setOnAction(e -> {
+            controller.handleRemoveTeam();
+        });
+        
+        addUpdateButton2.setOnAction(e -> {
+            controller.handleAddStudent();
+        });
+        
+        studentTable.setOnMouseClicked(e -> {
+            controller.handleEditStudent();
+        });
+        
+        clearButton2.setOnAction(e -> {
+           controller.handleClearStudent(); 
+        });
+        
+        studentTable.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.DELETE) {
+                controller.handleRemoveStudent();
+            }
+        });
+        
+        studentDeleteButton.setOnAction(e -> {
+            controller.handleRemoveStudent();
+        });
     }
     
     public Tab getProjectTab() {
@@ -217,7 +267,7 @@ public class ProjectTabBuilder {
         nameText = new Label(props.getProperty(CSGProp.NAME_TEXT) + ":");
         colorText = new Label(props.getProperty(CSGProp.COLOR_TEXT) + ":");
         linkText = new Label(props.getProperty(CSGProp.LINK_TEXT) + ":");
-        addUpdateButton1 = new Button(props.getProperty(CSGProp.ADD_UPDATE_BUTTON_TEXT));
+        addUpdateButton1 = new Button(props.getProperty(CSGProp.ADD_TEAM_BUTTON_TEXT));
         
         grid.add(addEditText1, 0, 0);
         grid.add(nameText, 0, 1);
@@ -251,6 +301,7 @@ public class ProjectTabBuilder {
     
     private GridPane buildBottomInnerGrid() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
+        CSGData data = (CSGData) app.getDataComponent();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setVgap(4);
@@ -262,7 +313,7 @@ public class ProjectTabBuilder {
         lastNameText = new Label(props.getProperty(CSGProp.LAST_NAME_TEXT) + ":");
         teamText = new Label(props.getProperty(CSGProp.TEAM_TEXT) + ":");
         roleText = new Label(props.getProperty(CSGProp.ROLE_TEXT) + ":");
-        addUpdateButton2 = new Button(props.getProperty(CSGProp.ADD_UPDATE_BUTTON_TEXT));
+        addUpdateButton2 = new Button(props.getProperty(CSGProp.ADD_STUDENT_BUTTON_TEXT));
         
         grid.add(addEditText2, 0, 0);
         grid.add(firstNameText, 0, 1);
@@ -273,7 +324,7 @@ public class ProjectTabBuilder {
         
         firstNameTextField = new TextField();
         lastNameTextField = new TextField();
-        teamBox = new ComboBox();
+        teamBox = new ComboBox(data.getTeams());
         roleTextField = new TextField();
         clearButton2 = new Button(props.getProperty(CSGProp.CLEAR_BUTTON_TEXT));
         
@@ -309,5 +360,75 @@ public class ProjectTabBuilder {
 	// AND RETURN THE COMPLETED BUTTON
         return button;
     }
+
+    public Button getAddUpdateButton1() {
+        return addUpdateButton1;
+    }
+
+    public Button getAddUpdateButton2() {
+        return addUpdateButton2;
+    }
+
+    public Button getClearButton1() {
+        return clearButton1;
+    }
+
+    public Button getClearButton2() {
+        return clearButton2;
+    }
+
+    public Button getTeamDeleteButton() {
+        return teamDeleteButton;
+    }
+
+    public Button getStudentDeleteButton() {
+        return studentDeleteButton;
+    }
+
+    public TextField getNameTextField() {
+        return nameTextField;
+    }
+
+    public TextField getLinkTextField() {
+        return linkTextField;
+    }
+
+    public TextField getFirstNameTextField() {
+        return firstNameTextField;
+    }
+
+    public TextField getLastNameTextField() {
+        return lastNameTextField;
+    }
+
+    public TextField getRoleTextField() {
+        return roleTextField;
+    }
+
+    public ComboBox getTeamBox() {
+        return teamBox;
+    }
+
+    public ColorPicker getColorPicker() {
+        return colorPicker;
+    }
+
+    public ColorPicker getTextColorPicker() {
+        return textColorPicker;
+    }
     
+    public void resetTeamFields() {
+        nameTextField.clear();
+        colorPicker.setValue(Color.WHITE);
+        textColorPicker.setValue(Color.WHITE);
+        linkTextField.clear();
+        nameTextField.requestFocus();
+    }
+    
+    public void resetStudentFields() {
+        firstNameTextField.clear();
+        lastNameTextField.clear();
+        teamBox.getSelectionModel().clearSelection();
+        roleTextField.clear();
+    }
 }

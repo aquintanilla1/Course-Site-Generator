@@ -44,6 +44,10 @@ public class Team {
         return link.get();
     }
     
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+    
     public String getRed() {
         String hex = color.get().substring(0, 2);
         int decimal = Integer.parseInt(hex, 16);
@@ -63,5 +67,38 @@ public class Team {
         int decimal = Integer.parseInt(hex, 16);
         
         return String.valueOf(decimal);
+    }
+    
+    public void setName(String newName) {
+        name.set(newName);
+    }
+    
+    public void setColor(String newColor) {
+        color.set(newColor);
+    }
+    
+    public void setTextColor(String newTextColor) {
+        textColor.set(newTextColor);
+    }
+    
+    public void setLink(String newLink) {
+        link.set(newLink);
+    }
+    
+    public String toString() {
+        return name.getValue();
+    }
+    
+    public void addStudent(Student s) {
+        students.add(s);
+    }
+    
+    public void removeStudent(Student deletedStudent) {
+        for (Student s: students) {
+            if (s.getFirstName().equals(deletedStudent.getFirstName()) && s.getLastName().equals(deletedStudent.getLastName())) {
+                students.remove(s);
+                break;
+            }
+        }
     }
 }

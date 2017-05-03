@@ -59,6 +59,7 @@ public class ScheduleDataController {
         String criteria = criteriaTextField.getText();
         
         data.addScheduleItem(type, date, time, title, topic, link, criteria);
+        
     } 
     
     public void handleEditItem() {
@@ -138,18 +139,12 @@ public class ScheduleDataController {
         String title = item.getTitle();
         
         data.removeScheduleItem(type, date, title);
-        clearFields();
+        scheduleWorkspace.clearDataFields();
         
     }
     
     private String getDate(LocalDate localDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
         return localDate.format(formatter);
-    }
-    
-    private void clearFields() {
-        CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
-        ScheduleTabBuilder scheduleWorkspace = workspace.getScheduleTabBuilder();
-        scheduleWorkspace.clearDataFields();
     }
 }

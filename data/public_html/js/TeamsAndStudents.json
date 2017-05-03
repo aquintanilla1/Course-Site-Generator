@@ -12,6 +12,13 @@
             "green":"34",
             "blue":"34",
             "text_color":"999999"
+        },
+        {
+            "name":"Purple",
+            "red":"204",
+            "green":"51",
+            "blue":"51",
+            "text_color":"996699"
         }
     ],
     "students":[
@@ -37,6 +44,30 @@
             "lastName":"Evan",
             "firstName":"Chris",
             "team":"Firebrick",
+            "role":"Data Designer"
+        },
+        {
+            "lastName":"Vader",
+            "firstName":"Darth",
+            "team":"Purple",
+            "role":"Lead Programmer"
+        },
+        {
+            "lastName":"Palpatine",
+            "firstName":"Emperor",
+            "team":"Purple",
+            "role":"Lead Designer"
+        },
+        {
+            "lastName":"Tarkin",
+            "firstName":"Governor ",
+            "team":"Purple",
+            "role":"Project Manager"
+        },
+        {
+            "lastName":"Krennic",
+            "firstName":"Officer",
+            "team":"Purple",
             "role":"Data Designer"
         }
     ]

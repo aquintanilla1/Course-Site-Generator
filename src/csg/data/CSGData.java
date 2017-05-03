@@ -461,6 +461,15 @@ public class CSGData implements AppDataComponent {
         return null;
     }
     
+    public Team getTeam(String teamName) {
+        for (Team team : teams) {
+            if (team.getName().equals(teamName)) {
+                return team;
+            }
+        }
+        return null;
+    }
+    
     
     public void setStartHour(String time) {
         ObservableList<String> timeList = getTimes();
@@ -756,11 +765,52 @@ public class CSGData implements AppDataComponent {
     public void addTeam(String name, String color, String textColor, String link) {
         Team team = new Team(name, color, textColor, link);
         teams.add(team);
+        markAsEdited();
+    }
+    
+    public void editTeam(Team newTeam, int position) {
+        teams.get(position).setName(newTeam.getName());
+        teams.get(position).setColor(newTeam.getColor());
+        teams.get(position).setTextColor(newTeam.getTextColor());
+        teams.get(position).setLink(newTeam.getLink());
+        markAsEdited();
+    }
+    
+    public void removeTeam(String name) {
+        for (Team t: teams) {
+            if (t.getName().equals(name)) {
+                teams.remove(t);
+                removeStudentsInTeam(t);
+                break;
+            }
+        }
+        markAsEdited();
     }
     
     public void addStudent(String firstName, String lastName, String team, String role) {
         Student student = new Student(firstName, lastName, team, role);
         students.add(student);
+        Team teamOfStudent = getTeam(team);
+        teamOfStudent.addStudent(student);
+        markAsEdited();
+    }
+    
+    public void editStudent(Student newStudent, int position) {
+        students.get(position).setFirstName(newStudent.getFirstName());
+        students.get(position).setLastName(newStudent.getLastName());
+        students.get(position).setTeam(newStudent.getTeam());
+        students.get(position).setRole(newStudent.getRole());
+        markAsEdited();
+    }
+    
+    public void removeStudent(String firstName, String lastName) {
+        for (Student s: students) {
+            if (s.getFirstName().equals(firstName) && s.getLastName().equals(lastName)) {
+                students.remove(s);
+                break;
+            }
+        }
+        markAsEdited();
     }
     
     public ArrayList<Student> getStudentsInTeam(String teamName) {
@@ -773,6 +823,14 @@ public class CSGData implements AppDataComponent {
         }
         
         return studentsInTeam;
+    }
+    
+    public void removeStudentsInTeam(Team team) {
+        ArrayList<Student> studentsInTeam = team.getStudents();
+        
+        for (Student s: studentsInTeam) {
+            removeStudent(s.getFirstName(), s.getLastName());
+        }
     }
 }
     

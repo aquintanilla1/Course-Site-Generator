@@ -171,6 +171,12 @@
             "color":"B22222",
             "text_color":"999999",
             "link":"https://en.wikipedia.org/wiki/Fire_brick"
+        },
+        {
+            "name":"Purple",
+            "color":"cc3333",
+            "text_color":"996699",
+            "link":"purrfrfrfrf"
         }
     ],
     "students":[
@@ -196,6 +202,30 @@
             "firstName":"Chris",
             "lastName":"Evan",
             "studentTeam":"Firebrick",
+            "role":"Data Designer"
+        },
+        {
+            "firstName":"Darth",
+            "lastName":"Vader",
+            "studentTeam":"Purple",
+            "role":"Lead Programmer"
+        },
+        {
+            "firstName":"Emperor",
+            "lastName":"Palpatine",
+            "studentTeam":"Purple",
+            "role":"Lead Designer"
+        },
+        {
+            "firstName":"Governor ",
+            "lastName":"Tarkin",
+            "studentTeam":"Purple",
+            "role":"Project Manager"
+        },
+        {
+            "firstName":"Officer",
+            "lastName":"Krennic",
+            "studentTeam":"Purple",
             "role":"Data Designer"
         }
     ]
