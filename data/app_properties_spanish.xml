@@ -81,6 +81,16 @@
 		
 		<property name="TAS_IN_CELLS_TITLE"     	value="AE en Celdas que se Eliminarán"></property>
 		<property name="TAS_IN_CELLS_MESSAGE"   	value="Hay AEs en las celdas que serán eliminadas por su selección. ¿Continuar?"></property>
+		<property name="REMOVE_TA_TITLE"            value="¿Eliminar AE?"></property>
+		<property name="REMOVE_TA_MESSAGE"        	value="AE se eliminara del sitio de curso. ¿Continuar?"></property>
+		<property name="REMOVE_RECITATION_TITLE"  	value="¿Eliminar Recitación?"></property>
+		<property name="REMOVE_RECITATION_MESSAGE" 	value="Recitación se eliminara del sitio de curso. ¿Continuar?"></property>
+		<property name="REMOVE_SCHEDULE_ITEM_TITLE"   	value="¿Eliminar Itinerario?"></property>
+		<property name="REMOVE_SCHEDULE_ITEM_MESSAGE"   value="Itinerario se eliminara del sitio de curso. ¿Continuar?"></property>
+		<property name="REMOVE_TEAM_TITLE"              value="¿Eliminar Equipo?"></property>
+		<property name="REMOVE_TEAM_MESSAGE"            value="Equipo se eliminara del sitio de curso. ¿Continuar?"></property>
+		<property name="REMOVE_STUDENT_TITLE"           value="¿Eliminar Estudiante?"></property>
+		<property name="REMOVE_STUDENT_MESSAGE"         value="Estudiante se eliminara del sitio de curso. ¿Continuar?"></property>
 		<property name="WORK_FILE_TITLE"        	value="OfficeHoursGridData"></property>
 		<property name="WORK_FILE_EXT"				value="json"></property>
 		<property name="WORK_FILE_EXT_DESC"			value="Sitio del Curso"></property>
@@ -112,6 +122,36 @@
         <property name="INVALID_TA_EMAIL_MESSAGE"       value="Necesitas proporcionar un Email de AE Válido."></property>
         <property name="INVALID_TIMES_TITLE"            value="Tiempos no Válidos"></property>
         <property name="INVALID_TIMES_MESSAGE"          value="La Hora de Inicio necisita ser anterior a la Hora de Finalización"></property>
+        <property name="MISSING_RECITATION_SECTION_TITLE"   	value="Sección de Recitación Falta"></property>
+		<property name="MISSING_RECITATION_SECTION_MESSAGE"   	value="Necesitas proporcionar un sección del Recitación"></property>
+		<property name="MISSING_RECITATION_TIME_TITLE"          value="Día y Tiempo de Recitación Falta"></property>
+		<property name="MISSING_RECITATION_TIME_MESSAGE"        value="Necesitas proporcionar un día y tiempo del Recitación"></property>
+		<property name="RECITATION_SECTION_NOT_UNIQUE_TITLE"   	value="Sección del Recitación no es Único"></property>
+		<property name="RECITATION_SECTION_NOT_UNIQUE_MESSAGE"  value="Necesitas proporcionar un Sección Exclusivo del Recitación"></property>
+		<property name="MISSING_RECITATION_LOCATION_TITLE"  	value="Ubicación de Recitación Falta"></property>
+		<property name="MISSING_RECITATION_LOCATION_MESSAGE"   	value="Necesitas proporcionar un Ubicación del Recitación"></property>
+		<property name="RECITATION_TAS_ARE_THE_SAME_TITLE" 		value="AEs de Recitatción son Iguales"></property>
+		<property name="RECITATION_TAS_NOT_UNIQUE_MESSAGE" 		value="Necesitas proporcionar Diferentes AEs"></property>
+		<property name="MISSING_SCHEDULE_TYPE_TITLE"            value="Tipo de Itinarario Falta"></property>
+		<property name="MISSING_SCHEDULE_TYPE_MESSAGE"          value="Necesitas proporcionar un Tipo de Itinerario"></property>
+		<property name="MISSING_SCHEDULE_DATE_TITLE"   			value="Fecha de Itinerario Falta"></property>
+		<property name="MISSING_SCHEDULE_DATE_MESSAGE"       	value="Necesitas proporcionar un Fecha de Itinerario"></property>
+		<property name="MISSING_SCHEDULE_TITLE_TITLE"       	value="Título de Itinerario Falta"></property>
+		<property name="MISSING_SCHEDULE_TITLE_MESSAGE"       	   value="Necesitas proporcionar un Título de Itinerario"></property>
+		<property name="MISSING_TEAM_NAME_TITLE"               value="Nombre de Equipo Falta"></property>
+		<property name="MISSING_TEAM_NAME_MESSAGE"               value="Necesitas proporcionar un Nombre de Equipo"></property>
+		<property name="MISSING_TEAM_COLOR_TITLE"               value="Color de Equipo Falta"></property>
+		<property name="MISSING_TEAM_COLOR_MESSAGE"               value="Necesitas proporcionar un Color de Equipo"></property>
+		<property name="MISSING_TEAM_TEXT_COLOR_TITLE"               value="Color de Texto de Equipo Falta"></property>
+		<property name="MISSING_TEAM_TEXT_COLOR_MESSAGE"               value="Necesitas proporcionar un Color de Text de Equipo"></property>
+		<property name="MISSING_TEAM_LINK_TITLE"               value="Enlance de Equipo Falta"></property>
+		<property name="MISSING_TEAM_LINK_MESSAGE"               value="Necesitas proporcionar un Enlance de Equipo"></property>
+		<property name="TEAM_NAME_AND_LINK_NOT_UNIQUE_TITLE"	value="Nombre y Enlance de Equipo no son Únicos"></property>
+		<property name="TEAM_NAME_AND_LINK_NOT_UNIQUE_MESSAGE"	value="Necesitas proporcionar un Nombre y Enlance Exclusivo de Equipo"></property>
+		<property name="MISSING_STUDENT_NAME_TITLE"               value="Nombre de Estudiante Falta"></property>
+		<property name="MISSING_STUDENT_NAME_MESSAGE"               value="Necesitas proporcionar el Nombre de Pila y Apellido del Estudiante"></property>
+		<property name="MISSING_STUDENT_TEAM_TITLE"               value="Equipo de Estudiante Falta"></property>
+		<property name="MISSING_STUDENT_TEAM_MESSAGE"               value="Necesitas proporcionar un Equipo por el Estudiante"></property>
         
         <property name="COURSE_DETAILS_TAB"             value="Detalles del Curso"></property>
         <property name="COURSE_INFO_TEXT"               value="Info de Curso"></property>

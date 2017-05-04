@@ -704,9 +704,9 @@ public class CSGData implements AppDataComponent {
         markAsEdited();
     }
     
-    public boolean containsRecitation(String section, String dayTime, String location) {
+    public boolean containsRecitation(String section) {
         for (Recitation r: recitations) {
-            if (r.getSection().equals(section) || r.getDayTime().equals(dayTime) || r.getLocation().equals(location)) {
+            if (r.getSection().equals(section)) {
                 return true;
             }
         }
@@ -766,6 +766,15 @@ public class CSGData implements AppDataComponent {
         Team team = new Team(name, color, textColor, link);
         teams.add(team);
         markAsEdited();
+    }
+    
+    public boolean containsTeam(String name, String link) {
+        for (Team t: teams) {
+            if (t.getName().equals(name) || t.getLink().equals(link)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     public void editTeam(Team newTeam, int position) {

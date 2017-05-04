@@ -7,10 +7,31 @@ package csg.workspace;
 
 import csg.CSGApp;
 import csg.CSGProp;
+import static csg.CSGProp.MISSING_STUDENT_NAME_MESSAGE;
+import static csg.CSGProp.MISSING_STUDENT_NAME_TITLE;
+import static csg.CSGProp.MISSING_STUDENT_TEAM_MESSAGE;
+import static csg.CSGProp.MISSING_STUDENT_TEAM_TITLE;
+import static csg.CSGProp.MISSING_TEAM_COLOR_MESSAGE;
+import static csg.CSGProp.MISSING_TEAM_COLOR_TITLE;
+import static csg.CSGProp.MISSING_TEAM_LINK_MESSAGE;
+import static csg.CSGProp.MISSING_TEAM_LINK_TITLE;
+import static csg.CSGProp.MISSING_TEAM_NAME_MESSAGE;
+import static csg.CSGProp.MISSING_TEAM_NAME_TITLE;
+import static csg.CSGProp.MISSING_TEAM_TEXT_COLOR_MESSAGE;
+import static csg.CSGProp.MISSING_TEAM_TEXT_COLOR_TITLE;
+import static csg.CSGProp.REMOVE_STUDENT_MESSAGE;
+import static csg.CSGProp.REMOVE_STUDENT_TITLE;
+import static csg.CSGProp.REMOVE_TEAM_MESSAGE;
+import static csg.CSGProp.REMOVE_TEAM_TITLE;
+import static csg.CSGProp.TEAM_NAME_AND_LINK_NOT_UNIQUE_MESSAGE;
+import static csg.CSGProp.TEAM_NAME_AND_LINK_NOT_UNIQUE_TITLE;
 import csg.data.CSGData;
 import csg.data.Student;
 import csg.data.Team;
 import djf.controller.AppFileController;
+import djf.settings.AppPropertyType;
+import djf.ui.AppMessageDialogSingleton;
+import djf.ui.OKCancelDialogSingleton;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
@@ -29,7 +50,8 @@ public class ProjectDataController {
     AppFileController fileController;
     Button updateButton1;
     Button updateButton2;
-    boolean isInUpdateState;
+    boolean isInUpdateState1;
+    boolean isInUpdateState2;
     
     public ProjectDataController(CSGApp initApp) {
         app = initApp;
@@ -49,12 +71,18 @@ public class ProjectDataController {
         String textColor = getColorCode(textColorPicker.getValue());
         String link = linkTextField.getText();
         
-        data.addTeam(name, color, textColor, link);
-        projectWorkspace.resetTeamFields();
+        if (verifyTeam(name, color, textColor, link)) {
+            return;
+        }
+        else {
+            data.addTeam(name, color, textColor, link);
+            projectWorkspace.resetTeamFields();
+        }
     }
     
     
     public void handleEditTeam() {
+        isInUpdateState1 = true;
         CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
         ProjectTabBuilder projectWorkspace = workspace.getProjectTabBuilder();
         TableView teamTable = projectWorkspace.getTeamTable();
@@ -85,9 +113,14 @@ public class ProjectDataController {
             String newTextColor = getColorCode(textColorPicker.getValue());
             String newLink = linkTextField.getText();
             
-            Team newTeam = new Team(newName, newColor, newTextColor, newLink);
-            data.editTeam(newTeam, data.getTeams().indexOf(team));
-            teamTable.refresh();
+            if (verifyTeam(newName, newColor, newTextColor, newLink)) {
+                return;
+            }
+            else {
+                Team newTeam = new Team(newName, newColor, newTextColor, newLink);
+                data.editTeam(newTeam, data.getTeams().indexOf(team));
+                teamTable.refresh();
+            }
         });
     }
     
@@ -103,6 +136,7 @@ public class ProjectDataController {
         updateButton1.setOnAction(e -> {
             handleAddTeam();
         });
+        isInUpdateState1 = false;
     }
     
     public void handleRemoveTeam() {
@@ -117,8 +151,39 @@ public class ProjectDataController {
             return;
         }
         
-        data.removeTeam(team.getName());
-        projectWorkspace.resetTeamFields();
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        OKCancelDialogSingleton okCancelDialog = OKCancelDialogSingleton.getSingleton();
+        okCancelDialog.show(props.getProperty(REMOVE_TEAM_TITLE), props.getProperty(REMOVE_TEAM_MESSAGE));
+        String selection = okCancelDialog.getSelection();
+
+        if (selection.equals(props.getProperty(AppPropertyType.OK_TEXT))) {
+            data.removeTeam(team.getName());
+            projectWorkspace.resetTeamFields();
+        }
+        else {
+            return;
+        }
+        if (isInUpdateState1) {
+            
+            
+            selectedItem = teamTable.getSelectionModel().getSelectedItem();
+            team = (Team) selectedItem;
+            
+            if (team != null) {
+                TextField nameTextField = projectWorkspace.getNameTextField();
+                ColorPicker colorPicker = projectWorkspace.getColorPicker();
+                ColorPicker textColorPicker = projectWorkspace.getTextColorPicker();
+                TextField linkTextField = projectWorkspace.getLinkTextField();
+
+                nameTextField.setText(team.getName());
+                colorPicker.setValue(Color.web(team.getColor()));
+                textColorPicker.setValue(Color.web(team.getTextColor()));
+                linkTextField.setText(team.getLink());
+            }
+            else {
+                handleClearTeam();
+            }
+        }
     }
     
     public void handleAddStudent() {
@@ -131,14 +196,24 @@ public class ProjectDataController {
         
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
-        String team = teamBox.getValue().getName();
+        String team = "";
         String role = roleTextField.getText();
         
-        data.addStudent(firstName, lastName, team, role);
-        projectWorkspace.resetStudentFields();
+        if (!(teamBox.getValue() == null)) {
+           team = teamBox.getValue().getName();
+        }
+        
+        if (verifyStudent(firstName, lastName, team)) {
+            return;
+        }
+        else {
+            data.addStudent(firstName, lastName, team, role);
+            projectWorkspace.resetStudentFields();
+        }
     }
     
     public void handleEditStudent() {
+        isInUpdateState2 = true;
         CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
         ProjectTabBuilder projectWorkspace = workspace.getProjectTabBuilder();
         TableView studentTable = projectWorkspace.getStudentTable();
@@ -166,12 +241,21 @@ public class ProjectDataController {
         updateButton2.setOnAction(e -> { 
             String newFirstName = firstNameTextField.getText();
             String newLastName = lastNameTextField.getText();
-            String newTeam = teamBox.getValue().getName();
+            String newTeam = "";
             String newRole = roleTextField.getText();
             
-            Student newStudent = new Student(newFirstName, newLastName, newTeam, newRole);
-            data.editStudent(newStudent, data.getStudents().indexOf(student));
-            studentTable.refresh();
+            if (!(teamBox.getValue() == null)) {
+                newTeam = teamBox.getValue().getName();
+            }
+            
+            if (verifyStudent(newFirstName, newLastName, newTeam)) {
+                return;
+            }
+            else {      
+                Student newStudent = new Student(newFirstName, newLastName, newTeam, newRole);
+                data.editStudent(newStudent, data.getStudents().indexOf(student));
+                studentTable.refresh();
+            }
         });
     }
     
@@ -187,6 +271,7 @@ public class ProjectDataController {
         updateButton2.setOnAction(e -> {
             handleAddTeam();
         });
+        isInUpdateState2 = false;
     }
     
     public void handleRemoveStudent() {
@@ -201,11 +286,92 @@ public class ProjectDataController {
             return;
         }
         
-        data.removeStudent(student.getFirstName(), student.getLastName());
-        projectWorkspace.resetStudentFields();
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        OKCancelDialogSingleton okCancelDialog = OKCancelDialogSingleton.getSingleton();
+        okCancelDialog.show(props.getProperty(REMOVE_STUDENT_TITLE), props.getProperty(REMOVE_STUDENT_MESSAGE));
+        String selection = okCancelDialog.getSelection();
+
+        if (selection.equals(props.getProperty(AppPropertyType.OK_TEXT))) {
+            data.removeStudent(student.getFirstName(), student.getLastName());
+            projectWorkspace.resetStudentFields();
+        }
+        else {
+            return;
+        }
+        if (isInUpdateState2) {
+            selectedItem = studentTable.getSelectionModel().getSelectedItem();
+            student = (Student) selectedItem;
+            
+            if (student != null) {
+                TextField firstNameTextField = projectWorkspace.getFirstNameTextField();
+                TextField lastNameTextField = projectWorkspace.getLastNameTextField();
+                ComboBox<Team> teamBox = projectWorkspace.getTeamBox();
+                TextField roleTextField = projectWorkspace.getRoleTextField();
+                
+                firstNameTextField.setText(student.getFirstName());
+                lastNameTextField.setText(student.getLastName());
+                teamBox.setValue(data.getTeam(student.getTeam()));
+                roleTextField.setText(student.getRole());
+            }
+            else {
+                handleClearStudent();
+            }
+        }
+        
     }
     
     private String getColorCode(Color color) {
         return color.toString().substring(2, 8);
+    }
+    
+    private boolean verifyTeam(String name, String color, String textColor, String link) {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        
+        if (name.isEmpty()) {
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_TEAM_NAME_TITLE), props.getProperty(MISSING_TEAM_NAME_MESSAGE));
+            return true;
+        }
+        else if (color.isEmpty()) {
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_TEAM_COLOR_TITLE), props.getProperty(MISSING_TEAM_COLOR_MESSAGE));
+            return true; 
+        }
+        else if (textColor.isEmpty()) {
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_TEAM_TEXT_COLOR_TITLE), props.getProperty(MISSING_TEAM_TEXT_COLOR_MESSAGE));
+            return true; 
+        }
+        else if (link.isEmpty()) {
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_TEAM_LINK_TITLE), props.getProperty(MISSING_TEAM_LINK_MESSAGE));
+            return true; 
+        }
+        else if (data.containsTeam(name, link)) {
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(TEAM_NAME_AND_LINK_NOT_UNIQUE_TITLE), props.getProperty(TEAM_NAME_AND_LINK_NOT_UNIQUE_MESSAGE));
+            return true; 
+        }
+        else {
+            return false;
+        }
+    }
+    
+    private boolean verifyStudent(String firstName, String lastName, String team) {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        
+        if (firstName.isEmpty() || lastName.isEmpty()) {
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_STUDENT_NAME_TITLE), props.getProperty(MISSING_STUDENT_NAME_MESSAGE));
+            return true;
+        }
+        else if (team.isEmpty()) {
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(MISSING_STUDENT_TEAM_TITLE), props.getProperty(MISSING_STUDENT_TEAM_MESSAGE));
+            return true; 
+        }
+        else {
+            return false;
+        }
     }
 }

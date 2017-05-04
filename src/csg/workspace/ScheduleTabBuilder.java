@@ -265,7 +265,7 @@ public class ScheduleTabBuilder {
         topicText = new Label(props.getProperty(CSGProp.TOPIC_TEXT) + ":");
         linkText = new Label(props.getProperty(CSGProp.LINK_TEXT) + ":");
         criteriaText = new Label(props.getProperty(CSGProp.CRITERIA_TEXT) + ":");
-        addUpdateButton = new Button(props.getProperty(CSGProp.ADD_UPDATE_BUTTON_TEXT));
+        addUpdateButton = new Button(props.getProperty(CSGProp.ADD_SCHEDULE_ITEM_BUTTON_TEXT));
         
         grid.add(addEditText, 0, 0);
         grid.add(typeText, 0, 1);

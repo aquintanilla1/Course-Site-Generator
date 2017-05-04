@@ -56,6 +56,7 @@
         <property name="EXPORT_ERROR_MESSAGE"   value="An error occured exporting work."></property>
         <property name="PROPERTIES_LOAD_ERROR_MESSAGE"	value="An error occured loading a properties file."></property>	
         <property name="PROPERTIES_LOAD_ERROR_TITLE"	value="Properties File Loading Error"></property>
+        
 	
         <!-- VERIFICATION MESSAGES -->
 	
@@ -79,6 +80,16 @@
 		
 		<property name="TAS_IN_CELLS_TITLE"     value="TAs In Cells To Be Deleted"></property>
 		<property name="TAS_IN_CELLS_MESSAGE"   value="There are TAs in the cells that will be removed by your selection. Continue?"></property>
+		<property name="REMOVE_TA_TITLE"            value="Remove TA?"></property>
+		<property name="REMOVE_TA_MESSAGE"        	value="TA will be removed from the Course Site. Continue?"></property>
+		<property name="REMOVE_RECITATION_TITLE"  	value="Remove Recitation?"></property>
+		<property name="REMOVE_RECITATION_MESSAGE" 	value="Recitation will be removed from the Course Site. Continue?"></property>
+		<property name="REMOVE_SCHEDULE_ITEM_TITLE"   	value="Remove Schedule Item?"></property>
+		<property name="REMOVE_SCHEDULE_ITEM_MESSAGE"   value="Schedule Item will be removed from the Course Site. Continue?"></property>
+		<property name="REMOVE_TEAM_TITLE"              value="Remove Team?"></property>
+		<property name="REMOVE_TEAM_MESSAGE"            value="Team will be removed from the Course Site. Continue?"></property>
+		<property name="REMOVE_STUDENT_TITLE"           value="Remove Student?"></property>
+		<property name="REMOVE_STUDENT_MESSAGE"         value="Student will be removed from the Course Site. Continue?"></property>
 		<property name="WORK_FILE_TITLE"        value="OfficeHoursGridData"></property>
 		<property name="WORK_FILE_EXT"			value="json"></property>
 		<property name="WORK_FILE_EXT_DESC"		value="Course Site"></property>
@@ -110,6 +121,36 @@
         <property name="INVALID_TA_EMAIL_MESSAGE"       value="You must provide a valid TA Email"></property>
         <property name="INVALID_TIMES_TITLE"            value="Invalid Times"></property>
         <property name="INVALID_TIMES_MESSAGE"          value="The Start Time must be earlier than the End Time"></property>
+        <property name="MISSING_RECITATION_SECTION_TITLE"  		value="Missing Recitation Section"></property>
+		<property name="MISSING_RECITATION_SECTION_MESSAGE"   	value="You must provide a Recitation Section"></property>
+		<property name="MISSING_RECITATION_TIME_TITLE"        	value="Missing Recitation Day and Time"></property>
+		<property name="MISSING_RECITATION_TIME_MESSAGE"       	value="You must provide a Day and Time"></property>
+		<property name="RECITATION_SECTION_NOT_UNIQUE_TITLE"   	value="Recitation Section Not Unique"></property>
+		<property name="RECITATION_SECTION_NOT_UNIQUE_MESSAGE"  value="You must provide a unique Recitation Section"></property>
+		<property name="MISSING_RECITATION_LOCATION_TITLE"  	value="Missing Recitation Location"></property>
+		<property name="MISSING_RECITATION_LOCATION_MESSAGE"   	value="You must provide a Recitation Location"></property>
+		<property name="RECITATION_TAS_ARE_THE_SAME_TITLE" 		value="Recitation TAs are the Same"></property>
+		<property name="RECITATION_TAS_ARE_THE_SAME_MESSAGE" 	value="You must provide different TAs"></property>
+		<property name="MISSING_SCHEDULE_TYPE_TITLE"            value="Missing Schedule Item Type"></property>
+		<property name="MISSING_SCHEDULE_TYPE_MESSAGE"          value="You must provide a Schedule Item Type"></property>
+		<property name="MISSING_SCHEDULE_DATE_TITLE"            value="Missing Schedule Item Date"></property>
+		<property name="MISSING_SCHEDULE_DATE_MESSAGE"          value="You must provide a Schedule Item Date"></property>
+		<property name="MISSING_SCHEDULE_TITLE_TITLE"           value="Missing Schedule Item Title"></property>
+		<property name="MISSING_SCHEDULE_TITLE_MESSAGE"         value="You must provide a Schedule Item Title"></property>
+		<property name="MISSING_TEAM_NAME_TITLE"               	value="Missing Team Name"></property>
+		<property name="MISSING_TEAM_NAME_MESSAGE"              value="You must provide a Team Name"></property>
+		<property name="MISSING_TEAM_COLOR_TITLE"               value="Missing Team Color"></property>
+		<property name="MISSING_TEAM_COLOR_MESSAGE"             value="You must provide a Team Color"></property>
+		<property name="MISSING_TEAM_TEXT_COLOR_TITLE"          value="Missing Team Text Color"></property>
+		<property name="MISSING_TEAM_TEXT_COLOR_MESSAGE"        value="You must provide a Team Text Color"></property>
+		<property name="MISSING_TEAM_LINK_TITLE"                value="Missing Team Link"></property>
+		<property name="MISSING_TEAM_LINK_MESSAGE"              value="You must provide a Team Link"></property>
+		<property name="TEAM_NAME_AND_LINK_NOT_UNIQUE_TITLE"	value="Team Name and Link Not Unique"></property>
+		<property name="TEAM_NAME_AND_LINK_NOT_UNIQUE_MESSAGE"	value="You must provide a unique Team Name and Link"></property>
+		<property name="MISSING_STUDENT_NAME_TITLE"             value="Missing Student Name"></property>
+		<property name="MISSING_STUDENT_NAME_MESSAGE"           value="You must provide a First and Last Name"></property>
+		<property name="MISSING_STUDENT_TEAM_TITLE"             value="Missing Student's Assigned Team"></property>
+		<property name="MISSING_STUDENT_TEAM_MESSAGE"           value="You must provide a Team for the Student"></property>
         
         <property name="COURSE_DETAILS_TAB"             value="Course Details"></property>
         <property name="COURSE_INFO_TEXT"               value="Course Info"></property>

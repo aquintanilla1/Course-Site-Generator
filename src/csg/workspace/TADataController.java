@@ -22,6 +22,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import csg.workspace.CSGWorkspace;
 import csg.workspace.TADataTabBuilder;
+import djf.settings.AppPropertyType;
+import djf.ui.OKCancelDialogSingleton;
 
 /**
  * This class provides responses to all taWorkspace interactions, meaning
@@ -181,9 +183,18 @@ public class TADataController {
             return;
         }
         else {
-            String taName = ta.getName();
-            String taEmail = ta.getEmail();
-            data.removeTA(taName, taEmail);
+            OKCancelDialogSingleton okCancelDialog = OKCancelDialogSingleton.getSingleton();
+            okCancelDialog.show(props.getProperty(REMOVE_TA_TITLE), props.getProperty(REMOVE_TA_MESSAGE));
+            String selection = okCancelDialog.getSelection();
+            if (selection.equals(props.getProperty(AppPropertyType.OK_TEXT))) {
+                String taName = ta.getName();
+                String taEmail = ta.getEmail();
+                data.removeTA(taName, taEmail);
+            }
+            else {
+                return;
+            }
+            
         }
         if (isInUpdateState) {
             selectedItem = taTable.getSelectionModel().getSelectedItem();  
