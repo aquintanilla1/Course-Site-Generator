@@ -132,6 +132,12 @@
 		<property name="MISSING_RECITATION_LOCATION_MESSAGE"   	value="Necesitas proporcionar un Ubicación del Recitación"></property>
 		<property name="RECITATION_TAS_ARE_THE_SAME_TITLE" 		value="AEs de Recitatción son Iguales"></property>
 		<property name="RECITATION_TAS_NOT_UNIQUE_MESSAGE" 		value="Necesitas proporcionar Diferentes AEs"></property>
+		<property name="START_DATE_NOT_MONDAY_TITLE"               value="Fecha de Inicio no es lunes"></property>
+		<property name="START_DATE_NOT_MONDAY_MESSAGE"               value="La fecha de inicio necesita ser un lunes"></property>
+		<property name="END_DATE_NOT_FRIDAY_TITLE"               value="Fecha de Finalización no es viernes"></property>
+		<property name="END_DATE_NOT_FRIDAY_MESSAGE"               value="La fecha de finalización necesita ser un viernes"></property>
+		<property name="START_DATE_AFTER_END_DATE_TITLE"		value="Lunes de inicio es después del viernes de finalización"></property>
+		<property name="START_DATE_AFTER_END_DATE_MESSAGE"		value="El lunes de inicio necesita ser antes del viernes de finalización"></property>
 		<property name="MISSING_SCHEDULE_TYPE_TITLE"            value="Tipo de Itinarario Falta"></property>
 		<property name="MISSING_SCHEDULE_TYPE_MESSAGE"          value="Necesitas proporcionar un Tipo de Itinerario"></property>
 		<property name="MISSING_SCHEDULE_DATE_TITLE"   			value="Fecha de Itinerario Falta"></property>

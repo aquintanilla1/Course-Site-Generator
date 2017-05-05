@@ -135,11 +135,18 @@ public class ScheduleTabBuilder {
             controller.handleRemoveItem();
         });
         
-        
         scheduleTable.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.DELETE) {
             controller.handleRemoveItem();
             }
+        });
+        
+        startPicker.setOnAction(e -> {
+            controller.handleStartDate(startPicker.getValue());
+        });
+        
+        endPicker.setOnAction(e -> {
+            controller.handleEndDate(endPicker.getValue());
         });
     }
     

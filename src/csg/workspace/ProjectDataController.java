@@ -164,8 +164,6 @@ public class ProjectDataController {
             return;
         }
         if (isInUpdateState1) {
-            
-            
             selectedItem = teamTable.getSelectionModel().getSelectedItem();
             team = (Team) selectedItem;
             
@@ -347,7 +345,7 @@ public class ProjectDataController {
 	    dialog.show(props.getProperty(MISSING_TEAM_LINK_TITLE), props.getProperty(MISSING_TEAM_LINK_MESSAGE));
             return true; 
         }
-        else if (data.containsTeam(name, link)) {
+        else if (data.containsTeam(name, link) && !isInUpdateState1) {
             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(TEAM_NAME_AND_LINK_NOT_UNIQUE_TITLE), props.getProperty(TEAM_NAME_AND_LINK_NOT_UNIQUE_MESSAGE));
             return true; 

@@ -64,7 +64,7 @@
         {
             "name":"Bill Gates",
             "email":"billGates@microsoft.com",
-            "isUndergrad":false
+            "isUndergrad":true
         }
     ],
     "officeHours":[
@@ -99,16 +99,16 @@
             "ta_2":"Bill Gates"
         },
         {
-            "section":"R04",
+            "section":"R05",
             "recitationInstructor":"Vriog",
             "day_time":"Fri 5:30-6:23pm",
-            "location":"Up yours",
+            "location":"Up yoursttt",
             "ta_1":"Barack Obama",
             "ta_2":"Bill Gates"
         }
     ],
-    "startingMonday":"01-23-2017",
-    "endingFriday":"05-19-2017",
+    "startingMonday":"04-10-2017",
+    "endingFriday":"07-21-2017",
     "schedule_items":[
         {
             "type":"Holiday",

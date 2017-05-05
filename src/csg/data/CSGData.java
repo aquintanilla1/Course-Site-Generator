@@ -619,6 +619,10 @@ public class CSGData implements AppDataComponent {
                TADataTabBuilder taWorkspace = csgWorkspace.getTATabBuilder();
                jTPS_Transaction transaction = new RemoveTA_Transaction(ta, teachingAssistants, this, tempHours);
                taWorkspace.getJTPS().addTransaction(transaction);
+               removeTAsInRecitations(ta.getName());
+               RecitationTabBuilder recitationWorkspace = csgWorkspace.getRecitationTabBuilder();
+               recitationWorkspace.getRecitationTable().refresh();
+               
                //Collections.sort(teachingAssistants);
                break;
             }
@@ -732,6 +736,17 @@ public class CSGData implements AppDataComponent {
             }
         }
         markAsEdited();
+    }
+    
+    public void removeTAsInRecitations(String ta) {
+        for (Recitation r: recitations) {
+            if (r.getTa1().equals(ta)) {
+                r.setTa1("");
+            }
+            else if (r.getTa2().equals(ta)) {
+                r.setTa2("");
+            }
+        }
     }
     
     public void addScheduleItem(String type, String date, String time, String title, String topic, String link, String criteria) {

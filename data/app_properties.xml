@@ -131,6 +131,12 @@
 		<property name="MISSING_RECITATION_LOCATION_MESSAGE"   	value="You must provide a Recitation Location"></property>
 		<property name="RECITATION_TAS_ARE_THE_SAME_TITLE" 		value="Recitation TAs are the Same"></property>
 		<property name="RECITATION_TAS_ARE_THE_SAME_MESSAGE" 	value="You must provide different TAs"></property>
+		<property name="START_DATE_NOT_MONDAY_TITLE"               value="Starting Date is Not Monday"></property>
+		<property name="START_DATE_NOT_MONDAY_MESSAGE"               value="The Starting Date selected must be a Monday"></property>
+		<property name="END_DATE_NOT_FRIDAY_TITLE"               value="Ending Date is Not Friday"></property>
+		<property name="END_DATE_NOT_FRIDAY_MESSAGE"               value="The Ending Date must be a Friday"></property>
+		<property name="START_DATE_AFTER_END_DATE_TITLE"		value="Starting Monday After Ending Friday"></property>
+		<property name="START_DATE_AFTER_END_DATE_MESSAGE"		value="The Starting Monday must be before the Ending Friday"></property>
 		<property name="MISSING_SCHEDULE_TYPE_TITLE"            value="Missing Schedule Item Type"></property>
 		<property name="MISSING_SCHEDULE_TYPE_MESSAGE"          value="You must provide a Schedule Item Type"></property>
 		<property name="MISSING_SCHEDULE_DATE_TITLE"            value="Missing Schedule Item Date"></property>

@@ -8,6 +8,8 @@ package csg.workspace;
 import csg.CSGApp;
 import csg.CSGProp;
 import static csg.CSGProp.EDIT_RECITATION_BUTTON_TEXT;
+import static csg.CSGProp.END_DATE_NOT_FRIDAY_MESSAGE;
+import static csg.CSGProp.END_DATE_NOT_FRIDAY_TITLE;
 import static csg.CSGProp.MISSING_SCHEDULE_DATE_MESSAGE;
 import static csg.CSGProp.MISSING_SCHEDULE_DATE_TITLE;
 import static csg.CSGProp.MISSING_SCHEDULE_TITLE_MESSAGE;
@@ -16,6 +18,10 @@ import static csg.CSGProp.MISSING_SCHEDULE_TYPE_MESSAGE;
 import static csg.CSGProp.MISSING_SCHEDULE_TYPE_TITLE;
 import static csg.CSGProp.REMOVE_SCHEDULE_ITEM_MESSAGE;
 import static csg.CSGProp.REMOVE_SCHEDULE_ITEM_TITLE;
+import static csg.CSGProp.START_DATE_AFTER_END_DATE_MESSAGE;
+import static csg.CSGProp.START_DATE_AFTER_END_DATE_TITLE;
+import static csg.CSGProp.START_DATE_NOT_MONDAY_MESSAGE;
+import static csg.CSGProp.START_DATE_NOT_MONDAY_TITLE;
 import static csg.CSGProp.UPDATE_BUTTON_TEXT;
 import csg.data.CSGData;
 import csg.data.Recitation;
@@ -44,10 +50,72 @@ public class ScheduleDataController {
     AppFileController fileController;
     Button updateButton;
     boolean isInUpdateState;
+    boolean savable1;
+    boolean savable2;
     
     public ScheduleDataController(CSGApp initApp) {
         app = initApp;
         data = (CSGData) app.getDataComponent();
+        savable1 = true;
+        savable2 = true;
+    }
+    
+    public void handleStartDate(LocalDate startDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
+        ScheduleTabBuilder scheduleWorkspace = workspace.getScheduleTabBuilder();
+        
+        if (startDate.getDayOfWeek().getValue() != 1) {
+            savable1 = false;
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(START_DATE_NOT_MONDAY_TITLE), props.getProperty(START_DATE_NOT_MONDAY_MESSAGE));
+            scheduleWorkspace.getStartPicker().setValue(LocalDate.parse(data.getStartMonday(), formatter));
+        }
+        else if (startDate.isAfter(LocalDate.parse(data.getEndFriday(), formatter))) {
+            savable1 = false;
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(START_DATE_AFTER_END_DATE_TITLE), props.getProperty(START_DATE_AFTER_END_DATE_MESSAGE));
+            scheduleWorkspace.getStartPicker().setValue(LocalDate.parse(data.getStartMonday(), formatter));
+        }
+        else {
+            if(savable1) {
+                data.setStartMonday(getDate(startDate));
+                data.markAsEdited();
+            }
+            else {
+                savable1 = true;
+            }
+        }
+    }
+    
+    public void handleEndDate(LocalDate endDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
+        ScheduleTabBuilder scheduleWorkspace = workspace.getScheduleTabBuilder(); 
+        
+        if (endDate.getDayOfWeek().getValue() != 5) {
+            savable2 = false;
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(END_DATE_NOT_FRIDAY_TITLE), props.getProperty(END_DATE_NOT_FRIDAY_MESSAGE));
+            scheduleWorkspace.getEndPicker().setValue(LocalDate.parse(data.getEndFriday(), formatter));
+        }
+        else if (endDate.isBefore(LocalDate.parse(data.getEndFriday(), formatter))) {
+            savable2 = false;
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(START_DATE_AFTER_END_DATE_TITLE), props.getProperty(START_DATE_AFTER_END_DATE_MESSAGE));
+            scheduleWorkspace.getEndPicker().setValue(LocalDate.parse(data.getEndFriday(), formatter));
+        }
+        else {
+            if (savable2) {
+                data.setEndFriday(getDate(endDate));
+                data.markAsEdited();
+            }
+            else {
+                savable2 = true;
+            }
+        }
     }
     
     public void handleAddItem() {
@@ -215,7 +283,7 @@ public class ScheduleDataController {
     }
     
     private String getDate(LocalDate localDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
         return localDate.format(formatter);
     }
     

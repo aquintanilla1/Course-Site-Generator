@@ -250,7 +250,7 @@ public class RecitationDataController {
                 dialog.show(props.getProperty(RECITATION_TAS_ARE_THE_SAME_TITLE), props.getProperty(RECITATION_TAS_ARE_THE_SAME_MESSAGE));
                 return true;
         }
-        else if (data.containsRecitation(section)) {
+        else if (data.containsRecitation(section) && !isInUpdateState) {
             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(RECITATION_SECTION_NOT_UNIQUE_TITLE), props.getProperty(RECITATION_SECTION_NOT_UNIQUE_MESSAGE));
             return true;
