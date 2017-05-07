@@ -279,6 +279,46 @@ public class CSGData implements AppDataComponent {
         this.courseInfo = courseInfo;
     }
     
+    public void setSubject(String subject) {
+        courseInfo.set(0, subject);
+        markAsEdited();
+    }
+    
+    public void setSemester(String semester) {
+        courseInfo.set(1, semester);
+        markAsEdited();
+    }
+    
+    public void setNumber(String number) {
+        courseInfo.set(2, number);
+        markAsEdited();
+    }
+    
+    public void setYear(String year) {
+        courseInfo.set(3, year);
+        markAsEdited();
+    }
+    
+    public void setTitle(String title) {
+        courseInfo.set(4, title);
+        markAsEdited();
+    }
+    
+    public void setInstructor(String instructor) {
+        courseInfo.set(5, instructor);
+        markAsEdited();
+    }
+    
+    public void setInstructorHome(String instructorHome) {
+        courseInfo.set(6, instructorHome);
+        markAsEdited();
+    }
+    
+    public void setExportPath(String filePath) {
+        courseInfo.set(7, filePath);
+        markAsEdited();
+    }
+    
     public void setTemplateDirectory(String dirPath) {
         templateDir = dirPath;
     }
@@ -339,7 +379,6 @@ public class CSGData implements AppDataComponent {
         courseInfo.clear();
         courseInfo.addAll("", "", "", "", "", "", "", props.getProperty(CSGProp.DEFAULT_DIR_TEXT));
         sitePages.clear();
-        makeSitePages(sitePages);
         teachingAssistants.clear();
         officeHours.clear();
         recitations.clear();
@@ -558,6 +597,11 @@ public class CSGData implements AppDataComponent {
     
     public void markAsEdited() {
         fileController.markAsEdited(app.getGUI());
+    }
+    
+    public void addSitePage(boolean isUsed, String navBarTitle, String fileName, String script) {
+        SitePage page = new SitePage(isUsed, navBarTitle, fileName, script);
+        sitePages.add(page);
     }
     
     public void clearTAInput() {

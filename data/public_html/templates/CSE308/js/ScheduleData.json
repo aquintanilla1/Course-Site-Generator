@@ -1,0 +1,22 @@
+
+{
+    "subject":"",
+    "semester":"",
+    "number":"",
+    "year":"",
+    "courseTitle":"",
+    "startingMondayMonth":"",
+    "startingMondayDay":"",
+    "endingFridayMonth":"",
+    "endingFridayDay":"",
+    "holidays":[
+    ],
+    "lectures":[
+    ],
+    "references":[
+    ],
+    "recitations":[
+    ],
+    "hws":[
+    ]
+}

@@ -62,20 +62,20 @@ public class ScheduleItem {
     }
     
     public LocalDate getLocalDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
         
         return LocalDate.parse(getDate(), formatter);
     }
     
     public String getMonth() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
         LocalDate localDate = LocalDate.parse(date.get(), formatter);
         
         return String.valueOf(localDate.getMonthValue());
     }
     
     public String getDay() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
         LocalDate localDate = LocalDate.parse(date.get(), formatter);
         
         return String.valueOf(localDate.getDayOfMonth());

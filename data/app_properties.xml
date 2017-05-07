@@ -111,6 +111,8 @@
         <property name="EMAIL_PATTERN"                  value="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"></property>
             
         <!-- WORKSPACE ERROR MESSAGES -->
+        <property name="MISSING_HTML_FILES_TITLE"		value="No HTML Files in Template"></property>
+        <property name="MISSING_HTML_FILES_MESSAGE"		value="Template does not contain html files."></property>
         <property name="MISSING_TA_NAME_TITLE"          value="Missing TA Name"></property>
         <property name="MISSING_TA_NAME_MESSAGE"        value="You must provide a TA Name"></property>
         <property name="MISSING_TA_EMAIL_TITLE"         value="Missing TA Email"></property>

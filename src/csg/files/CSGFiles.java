@@ -19,6 +19,7 @@ import djf.components.AppFileComponent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -145,8 +146,8 @@ public class CSGFiles implements AppFileComponent {
 	ObservableList<String> courseInfo = dataManager.getCourseInfo();
         JsonObject courseInfoJson = Json.createObjectBuilder()
                 .add(JSON_SUBJECT, courseInfo.get(0))
-                .add(JSON_NUMBER, courseInfo.get(1))
-                .add(JSON_SEMESTER, courseInfo.get(2))
+                .add(JSON_SEMESTER, courseInfo.get(1))
+                .add(JSON_NUMBER, courseInfo.get(2))
                 .add(JSON_YEAR, courseInfo.get(3))
                 .add(JSON_COURSE_TITLE, courseInfo.get(4))
                 .add(JSON_INSTRUCTOR_NAME, courseInfo.get(5))
@@ -311,8 +312,8 @@ public class CSGFiles implements AppFileComponent {
         for (int i = 0; i < courseInfoArray.size(); i++) {
             JsonObject jsonCourseInfo = courseInfoArray.getJsonObject(i);
             dataManager.getCourseInfo().set(0, jsonCourseInfo.getString(JSON_SUBJECT));
-            dataManager.getCourseInfo().set(1, jsonCourseInfo.getString(JSON_NUMBER));
-            dataManager.getCourseInfo().set(2, jsonCourseInfo.getString(JSON_SEMESTER));
+            dataManager.getCourseInfo().set(1, jsonCourseInfo.getString(JSON_SEMESTER));
+            dataManager.getCourseInfo().set(2, jsonCourseInfo.getString(JSON_NUMBER));
             dataManager.getCourseInfo().set(3, jsonCourseInfo.getString(JSON_YEAR));
             dataManager.getCourseInfo().set(4, jsonCourseInfo.getString(JSON_COURSE_TITLE));
             dataManager.getCourseInfo().set(5, jsonCourseInfo.getString(JSON_INSTRUCTOR_NAME));
@@ -326,7 +327,10 @@ public class CSGFiles implements AppFileComponent {
         for (int i = 0; i < sitePageArray.size(); i++) {
             JsonObject jsonSitePage = sitePageArray.getJsonObject(i);
             boolean isUsed = jsonSitePage.getBoolean(JSON_PAGE_USED);
-            dataManager.getSitePages().get(i).setUsed(isUsed);
+            String navBarTitle = jsonSitePage.getString(JSON_PAGE_NAVBAR_TITLE);
+            String fileName = jsonSitePage.getString(JSON_PAGE_FILE_NAME);
+            String script = jsonSitePage.getString(JSON_PAGE_SCRIPT);
+            dataManager.addSitePage(isUsed, navBarTitle, fileName, script);
         }
         
         JsonArray pageStyleArray = json.getJsonArray(JSON_STYLE);
@@ -439,7 +443,7 @@ public class CSGFiles implements AppFileComponent {
         CSGData dataManager = (CSGData) data;
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         filePath = dataManager.getCourseInfo().get(7);
-        String sourcePath = System.getProperty("user.dir") + "/data/public_html";
+        String sourcePath = dataManager.getTemplateDirectory();
         String directoryPath;
         
         if (filePath.equals(props.getProperty(CSGProp.DEFAULT_DIR_TEXT))) {
@@ -489,8 +493,8 @@ public class CSGFiles implements AppFileComponent {
         
         JsonObject tasJSO = Json.createObjectBuilder()
                 .add(JSON_SUBJECT, dataManager.getCourseInfo().get(0))
-                .add(JSON_NUMBER, dataManager.getCourseInfo().get(1))
-                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(2))
+                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(1))
+                .add(JSON_NUMBER, dataManager.getCourseInfo().get(2))
                 .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
                 .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
 		.add(JSON_START_HOUR, "" + dataManager.getStartHour())
@@ -600,8 +604,8 @@ public class CSGFiles implements AppFileComponent {
         
         JsonObject scheduleJSO = Json.createObjectBuilder()
                 .add(JSON_SUBJECT, dataManager.getCourseInfo().get(0))
-                .add(JSON_NUMBER, dataManager.getCourseInfo().get(1))
-                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(2))
+                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(1))
+                .add(JSON_NUMBER, dataManager.getCourseInfo().get(2))
                 .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
                 .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
                 .add(JSON_STARTING_MONDAY_MONTH, dataManager.getStartMonth())
@@ -648,8 +652,8 @@ public class CSGFiles implements AppFileComponent {
         
         JsonObject teamsAndStudentsJSO = Json.createObjectBuilder()
                 .add(JSON_SUBJECT, dataManager.getCourseInfo().get(0))
-                .add(JSON_NUMBER, dataManager.getCourseInfo().get(1))
-                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(2))
+                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(1))
+                .add(JSON_NUMBER, dataManager.getCourseInfo().get(2))
                 .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
                 .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
                 .add(JSON_TEAMS, teamArray)
@@ -686,8 +690,8 @@ public class CSGFiles implements AppFileComponent {
         
         JsonObject workJSO = Json.createObjectBuilder()
                 .add(JSON_SUBJECT, dataManager.getCourseInfo().get(0))
-                .add(JSON_NUMBER, dataManager.getCourseInfo().get(1))
-                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(2))
+                .add(JSON_SEMESTER, dataManager.getCourseInfo().get(1))
+                .add(JSON_NUMBER, dataManager.getCourseInfo().get(2))
                 .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
                 .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
                 .add(JSON_WORK, workArray)
@@ -771,6 +775,7 @@ public class CSGFiles implements AppFileComponent {
         File sourceDirectory = new File(sourcePath);
         File selectedDirectory = new File(directoryPath);
         FileUtils.copyDirectory(sourceDirectory, selectedDirectory, true);
+        removeUnusedFiles(selectedDirectory);
     }
 
     @Override
@@ -778,4 +783,36 @@ public class CSGFiles implements AppFileComponent {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    private void removeUnusedFiles(File directory) {
+        CSGData dataManager = (CSGData) app.getDataComponent();
+        ArrayList<SitePage> unusedPages = new ArrayList<>();
+        
+        for (SitePage p: dataManager.getSitePages()) {
+            if (!p.getIsUsed()) {
+                unusedPages.add(p);
+            }
+        }
+        
+        FilenameFilter htmlFilter = new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                String lowercaseName = name.toLowerCase();
+                if (lowercaseName.endsWith(".html")) {
+                    return true;
+                } 
+                else {
+                    return false;
+                }
+            }
+        };
+        
+        File[] files = directory.listFiles(htmlFilter);
+        
+        for (int i = 0; i < unusedPages.size(); i++) {
+            for (int j = 0; j < files.length; j++) {
+                if (files[j].getName().equals(unusedPages.get(i).getFileName())) {
+                    files[j].delete();
+                }
+            }
+        }
+    }
 }

@@ -1,0 +1,16 @@
+
+{
+    "subject":"",
+    "semester":"",
+    "number":"",
+    "year":"",
+    "courseTitle":"",
+    "startHour":"9",
+    "endHour":"20",
+    "undergrad_tas":[
+    ],
+    "grad_tas":[
+    ],
+    "officeHours":[
+    ]
+}

@@ -112,6 +112,8 @@
         <property name="EMAIL_PATTERN"                  value="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"></property>
             
         <!-- WORKSPACE ERROR MESSAGES -->
+        <property name="MISSING_HTML_FILES_TITLE"		value="No Archivos HTML en la Plantilla"></property>
+        <property name="MISSING_HTML_FILES_MESSAGE"		value="Plantilla no contiene archivos de HTML."></property>
         <property name="MISSING_TA_NAME_TITLE"          value="Nombre de AE Falta"></property>
         <property name="MISSING_TA_NAME_MESSAGE"        value="Necesitas proporcionar un nombre de AE"></property>
         <property name="MISSING_TA_EMAIL_TITLE"         value="Email de AE Falta"></property>

@@ -1,0 +1,35 @@
+
+{
+    "subject":"CSE",
+    "semester":"Fall",
+    "number":"215",
+    "year":"2018",
+    "courseTitle":"This Should Be III",
+    "startingMondayMonth":"5",
+    "startingMondayDay":"8",
+    "endingFridayMonth":"5",
+    "endingFridayDay":"26",
+    "holidays":[
+        {
+            "month":"5",
+            "day":"17",
+            "title":"World War IV",
+            "link":"sticksandstones.com"
+        }
+    ],
+    "lectures":[
+        {
+            "month":"5",
+            "day":"10",
+            "title":"Where teh Time Goes",
+            "topic":"Who Knows",
+            "link":"vy.com"
+        }
+    ],
+    "references":[
+    ],
+    "recitations":[
+    ],
+    "hws":[
+    ]
+}

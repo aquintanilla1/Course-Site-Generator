@@ -3,10 +3,10 @@
     "course_info":[
         {
             "subject":"CSE",
-            "number":"333",
             "semester":"Spring",
+            "number":"219",
             "year":"2019",
-            "courseTitle":"Fake Classing",
+            "courseTitle":"Fake Classin",
             "instructorName":"Richard McKenna",
             "instructorHome":"http://www3.cs.stonybrook.edu/~richard/",
             "exportDir":"/Users/Alvaro/Documents/Bullshit5"

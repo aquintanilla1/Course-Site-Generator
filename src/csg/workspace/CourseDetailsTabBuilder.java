@@ -9,10 +9,14 @@ import csg.CSGApp;
 import csg.CSGProp;
 import csg.data.CSGData;
 import csg.data.SitePage;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Arrays;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -43,6 +47,7 @@ import properties_manager.PropertiesManager;
 public class CourseDetailsTabBuilder {
     CSGApp app;
     Tab tab;
+    CourseDetailsController controller;
     GridPane topPane, bottomPane;
     VBox centerPane;
     BorderPane wholePane;
@@ -86,6 +91,63 @@ public class CourseDetailsTabBuilder {
         allPane.setPadding(new Insets(7,15,15,15));
         allPane.getChildren().addAll(topPane, centerPane, bottomPane);
         tab.setContent(allPane);   
+        
+        controller = new CourseDetailsController(app);
+        CSGData data = (CSGData) app.getDataComponent();
+
+        
+        subjectBox.setOnAction(e -> {
+            data.setSubject(subjectBox.getValue());
+        });
+        
+        semesterBox.setOnAction(e -> {
+            data.setSemester(semesterBox.getValue());
+        });
+        
+        numberBox.setOnAction(e -> {
+            data.setNumber(numberBox.getValue());
+        });
+        
+        yearBox.setOnAction(e -> {
+            data.setYear(yearBox.getValue());
+        });
+        
+        titleTextField.setOnKeyReleased(e -> {
+            data.setTitle(titleTextField.getText());
+        });
+        
+        instructorNameTextField.setOnKeyReleased(e -> {
+            data.setInstructor(instructorNameTextField.getText());
+        });
+        
+        instructorHomeTextField.setOnKeyReleased(e -> {
+            data.setInstructorHome(instructorHomeTextField.getText());
+        });
+        
+        changeButton1.setOnAction(e -> {
+            controller.handleExportDirectoryChange();
+        });
+        
+        selectTemplateDirButton.setOnAction(e -> {
+            controller.handleTemplateChange();
+        });
+        
+        changeButton2.setOnAction(e -> {
+            controller.handleImageChange(imageBox, "Main");
+        });
+        
+        changeButton3.setOnAction(e -> {
+            controller.handleImageChange(leftFooterBox, "Left");
+        });
+        
+        changeButton4.setOnAction(e -> {
+            controller.handleImageChange(rightFooterBox, "Right");
+        });
+        
+        stylesheetBox.setOnAction(e -> {
+            data.setStylesheet(stylesheetBox.getValue());
+            data.markAsEdited();
+        });
     }
     
     public Tab getTab() {
@@ -158,8 +220,8 @@ public class CourseDetailsTabBuilder {
         grid.add(exportDirectory, 0, 6);
         
         //Second column in grid
-        subjectBox = new ComboBox();
-        semesterBox = new ComboBox();
+        subjectBox = new ComboBox(setSubjectBox());
+        semesterBox = new ComboBox(setSemesterBox());
         titleTextField = new TextField();
         instructorNameTextField = new TextField();
         instructorHomeTextField = new TextField();
@@ -180,8 +242,8 @@ public class CourseDetailsTabBuilder {
         grid.add(year, 2, 2);
         
         //Fourth column in grid
-        numberBox = new ComboBox();
-        yearBox = new ComboBox();
+        numberBox = new ComboBox(setNumbersBox());
+        yearBox = new ComboBox(setYearsBox());
         changeButton1 = new Button(props.getProperty(CSGProp.CHANGE_BUTTON_TEXT));
         
         grid.add(numberBox, 3, 1);
@@ -241,12 +303,9 @@ public class CourseDetailsTabBuilder {
         sitePageTable.getColumns().add(navBarColumn);
         sitePageTable.getColumns().add(fileNameColumn);
         sitePageTable.getColumns().add(scriptColumn);
-        sitePages = data.makeSitePages(sitePages);
+        //sitePages = data.makeSitePages(sitePages);
 
-        sitePageTable.setFixedCellSize(25);
-        sitePageTable.prefHeightProperty().bind(sitePageTable.fixedCellSizeProperty().multiply(Bindings.size(sitePageTable.getItems()).add(1.01)));
-        sitePageTable.minHeightProperty().bind(sitePageTable.prefHeightProperty());
-        sitePageTable.maxHeightProperty().bind(sitePageTable.prefHeightProperty());
+       
         
         sitePageTable.setEditable(true);
              
@@ -282,7 +341,7 @@ public class CourseDetailsTabBuilder {
         noImageText1 = new Label();
         noImageText2 = new Label();
         noImageText3 = new Label();
-        stylesheetBox = new ComboBox();
+        stylesheetBox = new ComboBox(setCSSBox());
         
         imageBox = new HBox();
         leftFooterBox = new HBox();
@@ -368,6 +427,79 @@ public class CourseDetailsTabBuilder {
         
         //Finally, the style combo box
         stylesheetBox.getSelectionModel().select(data.getStylesheet());
+    }
+    
+    public void setExportDirectoryText(String dirPath) {
+        defaultDirText.setText(dirPath);
+    }
+    
+    public void setTemplateText(String dirPath) {
+        defaultTemplateText.setText(dirPath);
+    }
+    
+    private ObservableList<String> setSubjectBox() {
+        ObservableList<String> subjects = FXCollections.observableArrayList();
+        subjects.add("CSE");
+        subjects.add("ISE");
+        subjects.add("CSE/ISE");
+        subjects.add("ITS");
+        subjects.add("EST");
+        
+        return subjects;
+    }
+    
+    private ObservableList<String> setSemesterBox() {
+        ObservableList<String> semesters = FXCollections.observableArrayList();
+        semesters.add("Fall");
+        semesters.add("Spring");
+        semesters.add("Summer");
+        semesters.add("Winter");
+        
+        return semesters;
+    }
+    
+    private ObservableList<String> setNumbersBox() {
+        ObservableList<String> numbers = FXCollections.observableArrayList();
+        numbers.add("219");
+        numbers.add("308");
+        numbers.add("380");
+        numbers.add("102");
+        numbers.add("215");
+        
+        return numbers;
+    }
+    
+    private ObservableList<String> setYearsBox() {
+        ObservableList<String> years = FXCollections.observableArrayList();
+        
+        for (int i = 2017; i <= 2100; i++) {
+            years.add(String.valueOf(i));
+        }
+        
+        return years;
+    }
+    
+    private ObservableList<String> setCSSBox() {
+        ObservableList<String> cssFiles = FXCollections.observableArrayList();
+        
+        FilenameFilter cssFilter = new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                String lowercaseName = name.toLowerCase();
+                if (lowercaseName.endsWith(".css")) {
+                    return true;
+                } 
+                else {
+                    return false;
+                }
+            }
+        };
+        
+        String sourcePath = System.getProperty("user.dir") + "/work/css";
+        File cssDirectory = new File(sourcePath);
+        String[] files = cssDirectory.list(cssFilter);
+        
+        cssFiles.addAll(Arrays.asList(files));
+        return cssFiles;
     }
     
 }

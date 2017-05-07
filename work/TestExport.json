@@ -1,0 +1,72 @@
+
+{
+    "course_info":[
+        {
+            "subject":"CSE",
+            "semester":"Summer",
+            "number":"308",
+            "year":"2021",
+            "courseTitle":"Software Engineerin",
+            "instructorName":"Richard Banerje",
+            "instructorHome":"www.whatever.co",
+            "exportDir":"/Users/Alvaro/Documents/Test308"
+        }
+    ],
+    "templateDir":"/Users/Alvaro/Documents/CSE219HW5/CourseSiteGenerator/data/public_html/templates/CSE308",
+    "site_pages":[
+        {
+            "isUsed":true,
+            "navBarTitle":"HWs",
+            "fileName":"hws.html",
+            "script":"HWsBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Home",
+            "fileName":"index.html",
+            "script":"HomeBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Projects",
+            "fileName":"projects.html",
+            "script":"ProjectsBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Schedule",
+            "fileName":"schedule.html",
+            "script":"ScheduleBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Syllabus",
+            "fileName":"syllabus.html",
+            "script":"SyllabusBuilder.js"
+        }
+    ],
+    "style":[
+        {
+            "imagePath":"No image selected",
+            "leftFooterPath":"No image selected",
+            "rightFooterPath":"No image selected",
+            "stylesheet":""
+        }
+    ],
+    "startHour":"9",
+    "endHour":"20",
+    "undergrad_tas":[
+    ],
+    "officeHours":[
+    ],
+    "recitations":[
+    ],
+    "startingMonday":"",
+    "endingFriday":"",
+    "schedule_items":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

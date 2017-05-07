@@ -65,26 +65,54 @@ public class ScheduleDataController {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
         ScheduleTabBuilder scheduleWorkspace = workspace.getScheduleTabBuilder();
+      
         
-        if (startDate.getDayOfWeek().getValue() != 1) {
-            savable1 = false;
-            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
-	    dialog.show(props.getProperty(START_DATE_NOT_MONDAY_TITLE), props.getProperty(START_DATE_NOT_MONDAY_MESSAGE));
-            scheduleWorkspace.getStartPicker().setValue(LocalDate.parse(data.getStartMonday(), formatter));
-        }
-        else if (startDate.isAfter(LocalDate.parse(data.getEndFriday(), formatter))) {
-            savable1 = false;
-            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
-	    dialog.show(props.getProperty(START_DATE_AFTER_END_DATE_TITLE), props.getProperty(START_DATE_AFTER_END_DATE_MESSAGE));
-            scheduleWorkspace.getStartPicker().setValue(LocalDate.parse(data.getStartMonday(), formatter));
-        }
-        else {
-            if(savable1) {
-                data.setStartMonday(getDate(startDate));
-                data.markAsEdited();
+        if (!data.getStartMonday().isEmpty() && !data.getEndFriday().isEmpty()) {
+            if (startDate.getDayOfWeek().getValue() != 1) {
+                savable1 = false;
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(START_DATE_NOT_MONDAY_TITLE), props.getProperty(START_DATE_NOT_MONDAY_MESSAGE));
+                scheduleWorkspace.getStartPicker().setValue(LocalDate.parse(data.getStartMonday(), formatter));
+            }
+            else if (startDate.isAfter(LocalDate.parse(data.getEndFriday(), formatter))) {
+                savable1 = false;
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(START_DATE_AFTER_END_DATE_TITLE), props.getProperty(START_DATE_AFTER_END_DATE_MESSAGE));
+                scheduleWorkspace.getStartPicker().setValue(LocalDate.parse(data.getStartMonday(), formatter));
             }
             else {
+                if(savable1) {
+                    data.setStartMonday(getDate(startDate));
+                    data.markAsEdited();
+                    System.out.println("Stat " + data.getStartMonday());
+                    System.out.println("End " + data.getEndFriday());
+                }
+                else {
+                    savable1 = true;
+                }
+            }
+        }
+        else {
+            if (startDate == null) {
                 savable1 = true;
+                return;
+            }
+            if (startDate.getDayOfWeek().getValue() != 1) {
+                savable1 = false;
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(START_DATE_NOT_MONDAY_TITLE), props.getProperty(START_DATE_NOT_MONDAY_MESSAGE));
+                scheduleWorkspace.getStartPicker().setValue(null);
+            }
+            else {
+                if(savable1) {
+                    data.setStartMonday(getDate(startDate));
+                    data.markAsEdited();
+                    System.out.println("Stat " + data.getStartMonday());
+                    System.out.println("End " + data.getEndFriday());
+                }
+                else {
+                    savable1 = true;
+                }
             }
         }
     }
@@ -93,27 +121,55 @@ public class ScheduleDataController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-d-yyyy");
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
-        ScheduleTabBuilder scheduleWorkspace = workspace.getScheduleTabBuilder(); 
+        ScheduleTabBuilder scheduleWorkspace = workspace.getScheduleTabBuilder();
         
-        if (endDate.getDayOfWeek().getValue() != 5) {
-            savable2 = false;
-            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
-	    dialog.show(props.getProperty(END_DATE_NOT_FRIDAY_TITLE), props.getProperty(END_DATE_NOT_FRIDAY_MESSAGE));
-            scheduleWorkspace.getEndPicker().setValue(LocalDate.parse(data.getEndFriday(), formatter));
-        }
-        else if (endDate.isBefore(LocalDate.parse(data.getEndFriday(), formatter))) {
-            savable2 = false;
-            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
-	    dialog.show(props.getProperty(START_DATE_AFTER_END_DATE_TITLE), props.getProperty(START_DATE_AFTER_END_DATE_MESSAGE));
-            scheduleWorkspace.getEndPicker().setValue(LocalDate.parse(data.getEndFriday(), formatter));
-        }
-        else {
-            if (savable2) {
-                data.setEndFriday(getDate(endDate));
-                data.markAsEdited();
+        
+        if (!data.getStartMonday().isEmpty() && !data.getEndFriday().isEmpty()) {
+            if (endDate.getDayOfWeek().getValue() != 5) {
+                savable2 = false;
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(END_DATE_NOT_FRIDAY_TITLE), props.getProperty(END_DATE_NOT_FRIDAY_MESSAGE));
+                scheduleWorkspace.getEndPicker().setValue(LocalDate.parse(data.getEndFriday(), formatter));
+            }
+            else if (endDate.isBefore(LocalDate.parse(data.getStartMonday(), formatter))) {
+                savable2 = false;
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(START_DATE_AFTER_END_DATE_TITLE), props.getProperty(START_DATE_AFTER_END_DATE_MESSAGE));
+                scheduleWorkspace.getEndPicker().setValue(LocalDate.parse(data.getEndFriday(), formatter));
             }
             else {
+                if (savable2) {
+                    data.setEndFriday(getDate(endDate));
+                    data.markAsEdited();
+                    System.out.println("Stat " + data.getStartMonday());
+                    System.out.println("End " + data.getEndFriday());
+                }
+                else {
+                    savable2 = true;
+                }
+            }
+        }
+        else {
+            if (endDate == null) {
                 savable2 = true;
+                return;
+            }
+            if (endDate.getDayOfWeek().getValue() != 5) {
+                savable2 = false;
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+                dialog.show(props.getProperty(END_DATE_NOT_FRIDAY_TITLE), props.getProperty(END_DATE_NOT_FRIDAY_MESSAGE));
+                scheduleWorkspace.getEndPicker().setValue(null);
+            }
+            else {
+                if (savable2) {
+                    data.setEndFriday(getDate(endDate));
+                    data.markAsEdited();
+                    System.out.println("Stat " + data.getStartMonday());
+                    System.out.println("End " + data.getEndFriday());
+                }
+                else {
+                    savable2 = true;
+                }
             }
         }
     }
@@ -203,14 +259,14 @@ public class ScheduleDataController {
                 newDate = getDate(datePicker.getValue());
             }   
             
-            if (verifyScheduleItem(newType, newDate, newTitle)) {
-                return;
-            }
-            else {
+//            if (verifyScheduleItem(newType, newDate, newTitle)) {
+//                return;
+//            }
+            //else {
                 ScheduleItem newItem = new ScheduleItem(newType, newDate, newTime, newTitle, newTopic, newLink, newCriteria);
                 data.editScheduleItem(newItem, data.getScheduleItems().indexOf(item));
                 scheduleTable.refresh();
-            }
+            //}
         });
     }
     

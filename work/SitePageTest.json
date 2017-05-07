@@ -1,0 +1,202 @@
+
+{
+    "course_info":[
+        {
+            "subject":"CSE",
+            "semester":"Fall",
+            "number":"215",
+            "year":"2018",
+            "courseTitle":"This Should Be III",
+            "instructorName":"Richard McKenna",
+            "instructorHome":"dbuhsabsdhbs",
+            "exportDir":"/Users/Alvaro/Documents/Test219"
+        }
+    ],
+    "templateDir":"/Users/Alvaro/Documents/CSE219HW5/CourseSiteGenerator/data/public_html/templates/CSE219",
+    "site_pages":[
+        {
+            "isUsed":true,
+            "navBarTitle":"HWs",
+            "fileName":"hws.html",
+            "script":"HWsBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Home",
+            "fileName":"index.html",
+            "script":"HomeBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Schedule",
+            "fileName":"schedule.html",
+            "script":"ScheduleBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Syllabus",
+            "fileName":"syllabus.html",
+            "script":"SyllabusBuilder.js"
+        }
+    ],
+    "style":[
+        {
+            "imagePath":"No image selected",
+            "leftFooterPath":"No image selected",
+            "rightFooterPath":"No image selected",
+            "stylesheet":""
+        }
+    ],
+    "startHour":"9",
+    "endHour":"20",
+    "undergrad_tas":[
+        {
+            "name":"Bob Ross",
+            "email":"bobross@gmail.com",
+            "isUndergrad":true
+        },
+        {
+            "name":"Who Goes",
+            "email":"whogoes@deth.com",
+            "isUndergrad":false
+        }
+    ],
+    "officeHours":[
+        {
+            "day":"MONDAY",
+            "time":"10_00am",
+            "name":"Bob Ross"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"10_30am",
+            "name":"Who Goes"
+        },
+        {
+            "day":"MONDAY",
+            "time":"11_00am",
+            "name":"Bob Ross"
+        },
+        {
+            "day":"THURSDAY",
+            "time":"11_00am",
+            "name":"Who Goes"
+        },
+        {
+            "day":"MONDAY",
+            "time":"11_30am",
+            "name":"Bob Ross"
+        },
+        {
+            "day":"MONDAY",
+            "time":"12_00pm",
+            "name":"Bob Ross"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"12_00pm",
+            "name":"Who Goes"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"12_30pm",
+            "name":"Who Goes"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"1_00pm",
+            "name":"Who Goes"
+        },
+        {
+            "day":"MONDAY",
+            "time":"1_30pm",
+            "name":"Bob Ross"
+        },
+        {
+            "day":"THURSDAY",
+            "time":"1_30pm",
+            "name":"Who Goes"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"3_00pm",
+            "name":"Who Goes"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"4_00pm",
+            "name":"Who Goes"
+        },
+        {
+            "day":"MONDAY",
+            "time":"4_30pm",
+            "name":"Bob Ross"
+        }
+    ],
+    "recitations":[
+        {
+            "section":"R01",
+            "recitationInstructor":"McKenna",
+            "day_time":"Tues 5:30-4:30PM",
+            "location":"Javits 666",
+            "ta_1":"Bob Ross",
+            "ta_2":"Who Goes"
+        }
+    ],
+    "startingMonday":"05-8-2017",
+    "endingFriday":"05-26-2017",
+    "schedule_items":[
+        {
+            "type":"Holiday",
+            "scheduleTime":"",
+            "date":"05-17-2017",
+            "scheduleTitle":"World War IV",
+            "topic":"",
+            "scheduleLink":"sticksandstones.com",
+            "criteria":""
+        },
+        {
+            "type":"Lecture",
+            "scheduleTime":"3:30PM",
+            "date":"05-10-2017",
+            "scheduleTitle":"Where teh Time Goes",
+            "topic":"Who Knows",
+            "scheduleLink":"vy.com",
+            "criteria":""
+        }
+    ],
+    "teams":[
+        {
+            "name":"These Guys",
+            "color":"ff0000",
+            "text_color":"0000ff",
+            "link":"blah.com"
+        }
+    ],
+    "students":[
+        {
+            "firstName":"James",
+            "lastName":"Brown",
+            "studentTeam":"These Guys",
+            "role":"Lead Programmer"
+        },
+        {
+            "firstName":"John ",
+            "lastName":"Dee",
+            "studentTeam":"These Guys",
+            "role":"Lead Designer"
+        },
+        {
+            "firstName":"Mother",
+            "lastName":"Tucker",
+            "studentTeam":"These Guys",
+            "role":"Project Manager"
+        },
+        {
+            "firstName":"Renold ",
+            "lastName":"Yourin",
+            "studentTeam":"These Guys",
+            "role":"Data Designer"
+        }
+    ]
+}

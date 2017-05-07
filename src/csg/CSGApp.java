@@ -30,6 +30,4 @@ public class CSGApp extends AppTemplate {
     public static void main(String[] args) {
         launch(args);
     }
-
-    
 }

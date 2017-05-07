@@ -1,0 +1,58 @@
+/* Author: Alvaro Quintanilla, ID: 110289649 */
+
+body {
+    background-color: powderblue;
+    font-family: Arial, Verdana, sans-serif, Courier, monospace;
+}
+
+div {
+	background-color: #FF4D4D;
+	border: 7px solid maroon;
+	border-radius: 10 px;
+}
+
+h1 {
+    color: blue;
+    margin: 4px;
+}
+
+h2 {
+	margin: 4px;
+}
+
+h3 {
+	margin: 4px;
+	}
+
+p {
+    color: black;
+}
+
+table {
+	background-color: turquoise;
+	border: 1px solid gray;
+	color: black;
+	margin: 0 auto;
+}
+	
+th {
+	background-color: teal;
+	border: 1px solid gray;
+	color: yellow;
+}
+
+td {
+	border: 1px solid gray;
+}
+
+#rightmost { float: right; 
+			margin: 12px;
+			box-shadow: 4px 4px	
+}
+
+#leftmost { float: left; 
+	  		margin: 5px;
+	  		box-shadow: 2px 2px
+}
+	  		
+
