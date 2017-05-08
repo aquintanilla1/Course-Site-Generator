@@ -32,10 +32,10 @@
     "imagePath":"No image selected",
     "leftFooterPath":"No image selected",
     "rightFooterPath":"No image selected",
-    "startingMondayMonth":"5",
-    "startingMondayDay":"22",
-    "endingFridayMonth":"6",
-    "endingFridayDay":"16",
+    "startingMondayMonth":"",
+    "startingMondayDay":"",
+    "endingFridayMonth":"",
+    "endingFridayDay":"",
     "holidays":[
     ],
     "lectures":[

@@ -155,7 +155,37 @@
         }
     ],
     "teams":[
+        {
+            "name":"Balls",
+            "color":"80334d",
+            "text_color":"996699",
+            "link":"blah.com"
+        }
     ],
     "students":[
+        {
+            "firstName":"Frank",
+            "lastName":"Meringl",
+            "studentTeam":"Balls",
+            "role":"Lead Designer"
+        },
+        {
+            "firstName":"Dan ",
+            "lastName":"Scantibleu",
+            "studentTeam":"Balls",
+            "role":"Lead Programmer"
+        },
+        {
+            "firstName":"Charles",
+            "lastName":"Chen",
+            "studentTeam":"Balls",
+            "role":"Data Designer"
+        },
+        {
+            "firstName":"Sun",
+            "lastName":"Whatever",
+            "studentTeam":"Balls",
+            "role":"Project Manager"
+        }
     ]
 }

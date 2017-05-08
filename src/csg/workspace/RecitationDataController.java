@@ -90,7 +90,7 @@ public class RecitationDataController {
             details.add(ta1);
             details.add(ta2);
 
-            data.addRecitation(details);
+            data.addRecitation(details, false);
             recitationWorkspace.resetDataFields();
         }
     }

@@ -137,8 +137,6 @@ public class ScheduleDataController {
                 if (savable2) {
                     data.setEndFriday(getDate(endDate));
                     data.markAsEdited();
-                    System.out.println("Stat " + data.getStartMonday());
-                    System.out.println("End " + data.getEndFriday());
                 }
                 else {
                     savable2 = true;
@@ -160,8 +158,6 @@ public class ScheduleDataController {
                 if (savable2) {
                     data.setEndFriday(getDate(endDate));
                     data.markAsEdited();
-                    System.out.println("Stat " + data.getStartMonday());
-                    System.out.println("End " + data.getEndFriday());
                 }
                 else {
                     savable2 = true;

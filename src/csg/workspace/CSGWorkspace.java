@@ -13,7 +13,10 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.layout.BorderPane;
+import jtps.jTPS;
 
 /**
  *
@@ -22,6 +25,13 @@ import javafx.scene.layout.BorderPane;
 public class CSGWorkspace extends AppWorkspaceComponent {
     CSGApp app;
     TabPane tabs;
+    
+    Button redoButton;
+    Button undoButton;
+    
+    jTPS jTPS;
+    final KeyCodeCombination undo = new KeyCodeCombination(KeyCode.Z, KeyCodeCombination.CONTROL_DOWN);
+    final KeyCodeCombination redo = new KeyCodeCombination(KeyCode.Y, KeyCodeCombination.CONTROL_DOWN);
     
     Tab courseDetailsTab;
     Tab taDataTab;
@@ -38,11 +48,15 @@ public class CSGWorkspace extends AppWorkspaceComponent {
     
     public CSGWorkspace(CSGApp initApp) {
         app = initApp;
+        jTPS = new jTPS();
         cdWorkspace = new CourseDetailsTabBuilder(app);
         taWorkspace = new TADataTabBuilder(app);
         recitationWorkspace = new RecitationTabBuilder(app);
         scheduleWorkspace = new ScheduleTabBuilder(app);
         projectWorkspace = new ProjectTabBuilder(app);
+        
+        undoButton = app.getGUI().getUndoButton();
+        redoButton = app.getGUI().getRedoButton();
         
         tabs = new TabPane();
         courseDetailsTab = cdWorkspace.getTab();
@@ -69,6 +83,23 @@ public class CSGWorkspace extends AppWorkspaceComponent {
         workspace =  new BorderPane();
         ((BorderPane) workspace).setCenter(tabs);
         ((BorderPane) workspace).setPadding(new Insets(10,10,10,10));
+        
+        app.getGUI().getPrimaryScene().setOnKeyPressed(e -> {
+            if (undo.match(e)) {
+                jTPS.undoTransaction();
+            }
+            else if (redo.match(e)) {
+                jTPS.doTransaction();
+            }
+        });
+        
+        undoButton.setOnAction(e -> {
+            jTPS.undoTransaction();
+        });
+        
+        redoButton.setOnAction(e -> {
+            jTPS.doTransaction();
+        });
     }
     
     public TabPane getTabs() {
@@ -96,6 +127,10 @@ public class CSGWorkspace extends AppWorkspaceComponent {
     
     public BorderPane getWorkspace() {
         return (BorderPane) workspace;
+    }
+    
+    public jTPS getJTPS() {
+        return jTPS;
     }
    
 

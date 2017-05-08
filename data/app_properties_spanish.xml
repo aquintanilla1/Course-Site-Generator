@@ -58,6 +58,8 @@
         <property name="EXPORT_ERROR_MESSAGE"   value="Se ha producido un error al exportar el trabajo."></property>
         <property name="PROPERTIES_LOAD_ERROR_MESSAGE"	value="Se ha producido un error al cargar un archivo de propiedades."></property>	
         <property name="PROPERTIES_LOAD_ERROR_TITLE"	value="Error de Cargar Archivo de Propiedades"></property>
+        <property name="ABOUT_TITLE"				value="Acerca de Generador de Sitio de Curso"></property>
+        <property name="ABOUT_MESSAGE"				value="Generador de Sitio de Curso es un proyecto tremendamente largo construido para hacer sitios web de cursos para Richard McKenna"></property>
 	
         <!-- VERIFICATION MESSAGES -->
 	
@@ -160,6 +162,8 @@
 		<property name="MISSING_STUDENT_NAME_MESSAGE"               value="Necesitas proporcionar el Nombre de Pila y Apellido del Estudiante"></property>
 		<property name="MISSING_STUDENT_TEAM_TITLE"               value="Equipo de Estudiante Falta"></property>
 		<property name="MISSING_STUDENT_TEAM_MESSAGE"               value="Necesitas proporcionar un Equipo por el Estudiante"></property>
+		<property name="NO_DIRECTORIES_TITLE"			value="Directorios de exportar y plantillas no elegidos"></property>
+   		<property name="NO_DIRECTORIES_MESSAGE"			value="Necesitas proporcionar un directorio de exportar y del platilla"></property>
         
         <property name="COURSE_DETAILS_TAB"             value="Detalles del Curso"></property>
         <property name="COURSE_INFO_TEXT"               value="Info de Curso"></property>

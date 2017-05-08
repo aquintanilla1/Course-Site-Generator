@@ -49,7 +49,6 @@ public class CourseDetailsController {
         }
         else {
             data.setExportPath(selectedDirectory.getAbsolutePath());
-            data.hasExportDirectory();
             CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
             CourseDetailsTabBuilder cdWorkspace = workspace.getCDTabBuilder();
             cdWorkspace.setExportDirectoryText("./" + selectedDirectory.getParentFile().getName() + "/" + selectedDirectory.getName());

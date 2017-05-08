@@ -75,7 +75,7 @@ public class ProjectDataController {
             return;
         }
         else {
-            data.addTeam(name, color, textColor, link);
+            data.addTeam(name, color, textColor, link, false);
             projectWorkspace.resetTeamFields();
         }
     }
@@ -205,7 +205,7 @@ public class ProjectDataController {
             return;
         }
         else {
-            data.addStudent(firstName, lastName, team, role);
+            data.addStudent(firstName, lastName, team, role, false);
             projectWorkspace.resetStudentFields();
         }
     }

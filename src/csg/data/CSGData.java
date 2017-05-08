@@ -24,6 +24,8 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import jtps.jTPS;
 import jtps.jTPS_Transaction;
 import properties_manager.PropertiesManager;
 
@@ -599,9 +601,9 @@ public class CSGData implements AppDataComponent {
         fileController.markAsEdited(app.getGUI());
     }
     
-    public void hasExportDirectory() {
-        fileController.allowExport(app.getGUI());
-    }
+//    public void hasExportDirectory() {
+//        fileController.allowExport(app.getGUI());
+//    }
     
     public void addSitePage(boolean isUsed, String navBarTitle, String fileName, String script) {
         SitePage page = new SitePage(isUsed, navBarTitle, fileName, script);
@@ -633,9 +635,8 @@ public class CSGData implements AppDataComponent {
         if (!containsTA(initName, initEmail)) {
             if (!wasLoaded) {
                 CSGWorkspace csgWorkspace = (CSGWorkspace)app.getWorkspaceComponent();
-                TADataTabBuilder taWorkspace = csgWorkspace.getTATabBuilder();
                 jTPS_Transaction transaction = new AddTA_Transaction(ta, teachingAssistants, this);
-                taWorkspace.getJTPS().addTransaction(transaction);
+                csgWorkspace.getJTPS().addTransaction(transaction);
             }
             else {
                 teachingAssistants.add(ta);
@@ -648,7 +649,7 @@ public class CSGData implements AppDataComponent {
         CSGWorkspace csgWorkspace = (CSGWorkspace)app.getWorkspaceComponent();
         TADataTabBuilder taWorkspace = csgWorkspace.getTATabBuilder();
         jTPS_Transaction transaction = new UpdateTA_Transaction(oldTA, newTA, teachingAssistants, this, taWorkspace.getTATable());
-        taWorkspace.getJTPS().addTransaction(transaction);
+        csgWorkspace.getJTPS().addTransaction(transaction);
 
         taWorkspace.getTATable().refresh();
         Collections.sort(teachingAssistants);
@@ -666,7 +667,7 @@ public class CSGData implements AppDataComponent {
                CSGWorkspace csgWorkspace = (CSGWorkspace)app.getWorkspaceComponent();
                TADataTabBuilder taWorkspace = csgWorkspace.getTATabBuilder();
                jTPS_Transaction transaction = new RemoveTA_Transaction(ta, teachingAssistants, this, tempHours);
-               taWorkspace.getJTPS().addTransaction(transaction);
+               csgWorkspace.getJTPS().addTransaction(transaction);
                removeTAsInRecitations(ta.getName());
                RecitationTabBuilder recitationWorkspace = csgWorkspace.getRecitationTabBuilder();
                recitationWorkspace.getRecitationTable().refresh();
@@ -703,9 +704,8 @@ public class CSGData implements AppDataComponent {
                 }
                 else {
                     CSGWorkspace csgWorkspace = (CSGWorkspace)app.getWorkspaceComponent();
-                    TADataTabBuilder taWorkspace = csgWorkspace.getTATabBuilder();
                     jTPS_Transaction transaction = new ToggleAddTAInCell_Transaction(taName, this, cellKey, true);
-                    taWorkspace.getJTPS().addTransaction(transaction);
+                    csgWorkspace.getJTPS().addTransaction(transaction);
                 }
             }
             else {
@@ -714,9 +714,8 @@ public class CSGData implements AppDataComponent {
                 }
                 else {
                     CSGWorkspace csgWorkspace = (CSGWorkspace)app.getWorkspaceComponent();
-                    TADataTabBuilder taWorkspace = csgWorkspace.getTATabBuilder();
                     jTPS_Transaction transaction = new ToggleAddTAInCell_Transaction(taName, this, cellKey, false);
-                    taWorkspace.getJTPS().addTransaction(transaction);     
+                    csgWorkspace.getJTPS().addTransaction(transaction);     
                 }
             }
         }
@@ -735,25 +734,33 @@ public class CSGData implements AppDataComponent {
         // IS IT THE ONLY TA IN THE CELL?
         if (cellText.equals(taName)) { //You can just use the cellText
             jTPS_Transaction transaction = new ToggleRemoveTAInCell_Transaction(taName, cellKey, this, true, true);
-            taWorkspace.getJTPS().addTransaction(transaction);
+            csgWorkspace.getJTPS().addTransaction(transaction);
         }
         // IS IT THE FIRST TA IN A CELL WITH MULTIPLE TA'S?
         else if (cellTextNameList.indexOf(taName) == 0) { //Going on forward with the next two branches, the arraylist becomes more useful
             jTPS_Transaction transaction = new ToggleRemoveTAInCell_Transaction(taName, cellKey, this, false, true);
-            taWorkspace.getJTPS().addTransaction(transaction);
+            csgWorkspace.getJTPS().addTransaction(transaction);
         }
         // IT MUST BE ANOTHER TA IN THE CELL
         else {
             jTPS_Transaction transaction = new ToggleRemoveTAInCell_Transaction(taName, cellKey, this,
                     false, false, cellTextNameList.indexOf(taName));
-            taWorkspace.getJTPS().addTransaction(transaction);
+            csgWorkspace.getJTPS().addTransaction(transaction);
         }
     }
     
-    public void addRecitation(ArrayList<String> details) {
+    public void addRecitation(ArrayList<String> details, boolean wasLoaded) {
         Recitation recitation = new Recitation(details);
-        recitations.add(recitation);
-        markAsEdited();
+        
+        if (!wasLoaded) {
+            CSGWorkspace csgWorkspace = (CSGWorkspace) app.getWorkspaceComponent();
+            jTPS_Transaction transaction = new AddRecitation_Transaction(recitation, recitations, this);
+            csgWorkspace.getJTPS().addTransaction(transaction);
+        }
+        else {
+            recitations.add(recitation);
+            markAsEdited();
+        }
     }
     
     public boolean containsRecitation(String section) {
@@ -766,20 +773,19 @@ public class CSGData implements AppDataComponent {
     }
     
     public void editRecitation(Recitation newRecitation, int position) {
-        recitations.get(position).setSection(newRecitation.getSection());
-        recitations.get(position).setInstructor(newRecitation.getInstructor());
-        recitations.get(position).setDayTime(newRecitation.getDayTime());
-        recitations.get(position).setLocation(newRecitation.getLocation());
-        recitations.get(position).setTa1(newRecitation.getTa1());
-        recitations.get(position).setTa2(newRecitation.getTa2());
-
-        markAsEdited();
+        CSGWorkspace csgWorkspace = (CSGWorkspace) app.getWorkspaceComponent();
+        TableView table = csgWorkspace.getRecitationTabBuilder().getRecitationTable();
+        jTPS_Transaction transaction = new EditRecitation_Transaction(position, newRecitation, recitations, this, table);
+        table.refresh();
+        csgWorkspace.getJTPS().addTransaction(transaction);
     }
     
     public void removeRecitation(String section, String dayTime, String location) {
        for (Recitation r: recitations) {
             if (r.getSection().equals(section) || r.getDayTime().equals(dayTime) || r.getLocation().equals(location)) {
-                recitations.remove(r);
+                CSGWorkspace csgWorkspace = (CSGWorkspace) app.getWorkspaceComponent();
+                jTPS_Transaction transaction = new RemoveRecitation_Transaction(r,recitations, this);
+                csgWorkspace.getJTPS().addTransaction(transaction);
                 break;
             }
         }
@@ -825,10 +831,18 @@ public class CSGData implements AppDataComponent {
         markAsEdited();
     }
     
-    public void addTeam(String name, String color, String textColor, String link) {
+    public void addTeam(String name, String color, String textColor, String link, boolean wasLoaded) {
         Team team = new Team(name, color, textColor, link);
-        teams.add(team);
-        markAsEdited();
+        
+        if (!wasLoaded) {
+            CSGWorkspace csgWorkspace = (CSGWorkspace) app.getWorkspaceComponent();
+            jTPS_Transaction transaction = new AddTeam_Transaction(team, teams, this);
+            csgWorkspace.getJTPS().addTransaction(transaction);
+        }
+        else {
+            teams.add(team);
+            markAsEdited();
+        }
     }
     
     public boolean containsTeam(String name, String link) {
@@ -841,44 +855,55 @@ public class CSGData implements AppDataComponent {
     }
     
     public void editTeam(Team newTeam, int position) {
-        teams.get(position).setName(newTeam.getName());
-        teams.get(position).setColor(newTeam.getColor());
-        teams.get(position).setTextColor(newTeam.getTextColor());
-        teams.get(position).setLink(newTeam.getLink());
+        CSGWorkspace csgWorkspace = (CSGWorkspace) app.getWorkspaceComponent();
+        TableView table = csgWorkspace.getProjectTabBuilder().getTeamTable();
+        jTPS_Transaction transaction = new EditTeam_Transaction(position, newTeam, teams, this, table);
+        csgWorkspace.getJTPS().addTransaction(transaction);
         markAsEdited();
     }
     
     public void removeTeam(String name) {
         for (Team t: teams) {
             if (t.getName().equals(name)) {
-                teams.remove(t);
-                removeStudentsInTeam(t);
+                CSGWorkspace csgWorkspace = (CSGWorkspace) app.getWorkspaceComponent();
+                jTPS_Transaction transaction = new RemoveTeam_Transaction(t, teams, this);
+                csgWorkspace.getJTPS().addTransaction(transaction);
                 break;
             }
         }
         markAsEdited();
     }
     
-    public void addStudent(String firstName, String lastName, String team, String role) {
+    public void addStudent(String firstName, String lastName, String team, String role, boolean wasLoaded) {
         Student student = new Student(firstName, lastName, team, role);
-        students.add(student);
-        Team teamOfStudent = getTeam(team);
-        teamOfStudent.addStudent(student);
-        markAsEdited();
+        
+        if (!wasLoaded) {
+            CSGWorkspace csgWorkspace = (CSGWorkspace) app.getWorkspaceComponent();
+            jTPS_Transaction transaction = new AddStudent_Transaction(student, students, this);
+            csgWorkspace.getJTPS().addTransaction(transaction);
+        }
+        else {
+            students.add(student);
+            Team teamOfStudent = getTeam(team);
+            teamOfStudent.addStudent(student);
+            markAsEdited();
+        }
     }
     
     public void editStudent(Student newStudent, int position) {
-        students.get(position).setFirstName(newStudent.getFirstName());
-        students.get(position).setLastName(newStudent.getLastName());
-        students.get(position).setTeam(newStudent.getTeam());
-        students.get(position).setRole(newStudent.getRole());
+        CSGWorkspace csgWorkspace = (CSGWorkspace) app.getWorkspaceComponent();
+        TableView table = csgWorkspace.getProjectTabBuilder().getStudentTable();
+        jTPS_Transaction transaction = new EditStudent_Transaction(position, newStudent, students, this, table);
+        csgWorkspace.getJTPS().addTransaction(transaction);
         markAsEdited();
     }
     
     public void removeStudent(String firstName, String lastName) {
         for (Student s: students) {
             if (s.getFirstName().equals(firstName) && s.getLastName().equals(lastName)) {
-                students.remove(s);
+                CSGWorkspace csgWorkspace = (CSGWorkspace) app.getWorkspaceComponent();
+                jTPS_Transaction transaction = new RemoveStudent_Transaction(s, students, this);
+                csgWorkspace.getJTPS().addTransaction(transaction);
                 break;
             }
         }

@@ -16,6 +16,9 @@ import csg.data.TeachingAssistant;
 import csg.data.Team;
 import djf.components.AppDataComponent;
 import djf.components.AppFileComponent;
+import static djf.settings.AppPropertyType.EXPORT_COMPLETED_MESSAGE;
+import static djf.settings.AppPropertyType.EXPORT_COMPLETED_TITLE;
+import djf.ui.AppMessageDialogSingleton;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -323,9 +326,9 @@ public class CSGFiles implements AppFileComponent {
         
         PropertiesManager props = PropertiesManager.getPropertiesManager();
 
-        if (!dataManager.getCourseInfo().get(7).equals(props.getProperty(CSGProp.DEFAULT_DIR_TEXT))) {
-            dataManager.hasExportDirectory();
-        }
+//        if (!dataManager.getCourseInfo().get(7).equals(props.getProperty(CSGProp.DEFAULT_DIR_TEXT))) {
+//            dataManager.hasExportDirectory();
+//        }
         
         dataManager.setTemplateDirectory(json.getString(JSON_TEMPLATE_DIRECTORY));
         
@@ -391,7 +394,7 @@ public class CSGFiles implements AppFileComponent {
             recitationDetails.add(jsonRecitation.getString(JSON_LOCATION));
             recitationDetails.add(jsonRecitation.getString(JSON_SUPERVISING_TA_ONE));
             recitationDetails.add(jsonRecitation.getString(JSON_SUPERVISING_TA_TWO));
-            dataManager.addRecitation(recitationDetails);
+            dataManager.addRecitation(recitationDetails, true);
             recitationDetails.clear();
         }
         
@@ -416,7 +419,7 @@ public class CSGFiles implements AppFileComponent {
             String color = jsonTeam.getString(JSON_COLOR);
             String textColor = jsonTeam.getString(JSON_TEXT_COLOR);
             String teamLink = jsonTeam.getString(JSON_TEAM_LINK);
-            dataManager.addTeam(teamName, color, textColor, teamLink);
+            dataManager.addTeam(teamName, color, textColor, teamLink, true);
         }
 
         JsonArray jsonStudentArray = json.getJsonArray(JSON_STUDENTS);
@@ -426,7 +429,7 @@ public class CSGFiles implements AppFileComponent {
             String lastName = jsonStudent.getString(JSON_STUDENT_LAST_NAME);
             String teamName = jsonStudent.getString(JSON_STUDENT_TEAM);
             String role = jsonStudent.getString(JSON_ROLE);
-            dataManager.addStudent(firstName, lastName,teamName, role);
+            dataManager.addStudent(firstName, lastName,teamName, role, true);
         }
         
         
@@ -452,7 +455,9 @@ public class CSGFiles implements AppFileComponent {
         String sourcePath = dataManager.getTemplateDirectory();
         String directoryPath;
         
-        if (filePath.equals(props.getProperty(CSGProp.DEFAULT_DIR_TEXT))) {
+        if (filePath.equals(props.getProperty(CSGProp.DEFAULT_DIR_TEXT)) || dataManager.getTemplateDirectory().equals(props.getProperty(CSGProp.SITE_TEMPLATE_DIRECTORY_TEXT))) {
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+            dialog.show(props.getProperty(CSGProp.NO_DIRECTORIES_TITLE),props.getProperty(CSGProp.NO_DIRECTORIES_MESSAGE));
             return; //will provide dialog message later.
         }
         else {
@@ -820,8 +825,12 @@ public class CSGFiles implements AppFileComponent {
         FileUtils.copyDirectory(sourceDirectory, selectedDirectory, true);
         removeUnusedFiles(selectedDirectory);
         
-        File stylesheet = new File(System.getProperty("user.dir") + "/work/css/" + dataManager.getStylesheet());
-        FileUtils.copyFileToDirectory(stylesheet, new File(selectedDirectory.getAbsolutePath() +"/css"));
+        if (!(dataManager.getStylesheet().isEmpty() || dataManager.getStylesheet() == null)) {
+            File stylesheet = new File(System.getProperty("user.dir") + "/work/css/" + dataManager.getStylesheet());
+            FileUtils.copyFileToDirectory(stylesheet, new File(selectedDirectory.getAbsolutePath() +"/css"));
+        }
+        AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+        dialog.show(props.getProperty(EXPORT_COMPLETED_TITLE),props.getProperty(EXPORT_COMPLETED_MESSAGE));
     }
 
     @Override

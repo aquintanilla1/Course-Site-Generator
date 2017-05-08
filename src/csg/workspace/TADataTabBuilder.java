@@ -62,9 +62,9 @@ public class TADataTabBuilder {
     TADataController controller;
     
     //Provides framework for undo and redo operations
-    jTPS jTPS;
-    final KeyCodeCombination undo = new KeyCodeCombination(KeyCode.Z, KeyCodeCombination.CONTROL_DOWN);
-    final KeyCodeCombination redo = new KeyCodeCombination(KeyCode.Y, KeyCodeCombination.CONTROL_DOWN);
+//    jTPS jTPS;
+//    final KeyCodeCombination undo = new KeyCodeCombination(KeyCode.Z, KeyCodeCombination.CONTROL_DOWN);
+//    final KeyCodeCombination redo = new KeyCodeCombination(KeyCode.Y, KeyCodeCombination.CONTROL_DOWN);
     
 
     // NOTE THAT EVERY CONTROL IS PUT IN A BOX TO HELP WITH ALIGNMENT
@@ -118,7 +118,7 @@ public class TADataTabBuilder {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         
         tab = new Tab(props.getProperty(CSGProp.TA_TAB));
-        jTPS = new jTPS();
+        //jTPS = ((CSGWorkspace) app.getWorkspaceComponent()).getJTPS();
 
         // INIT THE HEADER ON THE LEFT
         tasHeaderBox = new HBox(5);
@@ -272,15 +272,15 @@ public class TADataTabBuilder {
             }
         });
         
-        app.getGUI().getPrimaryScene().setOnKeyPressed(e -> {
-            if (undo.match(e)) {
-                jTPS.undoTransaction();
-            }
-            else if (redo.match(e)) {
-                jTPS.doTransaction();
-            }
-        });
-        
+//        app.getGUI().getPrimaryScene().setOnKeyPressed(e -> {
+//            if (undo.match(e)) {
+//                jTPS.undoTransaction();
+//            }
+//            else if (redo.match(e)) {
+//                jTPS.doTransaction();
+//            }
+//        });
+//        
         submitTimesButton.setOnAction(e -> {
             controller.handleTimeSubmission((String) startTimeComboBox.getValue(), (String) endTimeComboBox.getValue());
         });   
@@ -302,9 +302,9 @@ public class TADataTabBuilder {
         return tab;
     }
     
-    public jTPS getJTPS() {
-        return jTPS;
-    }
+//    public jTPS getJTPS() {
+//        return jTPS;
+//    }
     
     public TADataController getTADataController() {
         return controller;
@@ -595,7 +595,7 @@ public class TADataTabBuilder {
         }
         else {
             jTPS_Transaction transaction = new ModifyOfficeHours_Transaction(dataComponent, workspace, newStartTime, newEndTime);
-            jTPS.addTransaction(transaction);
+            workspace.getJTPS().addTransaction(transaction);
         }
     }
     

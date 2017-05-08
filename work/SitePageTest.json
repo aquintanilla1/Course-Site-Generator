@@ -12,7 +12,7 @@
             "exportDir":"/Users/Alvaro/Documents/Test380"
         }
     ],
-    "templateDir":"/Users/Alvaro/Documents/CSE219HW5/CourseSiteGenerator/data/public_html/templates/CSE380",
+    "templateDir":"/Users/Alvaro/Documents/CSE219HW6/CourseSiteGenerator/work/templates/CSE308",
     "site_pages":[
         {
             "isUsed":true,
@@ -50,7 +50,7 @@
             "imagePath":"No image selected",
             "leftFooterPath":"No image selected",
             "rightFooterPath":"No image selected",
-            "stylesheet":""
+            "stylesheet":"sea_wolf.css"
         }
     ],
     "startHour":"9",
@@ -194,7 +194,7 @@
         },
         {
             "firstName":"Mother",
-            "lastName":"Tucker",
+            "lastName":"Fucker",
             "studentTeam":"These Guys",
             "role":"Project Manager"
         },

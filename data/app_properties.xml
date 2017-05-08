@@ -56,6 +56,8 @@
         <property name="EXPORT_ERROR_MESSAGE"   value="An error occured exporting work."></property>
         <property name="PROPERTIES_LOAD_ERROR_MESSAGE"	value="An error occured loading a properties file."></property>	
         <property name="PROPERTIES_LOAD_ERROR_TITLE"	value="Properties File Loading Error"></property>
+        <property name="ABOUT_TITLE"				value="About Course Site Generator"></property>
+        <property name="ABOUT_MESSAGE"				value="Course Site Generator is a hellishly long project built to make course websites for Richard McKenna"></property>
         
 	
         <!-- VERIFICATION MESSAGES -->
@@ -193,6 +195,8 @@
 		<property name="STYLESHEET_TEXT"                value="Stylesheet"></property>
 		<property name="NOTE_TEXT"               		value="NOTE: New stylesheets may be placed in work/css to be selectable"></property>
 		<property name="NO_IMAGE_SELECTED_TEXT"         value="No image selected"></property>
+		<property name="NO_DIRECTORIES_TITLE"			value="Export and Template Directories Not Chosen"></property>
+   		<property name="NO_DIRECTORIES_MESSAGE"			value="You must provide both an Export and Template Directory To Export"></property>
 		
 		<property name="TA_TAB"                         value="TA Data"></property>
 		<property name="UNDERGRAD_COLUMN_TEXT"			value="Undergrad"></property>
