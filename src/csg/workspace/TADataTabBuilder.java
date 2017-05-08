@@ -283,7 +283,7 @@ public class TADataTabBuilder {
         
         submitTimesButton.setOnAction(e -> {
             controller.handleTimeSubmission((String) startTimeComboBox.getValue(), (String) endTimeComboBox.getValue());
-        });     
+        });   
     }
     
     public TADataTabBuilder() {

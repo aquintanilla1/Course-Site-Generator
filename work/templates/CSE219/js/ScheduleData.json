@@ -1,0 +1,80 @@
+
+{
+    "subject":"CSE",
+    "semester":"Summer",
+    "number":"308",
+    "year":"2021",
+    "courseTitle":"Software Engineering",
+    "instructorName":"Richard Banerjee",
+    "instructorHome":"www.reddit.com",
+    "site_pages":[
+        {
+            "navBarTitle":"HWs",
+            "fileName":"hws.html"
+        },
+        {
+            "navBarTitle":"Home",
+            "fileName":"index.html"
+        },
+        {
+            "navBarTitle":"Schedule",
+            "fileName":"schedule.html"
+        },
+        {
+            "navBarTitle":"Syllabus",
+            "fileName":"syllabus.html"
+        }
+    ],
+    "imagePath":"/Users/Alvaro/Documents/BarackObama.jpg",
+    "leftFooterPath":"/Users/Alvaro/Documents/clarkKentIsSuperman.jpeg",
+    "rightFooterPath":"/Users/Alvaro/Documents/bestbatman.jpg",
+    "startingMondayMonth":"5",
+    "startingMondayDay":"15",
+    "endingFridayMonth":"6",
+    "endingFridayDay":"30",
+    "holidays":[
+        {
+            "month":"5",
+            "day":"17",
+            "title":"World War III",
+            "link":""
+        }
+    ],
+    "lectures":[
+        {
+            "month":"6",
+            "day":"2",
+            "title":"Lecture 43",
+            "topic":"Fuck this",
+            "link":""
+        }
+    ],
+    "references":[
+        {
+            "month":"5",
+            "day":"26",
+            "title":"Blah Blah",
+            "topic":"Who cares",
+            "link":""
+        }
+    ],
+    "recitations":[
+        {
+            "month":"6",
+            "day":"5",
+            "title":"Recitation 6",
+            "topic":"The Bubfnb 5"
+        }
+    ],
+    "hws":[
+        {
+            "month":"6",
+            "day":"8",
+            "title":"HW 4 Your Death",
+            "topic":"dying",
+            "link":"",
+            "time":"11:59 PM",
+            "criteria":""
+        }
+    ]
+}

@@ -49,6 +49,7 @@ public class CourseDetailsController {
         }
         else {
             data.setExportPath(selectedDirectory.getAbsolutePath());
+            data.hasExportDirectory();
             CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
             CourseDetailsTabBuilder cdWorkspace = workspace.getCDTabBuilder();
             cdWorkspace.setExportDirectoryText("./" + selectedDirectory.getParentFile().getName() + "/" + selectedDirectory.getName());
@@ -58,7 +59,7 @@ public class CourseDetailsController {
     public void handleTemplateChange() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         
-        String sourcePath = System.getProperty("user.dir") + "/data/public_html/templates";
+        String sourcePath = System.getProperty("user.dir") + "/work/templates";
         DirectoryChooser dc = new DirectoryChooser();
         dc.setInitialDirectory(new File(sourcePath));
         File selectedDirectory = dc.showDialog(app.getGUI().getWindow());
@@ -106,6 +107,7 @@ public class CourseDetailsController {
             for (SitePage p: pages) {
                 data.getSitePages().add(p);
             }
+            data.markAsEdited();
             CSGWorkspace workspace = (CSGWorkspace) app.getWorkspaceComponent();
             CourseDetailsTabBuilder cdWorkspace = workspace.getCDTabBuilder();
             cdWorkspace.setTemplateText("./" + selectedDirectory.getParentFile().getName() + "/" + selectedDirectory.getName());

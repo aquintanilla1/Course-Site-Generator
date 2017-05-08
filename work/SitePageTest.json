@@ -9,10 +9,10 @@
             "courseTitle":"This Should Be III",
             "instructorName":"Richard McKenna",
             "instructorHome":"dbuhsabsdhbs",
-            "exportDir":"/Users/Alvaro/Documents/Test219"
+            "exportDir":"/Users/Alvaro/Documents/Test380"
         }
     ],
-    "templateDir":"/Users/Alvaro/Documents/CSE219HW5/CourseSiteGenerator/data/public_html/templates/CSE219",
+    "templateDir":"/Users/Alvaro/Documents/CSE219HW5/CourseSiteGenerator/data/public_html/templates/CSE380",
     "site_pages":[
         {
             "isUsed":true,
@@ -25,6 +25,12 @@
             "navBarTitle":"Home",
             "fileName":"index.html",
             "script":"HomeBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Projects",
+            "fileName":"projects.html",
+            "script":"ProjectsBuilder.js"
         },
         {
             "isUsed":true,

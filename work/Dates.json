@@ -1,0 +1,72 @@
+
+{
+    "course_info":[
+        {
+            "subject":"",
+            "semester":"",
+            "number":"",
+            "year":"",
+            "courseTitle":"",
+            "instructorName":"",
+            "instructorHome":"",
+            "exportDir":"/Users/Alvaro/Documents/HailMaryPleaseWork"
+        }
+    ],
+    "templateDir":"/Users/Alvaro/Documents/CSE219HW6/CourseSiteGenerator/work/templates/CSE308",
+    "site_pages":[
+        {
+            "isUsed":true,
+            "navBarTitle":"HWs",
+            "fileName":"hws.html",
+            "script":"HWsBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Home",
+            "fileName":"index.html",
+            "script":"HomeBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Projects",
+            "fileName":"projects.html",
+            "script":"ProjectsBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Schedule",
+            "fileName":"schedule.html",
+            "script":"ScheduleBuilder.js"
+        },
+        {
+            "isUsed":true,
+            "navBarTitle":"Syllabus",
+            "fileName":"syllabus.html",
+            "script":"SyllabusBuilder.js"
+        }
+    ],
+    "style":[
+        {
+            "imagePath":"No image selected",
+            "leftFooterPath":"No image selected",
+            "rightFooterPath":"No image selected",
+            "stylesheet":"sea_wolf.css"
+        }
+    ],
+    "startHour":"9",
+    "endHour":"20",
+    "undergrad_tas":[
+    ],
+    "officeHours":[
+    ],
+    "recitations":[
+    ],
+    "startingMonday":"05-22-2017",
+    "endingFriday":"06-16-2017",
+    "schedule_items":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

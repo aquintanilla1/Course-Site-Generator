@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)http://www3.cs.stonybrook.edu/~cse308/Section01/schedule.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="description" content="CSE 308 - Software Engineering - Spring 2017 Schedule Page">
+	<title>CSE 308 Schedule</title> 
+	<link rel="stylesheet" type="text/css" href="./css/course_homepage_layout.css">
+	<link rel="stylesheet" type="text/css" href="./css/sea_wolf.css">
+
+	<style>
+	 table.project {
+		font-weight:bold; 
+		border:0px;
+		border-collapse:collapse;
+	 }
+	 table.project tr {
+		border:0px;
+		border-collapse:collapse;
+	 }
+	 table.project td {
+		border:0px;
+		border-collapse:collapse;
+		padding:5px;
+	}
+	</style>
+
+        <!-- LINK TO OUR JavaScript FILE AND JQuery -->
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/ScheduleBuilder.js"></script>
+
+	<!-- ONCE THE PAGE FULLY LOADS INITIALIZE THE SLIDESHOW -->
+        <script>
+	    $(document).ready()
+	    {
+		initSchedule();
+	    }
+        </script>
+    </head>
+
+
+    <body>
+
+	<div id="content">
+
+	    <div id="navbar">
+
+	    </div>
+
+	    <div id="banner">
+		
+	    </div>
+
+	    <div id="desc">
+		<table border="1" cellspacing="0" class="schedule">
+                    <tbody id="schedule_table">
+                        <!-- THIS WILL BE FILLED IN BY JAVASCRIPT -->                        
+		</table>
+
+
+		<hr>
+		<div id="footers">
+		
+		</div>
+		<div id="instructor_info"
+		
+		</div>
+	    </div>
+	</div>
+    
+</body></html>

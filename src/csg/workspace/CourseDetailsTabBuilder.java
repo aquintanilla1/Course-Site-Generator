@@ -498,7 +498,7 @@ public class CourseDetailsTabBuilder {
         File cssDirectory = new File(sourcePath);
         String[] files = cssDirectory.list(cssFilter);
         
-        cssFiles.addAll(Arrays.asList(files));
+        cssFiles.addAll(Arrays.asList(files));       
         return cssFiles;
     }
     

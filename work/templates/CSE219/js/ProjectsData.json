@@ -1,0 +1,38 @@
+
+{
+    "subject":"CSE",
+    "semester":"Summer",
+    "number":"308",
+    "year":"2021",
+    "courseTitle":"Software Engineering",
+    "instructorName":"Richard Banerjee",
+    "instructorHome":"www.reddit.com",
+    "site_pages":[
+        {
+            "navBarTitle":"HWs",
+            "fileName":"hws.html"
+        },
+        {
+            "navBarTitle":"Home",
+            "fileName":"index.html"
+        },
+        {
+            "navBarTitle":"Schedule",
+            "fileName":"schedule.html"
+        },
+        {
+            "navBarTitle":"Syllabus",
+            "fileName":"syllabus.html"
+        }
+    ],
+    "imagePath":"/Users/Alvaro/Documents/BarackObama.jpg",
+    "leftFooterPath":"/Users/Alvaro/Documents/clarkKentIsSuperman.jpeg",
+    "rightFooterPath":"/Users/Alvaro/Documents/bestbatman.jpg",
+    "work":[
+        {
+            "semester":"308 2021",
+            "projects":[
+            ]
+        }
+    ]
+}

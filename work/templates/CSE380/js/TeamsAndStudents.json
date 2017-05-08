@@ -1,0 +1,39 @@
+
+{
+    "subject":"",
+    "semester":"",
+    "number":"",
+    "year":"",
+    "courseTitle":"",
+    "instructorName":"",
+    "instructorHome":"",
+    "site_pages":[
+        {
+            "navBarTitle":"HWs",
+            "fileName":"hws.html"
+        },
+        {
+            "navBarTitle":"Home",
+            "fileName":"index.html"
+        },
+        {
+            "navBarTitle":"Projects",
+            "fileName":"projects.html"
+        },
+        {
+            "navBarTitle":"Schedule",
+            "fileName":"schedule.html"
+        },
+        {
+            "navBarTitle":"Syllabus",
+            "fileName":"syllabus.html"
+        }
+    ],
+    "imagePath":"No image selected",
+    "leftFooterPath":"No image selected",
+    "rightFooterPath":"No image selected",
+    "teams":[
+    ],
+    "students":[
+    ]
+}

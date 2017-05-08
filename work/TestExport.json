@@ -6,13 +6,13 @@
             "semester":"Summer",
             "number":"308",
             "year":"2021",
-            "courseTitle":"Software Engineerin",
-            "instructorName":"Richard Banerje",
-            "instructorHome":"www.whatever.co",
-            "exportDir":"/Users/Alvaro/Documents/Test308"
+            "courseTitle":"Software Engineering",
+            "instructorName":"Richard Banerjee",
+            "instructorHome":"www.reddit.com",
+            "exportDir":"/Users/Alvaro/Documents/Test219"
         }
     ],
-    "templateDir":"/Users/Alvaro/Documents/CSE219HW5/CourseSiteGenerator/data/public_html/templates/CSE308",
+    "templateDir":"/Users/Alvaro/Documents/CSE219HW5/CourseSiteGenerator/data/public_html/templates/CSE219",
     "site_pages":[
         {
             "isUsed":true,
@@ -25,12 +25,6 @@
             "navBarTitle":"Home",
             "fileName":"index.html",
             "script":"HomeBuilder.js"
-        },
-        {
-            "isUsed":true,
-            "navBarTitle":"Projects",
-            "fileName":"projects.html",
-            "script":"ProjectsBuilder.js"
         },
         {
             "isUsed":true,
@@ -47,23 +41,118 @@
     ],
     "style":[
         {
-            "imagePath":"No image selected",
-            "leftFooterPath":"No image selected",
-            "rightFooterPath":"No image selected",
-            "stylesheet":""
+            "imagePath":"/Users/Alvaro/Documents/BarackObama.jpg",
+            "leftFooterPath":"/Users/Alvaro/Documents/clarkKentIsSuperman.jpeg",
+            "rightFooterPath":"/Users/Alvaro/Documents/bestbatman.jpg",
+            "stylesheet":"reportstyle.css"
         }
     ],
     "startHour":"9",
     "endHour":"20",
     "undergrad_tas":[
+        {
+            "name":"dfdfffd",
+            "email":"dfd@gm.com",
+            "isUndergrad":false
+        }
     ],
     "officeHours":[
+        {
+            "day":"TUESDAY",
+            "time":"11_30am",
+            "name":"dfdfffd"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"12_00pm",
+            "name":"dfdfffd"
+        },
+        {
+            "day":"THURSDAY",
+            "time":"12_30pm",
+            "name":"dfdfffd"
+        },
+        {
+            "day":"TUESDAY",
+            "time":"1_30pm",
+            "name":"dfdfffd"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"1_30pm",
+            "name":"dfdfffd"
+        },
+        {
+            "day":"THURSDAY",
+            "time":"1_30pm",
+            "name":"dfdfffd"
+        },
+        {
+            "day":"TUESDAY",
+            "time":"2_30pm",
+            "name":"dfdfffd"
+        },
+        {
+            "day":"THURSDAY",
+            "time":"3_00pm",
+            "name":"dfdfffd"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"3_30pm",
+            "name":"dfdfffd"
+        }
     ],
     "recitations":[
     ],
-    "startingMonday":"",
-    "endingFriday":"",
+    "startingMonday":"05-15-2017",
+    "endingFriday":"06-30-2017",
     "schedule_items":[
+        {
+            "type":"Holiday",
+            "scheduleTime":"",
+            "date":"05-17-2017",
+            "scheduleTitle":"World War III",
+            "topic":"",
+            "scheduleLink":"",
+            "criteria":""
+        },
+        {
+            "type":"Lecture",
+            "scheduleTime":"",
+            "date":"06-2-2017",
+            "scheduleTitle":"Lecture 43",
+            "topic":"Fuck this",
+            "scheduleLink":"",
+            "criteria":""
+        },
+        {
+            "type":"HW",
+            "scheduleTime":"11:59 PM",
+            "date":"06-8-2017",
+            "scheduleTitle":"HW 4 Your Death",
+            "topic":"dying",
+            "scheduleLink":"",
+            "criteria":""
+        },
+        {
+            "type":"Reference",
+            "scheduleTime":"",
+            "date":"05-26-2017",
+            "scheduleTitle":"Blah Blah",
+            "topic":"Who cares",
+            "scheduleLink":"",
+            "criteria":""
+        },
+        {
+            "type":"Recitation",
+            "scheduleTime":"",
+            "date":"06-5-2017",
+            "scheduleTitle":"Recitation 6",
+            "topic":"The Bubfnb 5",
+            "scheduleLink":"",
+            "criteria":""
+        }
     ],
     "teams":[
     ],

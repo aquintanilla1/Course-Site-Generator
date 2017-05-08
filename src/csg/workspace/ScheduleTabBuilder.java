@@ -78,46 +78,46 @@ public class ScheduleTabBuilder {
         
         controller = new ScheduleDataController(app);
         
-        typeBox.setOnAction(e -> {
-            
-            if (typeBox.getValue() == null) {
-                timeTextField.setDisable(false);
-                topicTextField.setDisable(false);
-                linkTextField.setDisable(false);
-                criteriaTextField.setDisable(false);
-            }
-            
-            else if (typeBox.getValue().equals(props.getProperty(CSGProp.HOLIDAY_TEXT))) {
-                timeTextField.setDisable(true);
-                topicTextField.setDisable(true);
-                linkTextField.setDisable(false);
-                criteriaTextField.setDisable(true);
-            }
-            else if (typeBox.getValue().equals(props.getProperty(CSGProp.LECTURE_TEXT))) {
-                timeTextField.setDisable(false);
-                topicTextField.setDisable(false);
-                linkTextField.setDisable(false);
-                criteriaTextField.setDisable(true);
-            }
-            else if (typeBox.getValue().equals(props.getProperty(CSGProp.HWS_TEXT))) {
-                timeTextField.setDisable(false);
-                topicTextField.setDisable(false);
-                linkTextField.setDisable(false);
-                criteriaTextField.setDisable(false);
-            }
-            else if (typeBox.getValue().equals(props.getProperty(CSGProp.RECITATION_TEXT))) {
-                timeTextField.setDisable(true);
-                topicTextField.setDisable(false);
-                linkTextField.setDisable(true);
-                criteriaTextField.setDisable(true);
-            }
-            else if (typeBox.getValue().equals(props.getProperty(CSGProp.REFERENCE_TEXT))) {
-                timeTextField.setDisable(true);
-                topicTextField.setDisable(false);
-                linkTextField.setDisable(false);
-                criteriaTextField.setDisable(true);
-            }
-        });
+//        typeBox.setOnAction(e -> {
+//            
+//            if (typeBox.getValue() == null) {
+//                timeTextField.setDisable(false);
+//                topicTextField.setDisable(false);
+//                linkTextField.setDisable(false);
+//                criteriaTextField.setDisable(false);
+//            }
+//            
+//            else if (typeBox.getValue().equals(props.getProperty(CSGProp.HOLIDAY_TEXT))) {
+//                timeTextField.setDisable(true);
+//                topicTextField.setDisable(true);
+//                linkTextField.setDisable(false);
+//                criteriaTextField.setDisable(true);
+//            }
+//            else if (typeBox.getValue().equals(props.getProperty(CSGProp.LECTURE_TEXT))) {
+//                timeTextField.setDisable(false);
+//                topicTextField.setDisable(false);
+//                linkTextField.setDisable(false);
+//                criteriaTextField.setDisable(true);
+//            }
+//            else if (typeBox.getValue().equals(props.getProperty(CSGProp.HWS_TEXT))) {
+//                timeTextField.setDisable(false);
+//                topicTextField.setDisable(false);
+//                linkTextField.setDisable(false);
+//                criteriaTextField.setDisable(false);
+//            }
+//            else if (typeBox.getValue().equals(props.getProperty(CSGProp.RECITATION_TEXT))) {
+//                timeTextField.setDisable(true);
+//                topicTextField.setDisable(false);
+//                linkTextField.setDisable(true);
+//                criteriaTextField.setDisable(true);
+//            }
+//            else if (typeBox.getValue().equals(props.getProperty(CSGProp.REFERENCE_TEXT))) {
+//                timeTextField.setDisable(true);
+//                topicTextField.setDisable(false);
+//                linkTextField.setDisable(false);
+//                criteriaTextField.setDisable(true);
+//            }
+//        });
         
         addUpdateButton.setOnAction(e -> {
             controller.handleAddItem();

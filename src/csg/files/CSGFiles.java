@@ -321,6 +321,12 @@ public class CSGFiles implements AppFileComponent {
             dataManager.getCourseInfo().set(7, jsonCourseInfo.getString(JSON_EXPORT_DIRECTORY));
         }
         
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+
+        if (!dataManager.getCourseInfo().get(7).equals(props.getProperty(CSGProp.DEFAULT_DIR_TEXT))) {
+            dataManager.hasExportDirectory();
+        }
+        
         dataManager.setTemplateDirectory(json.getString(JSON_TEMPLATE_DIRECTORY));
         
         JsonArray sitePageArray = json.getJsonArray(JSON_SITE_PAGES);
@@ -453,6 +459,19 @@ public class CSGFiles implements AppFileComponent {
            directoryPath = filePath;
         }        
         
+        JsonArrayBuilder usedSitePageArrayBuilder = Json.createArrayBuilder();
+        ArrayList<SitePage> usedPages = provideUsedFiles(dataManager);
+        
+        for (SitePage p: usedPages) {
+            JsonObject pageJson = Json.createObjectBuilder()
+                    .add(JSON_PAGE_NAVBAR_TITLE, p.getNavbarTitle())
+                    .add(JSON_PAGE_FILE_NAME, p.getFileName())
+                    .build();
+            usedSitePageArrayBuilder.add(pageJson);
+        }
+        
+        JsonArray usedSitePageArray = usedSitePageArrayBuilder.build();
+        
         //TAs.Json
         JsonArrayBuilder undergradTaArrayBuilder = Json.createArrayBuilder();
 	ObservableList<TeachingAssistant> tas = dataManager.getTeachingAssistants();
@@ -497,6 +516,12 @@ public class CSGFiles implements AppFileComponent {
                 .add(JSON_NUMBER, dataManager.getCourseInfo().get(2))
                 .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
                 .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
+                .add(JSON_INSTRUCTOR_NAME, dataManager.getCourseInfo().get(5))
+                .add(JSON_INSTRUCTOR_HOME, dataManager.getCourseInfo().get(6))
+                .add(JSON_SITE_PAGES, usedSitePageArray)
+                .add(JSON_IMAGE_PATH, dataManager.getImagePath())
+                .add(JSON_LEFT_FOOTER_PATH, dataManager.getLeftFooterImagePath())
+                .add(JSON_RIGHT_FOOTER_PATH, dataManager.getRightFooterImagePath())
 		.add(JSON_START_HOUR, "" + dataManager.getStartHour())
 		.add(JSON_END_HOUR, "" + dataManager.getEndHour())
                 .add(JSON_UNDERGRAD_TAS, undergradTAsArray)
@@ -608,6 +633,12 @@ public class CSGFiles implements AppFileComponent {
                 .add(JSON_NUMBER, dataManager.getCourseInfo().get(2))
                 .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
                 .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
+                .add(JSON_INSTRUCTOR_NAME, dataManager.getCourseInfo().get(5))
+                .add(JSON_INSTRUCTOR_HOME, dataManager.getCourseInfo().get(6))
+                .add(JSON_SITE_PAGES, usedSitePageArray)
+                .add(JSON_IMAGE_PATH, dataManager.getImagePath())
+                .add(JSON_LEFT_FOOTER_PATH, dataManager.getLeftFooterImagePath())
+                .add(JSON_RIGHT_FOOTER_PATH, dataManager.getRightFooterImagePath())
                 .add(JSON_STARTING_MONDAY_MONTH, dataManager.getStartMonth())
                 .add(JSON_STARTING_MONDAY_DAY, dataManager.getStartDay())
                 .add(JSON_ENDING_FRIDAY_MONTH, dataManager.getEndMonth())
@@ -656,6 +687,12 @@ public class CSGFiles implements AppFileComponent {
                 .add(JSON_NUMBER, dataManager.getCourseInfo().get(2))
                 .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
                 .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
+                .add(JSON_INSTRUCTOR_NAME, dataManager.getCourseInfo().get(5))
+                .add(JSON_INSTRUCTOR_HOME, dataManager.getCourseInfo().get(6))
+                .add(JSON_SITE_PAGES, usedSitePageArray)
+                .add(JSON_IMAGE_PATH, dataManager.getImagePath())
+                .add(JSON_LEFT_FOOTER_PATH, dataManager.getLeftFooterImagePath())
+                .add(JSON_RIGHT_FOOTER_PATH, dataManager.getRightFooterImagePath())
                 .add(JSON_TEAMS, teamArray)
                 .add(JSON_STUDENTS, studentArray)
 		.build();
@@ -694,6 +731,12 @@ public class CSGFiles implements AppFileComponent {
                 .add(JSON_NUMBER, dataManager.getCourseInfo().get(2))
                 .add(JSON_YEAR, dataManager.getCourseInfo().get(3))
                 .add(JSON_COURSE_TITLE, dataManager.getCourseInfo().get(4))
+                .add(JSON_INSTRUCTOR_NAME, dataManager.getCourseInfo().get(5))
+                .add(JSON_INSTRUCTOR_HOME, dataManager.getCourseInfo().get(6))
+                .add(JSON_SITE_PAGES, usedSitePageArray)
+                .add(JSON_IMAGE_PATH, dataManager.getImagePath())
+                .add(JSON_LEFT_FOOTER_PATH, dataManager.getLeftFooterImagePath())
+                .add(JSON_RIGHT_FOOTER_PATH, dataManager.getRightFooterImagePath())
                 .add(JSON_WORK, workArray)
                 .build();
         String projectsFilePath = sourcePath + "/js/ProjectsData.json";
@@ -776,11 +819,26 @@ public class CSGFiles implements AppFileComponent {
         File selectedDirectory = new File(directoryPath);
         FileUtils.copyDirectory(sourceDirectory, selectedDirectory, true);
         removeUnusedFiles(selectedDirectory);
+        
+        File stylesheet = new File(System.getProperty("user.dir") + "/work/css/" + dataManager.getStylesheet());
+        FileUtils.copyFileToDirectory(stylesheet, new File(selectedDirectory.getAbsolutePath() +"/css"));
     }
 
     @Override
     public void importData(AppDataComponent data, String filePath) throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private ArrayList<SitePage> provideUsedFiles(CSGData data) {
+        ArrayList<SitePage> usedPages = new ArrayList<>();
+        
+        for (SitePage p: data.getSitePages()) {
+            if (p.getIsUsed()) {
+                usedPages.add(p);
+            }
+        }
+        
+        return usedPages;
     }
     
     private void removeUnusedFiles(File directory) {

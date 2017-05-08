@@ -599,6 +599,10 @@ public class CSGData implements AppDataComponent {
         fileController.markAsEdited(app.getGUI());
     }
     
+    public void hasExportDirectory() {
+        fileController.allowExport(app.getGUI());
+    }
+    
     public void addSitePage(boolean isUsed, String navBarTitle, String fileName, String script) {
         SitePage page = new SitePage(isUsed, navBarTitle, fileName, script);
         sitePages.add(page);
